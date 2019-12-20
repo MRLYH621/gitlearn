@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CoronaDataCenter.CommonTools
+{
+    public class EncryptionHelper
+    {
+        /// <summary>
+        /// DES加密
+        /// </summary>
+        /// <param name="text">被加密明文</param>
+        /// <param name="key">密钥</param>
+        /// <param name="iv">向量</param>
+        /// <returns></returns>
+        public static string EncryptedDES(string text, byte[] key, byte[] iv)
+        {
+            return (new TD.Security.DES()).Encode(key, iv, text);
+        }
+        /// <summary>
+        /// DES解密
+        /// </summary>
+        /// <param name="encryptString">密文</param>
+        /// <param name="key">密钥</param>
+        /// <param name="iv">向量</param>
+        /// <returns></returns>
+        public static string DecryptedDES(string text, byte[] key, byte[] iv)
+        {
+            return (new TD.Security.DES()).Decode(key, iv, text);
+        }
+        
+        /// <summary>
+        /// MD5加密
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static string EncryptedMD5(string text)
+        {
+            TD.Security.MD5 md5 = new TD.Security.MD5();
+            return md5.Encode(text);
+        }
+
+    }
+}

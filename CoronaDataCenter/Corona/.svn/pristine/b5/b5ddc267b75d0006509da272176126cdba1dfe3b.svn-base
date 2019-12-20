@@ -1,0 +1,84 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CoronaDataCenter.Models;
+using System.Data;
+
+namespace CoronaDataCenter.Business
+{
+    public class StationInofManager
+    {
+        public List<StationInfoModel> GetAllStationInfo()
+        {
+            List<StationInfoModel> list = new List<StationInfoModel>();
+            String sql = "SELECT *  FROM  dbo.Tb_Station_Info ";
+            DataTable dt = DataAccess.ExecuteGetDataTable(sql);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+                    StationInfoModel model = new StationInfoModel();
+                    model.Pname = String.IsNullOrEmpty(Convert.ToString(dt.Rows[i]["StaName"])) ? "无" : Convert.ToString(dt.Rows[i]["StaName"]);
+                    model.Pcity = String.IsNullOrEmpty(Convert.ToString(dt.Rows[i]["StaCity "])) ? "无" : Convert.ToString(dt.Rows[i]["StaCity "]);
+                    model.PNDegree = String.IsNullOrEmpty(dt.Rows[i]["StaNDegree"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["StaNDegree"].ToString()));
+                    model.PSDegree = String.IsNullOrEmpty(dt.Rows[i]["StaSDegree"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["StaSDegree"].ToString()));
+                    model.Paddress = String.IsNullOrEmpty(Convert.ToString(dt.Rows[i]["StaAddress "])) ? "无" : Convert.ToString(dt.Rows[i]["StaAddress "]);
+                    model.Premark = String.IsNullOrEmpty(Convert.ToString(dt.Rows[i]["StaPremark "])) ? "无" : Convert.ToString(dt.Rows[i]["StaPremark "]);
+                    model.PPersonNum = String.IsNullOrEmpty(dt.Rows[i]["StaPPersonNum"].ToString()) ? 0 : Convert.ToInt16(String.IsNullOrEmpty(dt.Rows[i]["StaPPersonNum"].ToString()));
+                    model.PFloorSpace = String.IsNullOrEmpty(dt.Rows[i]["StaPFloorSpace"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["StaPFloorSpace"].ToString()));
+                    model.SysCap = String.IsNullOrEmpty(dt.Rows[i]["StaSysCap"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["StaSysCap"].ToString()));
+                    model.SysType = String.IsNullOrEmpty(dt.Rows[i]["StaSysType"].ToString()) ? 0 : Convert.ToInt16(String.IsNullOrEmpty(dt.Rows[i]["StaSysType"].ToString()));
+                    model.SysMode = String.IsNullOrEmpty(dt.Rows[i]["StaSysMode"].ToString()) ? 0 : Convert.ToInt16(String.IsNullOrEmpty(dt.Rows[i]["StaSysMode"].ToString()));
+
+                }
+            }
+            return list;
+        }
+        public List<StationDataModel> GetStation()
+        {
+            List<StationDataModel> list = new List<StationDataModel>();
+            String sql = "SELECT * FROM Tb_Station_Info a LEFT JOIN dbo.Tb_Station_Data b ON a.Sn=b.Parm_002";
+            DataTable dt = DataAccess.ExecuteGetDataTable(sql);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                StationDataModel model;
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    model = new StationDataModel();
+                    model.parm_002 = Convert.ToString(dt.Rows[i]["sn"]);
+                    model.Pname = String.IsNullOrEmpty(Convert.ToString(dt.Rows[i]["StaName"])) ? "无" : Convert.ToString(dt.Rows[i]["StaName"]);
+                    model.SysCap = String.IsNullOrEmpty(dt.Rows[i]["StaSysCap"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["StaSysCap"].ToString()));
+                    model.SysType = String.IsNullOrEmpty(dt.Rows[i]["StaSysType"].ToString()) ? 0 : Convert.ToInt16(String.IsNullOrEmpty(dt.Rows[i]["StaSysType"].ToString()));
+                    model.SysMode = String.IsNullOrEmpty(dt.Rows[i]["StaSysMode"].ToString()) ? 0 : Convert.ToInt16(String.IsNullOrEmpty(dt.Rows[i]["StaSysMode"].ToString()));
+                    model.DZZ_Parm_003 = String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_003"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_003"].ToString()));
+                    model.DZZ_Parm_004 = String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_004"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_004"].ToString()));
+                    model.DZZ_Parm_005 = String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_005"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_005"].ToString()));
+                    model.DZZ_Parm_006 = String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_006"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_006"].ToString()));
+                    model.DZZ_Parm_007 = String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_007"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_007"].ToString()));
+                    model.DZZ_Parm_008 = String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_008"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_008"].ToString()));
+                    model.DZZ_Parm_009 = String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_009"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_009"].ToString()));
+                    model.DZZ_Parm_010 = String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_010"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_010"].ToString()));
+                    model.DZZ_Parm_011 = String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_011"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_011"].ToString()));
+                    model.DZZ_Parm_012 = String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_012"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_012"].ToString()));
+                    model.DZZ_Parm_013 = String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_013"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_013"].ToString()));
+                    model.DZZ_Parm_014 = String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_014"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_014"].ToString()));
+                    model.DZZ_Parm_015 = String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_015"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_015"].ToString()));
+                    model.DZZ_Parm_016 = String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_016"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_016"].ToString()));
+                    model.DZZ_Parm_017 = String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_017"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_017"].ToString()));
+                    model.DZZ_Parm_018 = String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_018"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_018"].ToString()));
+                    model.DZZ_Parm_019 = String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_019"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_019"].ToString()));
+                    model.DZZ_Parm_020 = String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_020"].ToString()) ? 0 : Convert.ToSingle(String.IsNullOrEmpty(dt.Rows[i]["DZZ_Parm_020"].ToString()));
+
+                    list.Add(model);
+                }
+            }
+            return list;
+        }
+    }
+}

@@ -1,0 +1,140 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CoronaDataCenter.Models;
+
+namespace CoronaDataCenter.Business
+{
+    public class TargetManager
+    {
+        /// <summary>
+        /// 获取数据
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>  
+        public List<Tb_TargetModel> GetTarget()
+        {
+            List<Tb_TargetModel> list = new List<Tb_TargetModel>();
+            string sql = "select * from dbo.Tb_SysInex a  INNER JOIN  dbo.Tb_Target b ON  a.parm_003=b.ID  ORDER BY ID";
+            DataTable dt = DataAccess.ExecuteGetDataTable(sql);
+            if (dt.Rows.Count > 0)
+            {
+                Tb_TargetModel model;
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    model = new Tb_TargetModel();
+                    model.ID = Convert.ToInt32(dt.Rows[i]["ID"].ToString());
+                    model.T_Name = dt.Rows[i]["T_Name"].ToString();
+                    model.T_Type = dt.Rows[i]["T_Type"].ToString();
+                    model.T_Code = dt.Rows[i]["T_Code"].ToString();
+                    model.T_Formula = dt.Rows[i]["T_Formula"].ToString();
+
+                    model.parm_002 =  String.IsNullOrEmpty(Convert.ToString(dt.Rows[i]["Sn"])) ? "无" : Convert.ToString(dt.Rows[i]["Sn"]);                        
+                    model.pt_parm_003 = String.IsNullOrEmpty(dt.Rows[i]["pt_parm_003"].ToString()) ? 0 : Convert.ToSingle(dt.Rows[i]["pt_parm_003"].ToString());  // 指标值	
+                    model.pt_parm_004 = String.IsNullOrEmpty(dt.Rows[i]["pt_parm_004"].ToString()) ? 0 : Convert.ToSingle(dt.Rows[i]["pt_parm_004"].ToString());   //对标值		
+                    model.pt_parm_005 = String.IsNullOrEmpty(dt.Rows[i]["pt_parm_005"].ToString()) ? 0 : Convert.ToSingle(dt.Rows[i]["pt_parm_005"].ToString());   //指标权重	
+                    list.Add(model);                                                                                                                               
+                }
+            }
+            return list;
+        }
+        public List<Tb_TargetModel> GetTargetBySn(String sn)
+        {
+            List<Tb_TargetModel> list = new List<Tb_TargetModel>();
+            string sql = "select * from dbo.Tb_SysInex a  INNER JOIN  dbo.Tb_Target b ON  a.parm_003=b.ID WHERE a.parm_002='"+sn+"' ORDER BY ID";
+            DataTable dt = DataAccess.ExecuteGetDataTable(sql);
+            if (dt.Rows.Count > 0)
+            {
+                Tb_TargetModel model;
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    model = new Tb_TargetModel();
+                    model.ID = Convert.ToInt32(dt.Rows[i]["ID"].ToString());
+                    model.T_Name = dt.Rows[i]["T_Name"].ToString();
+                    model.T_Type = dt.Rows[i]["T_Type"].ToString();
+                    model.T_Code = dt.Rows[i]["T_Code"].ToString();
+                    model.T_Formula = dt.Rows[i]["T_Formula"].ToString();
+
+                    model.parm_002 = String.IsNullOrEmpty(Convert.ToString(dt.Rows[i]["Sn"])) ? "无" : Convert.ToString(dt.Rows[i]["Sn"]);
+                    model.pt_parm_003 = String.IsNullOrEmpty(dt.Rows[i]["pt_parm_003"].ToString()) ? 0 : Convert.ToSingle(dt.Rows[i]["pt_parm_003"].ToString());  // 指标值	
+                    model.pt_parm_004 = String.IsNullOrEmpty(dt.Rows[i]["pt_parm_004"].ToString()) ? 0 : Convert.ToSingle(dt.Rows[i]["pt_parm_004"].ToString());   //对标值		
+                    model.pt_parm_005 = String.IsNullOrEmpty(dt.Rows[i]["pt_parm_005"].ToString()) ? 0 : Convert.ToSingle(dt.Rows[i]["pt_parm_005"].ToString());   //指标权重	
+                    list.Add(model);
+                }
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// 获取数据
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>  
+        public List<Tb_TargetModel> GetTarget(string Name)
+        {
+            List<Tb_TargetModel> list = new List<Tb_TargetModel>();
+            string sql = "select * from Tb_Target WHERE T_Name LIKE '%" + Name + "%' ORDER BY ID";
+            DataTable dt = DataAccess.ExecuteGetDataTable(sql);
+            if (dt.Rows.Count > 0)
+            {
+                Tb_TargetModel model;
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    model = new Tb_TargetModel();
+                    model.ID = Convert.ToInt32(dt.Rows[i]["ID"].ToString());
+                    model.T_Name = dt.Rows[i]["T_Name"].ToString();
+                    model.T_Type = dt.Rows[i]["T_Type"].ToString();
+                    model.T_Code = dt.Rows[i]["T_Code"].ToString();
+                    model.T_Formula = dt.Rows[i]["T_Formula"].ToString();
+
+                    list.Add(model);
+                }
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// 创建
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>  
+        public int InsertTarget(Tb_TargetModel model)
+        {
+            int right = 0;
+            string sql = @"INSERT INTO Tb_Target(T_Name,T_Type ,T_Code ,T_Formula)VALUES('" + model.T_Name +
+                "','" + model.T_Type + "','" + model.T_Code + "','" + model.T_Formula + "')";
+            right = DataAccess.ExecuteNoQueryGetValue(sql);
+            return right;
+        }
+
+        /// <summary>
+        /// 创建
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>  
+        public int UpdateTarget(Tb_TargetModel model)
+        {
+            int right = 0;
+            string sql = @"UPDATE Tb_Target  SET T_Name = '" + model.T_Name + "',T_Type = '" + model.T_Type + "',T_Code = '" + model.T_Code +
+                "' ,T_Formula = '" + model.T_Formula + "' WHERE ID = " + model.ID;
+            right = DataAccess.ExecuteNoQueryGetValue(sql);
+            return right;
+        }
+
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>  
+        public int DeleteTarget(int ID)
+        {
+            int right = 0;
+            string sql = @"DELETE FROM Tb_Target  WHERE ID = " + ID;
+            right = DataAccess.ExecuteNoQueryGetValue(sql);
+            return right;
+        }
+    }
+}

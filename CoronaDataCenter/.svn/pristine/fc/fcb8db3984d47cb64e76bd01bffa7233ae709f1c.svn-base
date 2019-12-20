@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.ComponentModel.DataAnnotations;
+
+namespace CoronaDataCenter.Models
+{
+    [Serializable]
+    public class RoleModel
+    {
+        [Display(Name = "角色编号")]
+        public int ID { get; set; }
+
+        [Display(Name = "角色名称")]
+        public string Name { get; set; }
+
+        [Display(Name = "角色描述")]
+        public string Description { get; set; }
+
+        //public List<StockTreeModel> roleTree { get; set; }
+
+        /// <summary>
+        /// 是否有下载权限（1：有，0：没有）
+        /// </summary>
+        //[Display(Name = "下载Excel权限")]
+        //public string isDownloadP { get; set; }
+    }
+}

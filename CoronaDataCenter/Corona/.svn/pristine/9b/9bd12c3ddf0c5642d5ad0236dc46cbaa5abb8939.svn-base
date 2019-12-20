@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ParkDataCenterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Tb_Equipment_Info">
+    <Key>
+      <PropertyRef Name="EqID" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EqID" Type="varchar" MaxLength="53" Nullable="false" />
+    <Property Name="Sn" Type="varchar" MaxLength="53" />
+    <Property Name="EqAdress" Type="int" />
+    <Property Name="EqGroup" Type="int" />
+    <Property Name="EqPoolType" Type="int" />
+    <Property Name="EqStatus" Type="int" />
+    <Property Name="EqType" Type="int" />
+    <Property Name="EqName" Type="nvarchar" MaxLength="50" />
+    <Property Name="EqFactory" Type="int" />
+    <Property Name="EqVersions" Type="int" />
+    <Property Name="EqTranstime" Type="datetime" />
+    <Property Name="EqRatedPower" Type="int" />
+    <Property Name="EqIsUsing" Type="int" />
+    <Property Name="EqNextEquit" Type="varchar" MaxLength="53" />
+    <Property Name="EqInstallTime" Type="datetime" />
+    <Property Name="EqNetLineID" Type="int" />
+    <Property Name="EqGroupNextId" Type="int" />
+    <Property Name="EqInstallSite" Type="nvarchar" MaxLength="50" />
+    <Property Name="EqInstallWay" Type="nvarchar" MaxLength="50" />
+    <Property Name="EqInstallHeight" Type="nvarchar" MaxLength="50" />
+    <Property Name="EqInstallUnit" Type="nvarchar" MaxLength="50" />
+    <Property Name="EqInstallMan" Type="nvarchar" MaxLength="50" />
+    <Property Name="EqImage" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Tb_Equipment_Type">
+    <Key>
+      <PropertyRef Name="EqTypeID" />
+    </Key>
+    <Property Name="EqTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EqTypeName" Type="varchar" MaxLength="20" />
+    <Property Name="EqTypeParentID" Type="int" />
+    <Property Name="IsUsing" Type="int" />
+    <Property Name="EqStationType" Type="int" />
+    <Property Name="EqTableTitle" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Tb_Fault_Class">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FauClasses" Type="nvarchar" MaxLength="50" />
+    <Property Name="FauColor" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Tb_Fault_Code">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sn" Type="varchar" MaxLength="48" />
+    <Property Name="EqID" Type="varchar" MaxLength="53" />
+    <Property Name="EqType" Type="int" />
+    <Property Name="FauType" Type="int" />
+    <Property Name="FauBitType" Type="int" />
+    <Property Name="FauParm" Type="nvarchar" MaxLength="50" />
+    <Property Name="FauCode" Type="nvarchar" MaxLength="500" />
+    <Property Name="FauDescription" Type="nvarchar" MaxLength="50" />
+    <Property Name="FauClasses" Type="int" />
+  </EntityType>
+  <EntityType Name="Tb_Fault_CodeInfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="faultcodeid" Type="int" />
+    <Property Name="classes" Type="int" />
+    <Property Name="solutions" Type="varchar" MaxLength="50" />
+    <Property Name="tools" Type="varchar" MaxLength="50" />
+    <Property Name="reasons" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Tb_Fault_Data">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EqID" Type="varchar" MaxLength="53" />
+    <Property Name="FauCodeA" Type="nvarchar" MaxLength="32" />
+    <Property Name="FauCodeB" Type="nvarchar" MaxLength="32" />
+    <Property Name="FauTime" Type="datetime" />
+    <Property Name="parm_001" Type="int" />
+    <Property Name="parm_002" Type="int" />
+    <Property Name="parm_003" Type="int" />
+    <Property Name="parm_004" Type="int" />
+    <Property Name="parm_005" Type="int" />
+    <Property Name="parm_006" Type="int" />
+    <Property Name="parm_007" Type="int" />
+    <Property Name="parm_008" Type="int" />
+    <Property Name="parm_009" Type="int" />
+    <Property Name="parm_010" Type="int" />
+    <Property Name="parm_011" Type="int" />
+    <Property Name="parm_012" Type="int" />
+    <Property Name="parm_013" Type="int" />
+    <Property Name="parm_014" Type="int" />
+    <Property Name="parm_015" Type="int" />
+    <Property Name="parm_016" Type="int" />
+    <Property Name="parm_017" Type="int" />
+    <Property Name="parm_018" Type="int" />
+    <Property Name="parm_019" Type="int" />
+    <Property Name="parm_020" Type="int" />
+    <Property Name="parm_021" Type="int" />
+    <Property Name="parm_022" Type="int" />
+    <Property Name="parm_023" Type="int" />
+    <Property Name="parm_024" Type="int" />
+    <Property Name="parm_025" Type="int" />
+    <Property Name="parm_026" Type="int" />
+    <Property Name="parm_027" Type="int" />
+    <Property Name="parm_028" Type="int" />
+    <Property Name="parm_029" Type="int" />
+    <Property Name="parm_030" Type="int" />
+    <Property Name="parm_031" Type="int" />
+    <Property Name="parm_032" Type="int" />
+    <Property Name="parm_033" Type="int" />
+    <Property Name="parm_034" Type="int" />
+    <Property Name="parm_035" Type="int" />
+    <Property Name="parm_036" Type="int" />
+    <Property Name="parm_037" Type="int" />
+    <Property Name="parm_038" Type="int" />
+    <Property Name="parm_039" Type="int" />
+    <Property Name="parm_040" Type="int" />
+    <Property Name="parm_041" Type="int" />
+    <Property Name="parm_042" Type="int" />
+    <Property Name="parm_043" Type="int" />
+    <Property Name="parm_044" Type="int" />
+    <Property Name="parm_045" Type="int" />
+    <Property Name="parm_046" Type="int" />
+    <Property Name="parm_047" Type="int" />
+    <Property Name="parm_048" Type="int" />
+    <Property Name="parm_049" Type="int" />
+    <Property Name="parm_050" Type="int" />
+    <Property Name="parm_051" Type="int" />
+    <Property Name="parm_052" Type="int" />
+    <Property Name="parm_053" Type="int" />
+    <Property Name="parm_054" Type="int" />
+    <Property Name="parm_055" Type="int" />
+    <Property Name="parm_056" Type="int" />
+    <Property Name="parm_057" Type="int" />
+    <Property Name="parm_058" Type="int" />
+    <Property Name="parm_059" Type="int" />
+    <Property Name="parm_060" Type="int" />
+    <Property Name="parm_061" Type="int" />
+    <Property Name="parm_062" Type="int" />
+    <Property Name="parm_063" Type="int" />
+    <Property Name="parm_064" Type="int" />
+    <Property Name="parm_065" Type="int" />
+    <Property Name="parm_066" Type="int" />
+    <Property Name="parm_067" Type="int" />
+    <Property Name="parm_068" Type="int" />
+    <Property Name="parm_069" Type="int" />
+    <Property Name="parm_070" Type="int" />
+    <Property Name="parm_071" Type="int" />
+    <Property Name="parm_072" Type="int" />
+    <Property Name="parm_073" Type="int" />
+    <Property Name="parm_074" Type="int" />
+    <Property Name="parm_075" Type="int" />
+    <Property Name="parm_076" Type="int" />
+    <Property Name="parm_077" Type="int" />
+    <Property Name="parm_078" Type="int" />
+    <Property Name="parm_079" Type="int" />
+    <Property Name="parm_080" Type="int" />
+    <Property Name="parm_081" Type="int" />
+    <Property Name="parm_082" Type="int" />
+    <Property Name="parm_083" Type="int" />
+    <Property Name="parm_084" Type="int" />
+    <Property Name="parm_085" Type="int" />
+    <Property Name="parm_086" Type="int" />
+    <Property Name="parm_087" Type="int" />
+    <Property Name="parm_088" Type="int" />
+    <Property Name="parm_089" Type="int" />
+    <Property Name="parm_090" Type="int" />
+    <Property Name="parm_091" Type="int" />
+    <Property Name="parm_092" Type="int" />
+    <Property Name="parm_093" Type="int" />
+    <Property Name="parm_094" Type="int" />
+    <Property Name="parm_095" Type="int" />
+    <Property Name="parm_096" Type="int" />
+    <Property Name="parm_097" Type="int" />
+    <Property Name="parm_098" Type="int" />
+    <Property Name="parm_099" Type="int" />
+    <Property Name="parm_100" Type="int" />
+    <Property Name="parm_101" Type="int" />
+    <Property Name="parm_102" Type="int" />
+    <Property Name="parm_103" Type="int" />
+    <Property Name="parm_104" Type="int" />
+    <Property Name="parm_105" Type="int" />
+    <Property Name="parm_106" Type="int" />
+    <Property Name="parm_107" Type="int" />
+    <Property Name="parm_108" Type="int" />
+    <Property Name="parm_109" Type="int" />
+    <Property Name="parm_110" Type="int" />
+    <Property Name="parm_111" Type="int" />
+    <Property Name="parm_112" Type="int" />
+    <Property Name="parm_113" Type="int" />
+    <Property Name="parm_114" Type="int" />
+    <Property Name="parm_115" Type="int" />
+    <Property Name="parm_116" Type="int" />
+    <Property Name="parm_117" Type="int" />
+    <Property Name="parm_118" Type="int" />
+    <Property Name="parm_119" Type="int" />
+    <Property Name="parm_120" Type="int" />
+    <Property Name="parm_121" Type="int" />
+    <Property Name="parm_122" Type="int" />
+    <Property Name="parm_123" Type="int" />
+    <Property Name="parm_124" Type="int" />
+    <Property Name="parm_125" Type="int" />
+    <Property Name="parm_126" Type="int" />
+    <Property Name="parm_127" Type="int" />
+    <Property Name="parm_128" Type="int" />
+    <Property Name="FauCode1" Type="int" />
+    <Property Name="FauCode2" Type="int" />
+    <Property Name="FauCode3" Type="int" />
+    <Property Name="FauCode4" Type="int" />
+    <Property Name="FauCode5" Type="int" />
+    <Property Name="FauCode6" Type="int" />
+    <Property Name="FauCode7" Type="int" />
+    <Property Name="FauCode8" Type="int" />
+    <Property Name="FauCode9" Type="int" />
+    <Property Name="FauCode10" Type="int" />
+    <Property Name="FauCode11" Type="int" />
+    <Property Name="FauCode12" Type="int" />
+    <Property Name="FauCode13" Type="int" />
+    <Property Name="FauCode14" Type="int" />
+    <Property Name="FauCode15" Type="int" />
+    <Property Name="FauCode16" Type="int" />
+  </EntityType>
+  <EntityType Name="Tb_Fault_Info">
+    <Key>
+      <PropertyRef Name="FauID" />
+    </Key>
+    <Property Name="FauID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EqID" Type="varchar" MaxLength="53" />
+    <Property Name="EqType" Type="int" />
+    <Property Name="FauCodeID" Type="int" />
+    <Property Name="FauTranstime" Type="datetime" />
+    <Property Name="FauRecoverytime" Type="datetime" />
+    <Property Name="FauTimes" Type="float" />
+    <Property Name="FauState" Type="int" />
+    <Property Name="RepeatTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Tb_Fault_Type">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Tb_Fault_Work">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FauCodeID" Type="int" />
+    <Property Name="WorkSetter" Type="int" />
+    <Property Name="WorkSetTime" Type="datetime" />
+    <Property Name="WorkGetter" Type="int" />
+    <Property Name="WorkGetTime" Type="datetime" />
+    <Property Name="WorkTools" Type="nvarchar" MaxLength="200" />
+    <Property Name="WorkSafety" Type="nvarchar" MaxLength="1000" />
+    <Property Name="WorkStatue" Type="nvarchar" MaxLength="50" />
+    <Property Name="WorkEndTime" Type="datetime" />
+    <Property Name="Sn" Type="varchar" MaxLength="48" />
+    <Property Name="EqID" Type="nvarchar" MaxLength="50" />
+    <Property Name="WorkFauArea" Type="nvarchar" MaxLength="100" />
+    <Property Name="WorkFaulogicArea" Type="nvarchar" MaxLength="100" />
+    <Property Name="WorkFauSolution" Type="nvarchar" MaxLength="2000" />
+    <Property Name="WorkFauDescription" Type="nvarchar" MaxLength="50" />
+    <Property Name="WorkFauReason" Type="nvarchar" MaxLength="500" />
+    <Property Name="WorkCode" Type="nvarchar" MaxLength="500" />
+    <Property Name="WorkID" Type="nvarchar" MaxLength="100" />
+    <Property Name="remark" Type="nvarchar" MaxLength="2000" />
+    <Property Name="WorkTranstime" Type="datetime" />
+    <Property Name="WorkDisGetTime" Type="datetime" />
+    <Property Name="WorkDisEndTime" Type="datetime" />
+    <Property Name="FauInfoID" Type="int" />
+    <Property Name="Guarder" Type="nvarchar" MaxLength="50" />
+    <Property Name="WorkTicket" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Tb_Flow_Status">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FlowID" Type="int" />
+    <Property Name="StatusName" Type="varchar" MaxLength="50" />
+    <Property Name="Remark" Type="varchar" MaxLength="200" />
+    <Property Name="StatusOrder" Type="int" />
+  </EntityType>
+  <EntityType Name="Tb_Station_Info">
+    <Key>
+      <PropertyRef Name="Sn" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sn" Type="varchar" MaxLength="53" Nullable="false" />
+    <Property Name="StaName" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="StaDesPower" Type="int" />
+    <Property Name="StaDesUnit" Type="varchar" MaxLength="10" />
+    <Property Name="StaProvince" Type="varchar" MaxLength="32" />
+    <Property Name="StaCity" Type="varchar" MaxLength="32" />
+    <Property Name="StaAddress" Type="varchar" MaxLength="100" />
+    <Property Name="StaTimeZone" Type="int" />
+    <Property Name="StaDaylightTime" Type="int" />
+    <Property Name="StaNSeconds" Type="float" />
+    <Property Name="StaNCornerPoints" Type="int" />
+    <Property Name="StaOwner" Type="int" />
+    <Property Name="StaNDegree" Type="float" />
+    <Property Name="StaSSecond" Type="float" />
+    <Property Name="StaSCornerPoints" Type="int" />
+    <Property Name="StaSDegree" Type="float" />
+    <Property Name="StaInvestor" Type="int" />
+    <Property Name="StaOperUnit" Type="varchar" MaxLength="50" />
+    <Property Name="StaContractor" Type="int" />
+    <Property Name="StaAreaID" Type="int" />
+    <Property Name="StaPubTime" Type="datetime" />
+    <Property Name="StaEelPrice" Type="float" />
+    <Property Name="StaEelSubsidy" Type="float" />
+    <Property Name="StaIsUsing" Type="int" />
+    <Property Name="StaImage" Type="varchar" MaxLength="200" />
+    <Property Name="StaType" Type="int" />
+    <Property Name="StaGroupArea" Type="float" />
+    <Property Name="StaGroupEff" Type="float" />
+    <Property Name="StaAirPressure" Type="float" />
+    <Property Name="StaFeedInType" Type="int" />
+    <Property Name="StaClass" Type="int" />
+    <Property Name="StaDiagram" Type="varchar" MaxLength="200" />
+    <Property Name="StaCAHighEarlyWarning" Type="int" />
+    <Property Name="StaFAHighEarlyWarning" Type="int" />
+    <Property Name="StaRemark" Type="varchar" MaxLength="500" />
+    <Property Name="ParkID" Type="int" />
+  </EntityType>
+  <Association Name="FK_Tb_Equipment_Info_Tb_Equipment_Type">
+    <End Role="Tb_Equipment_Type" Type="Self.Tb_Equipment_Type" Multiplicity="0..1" />
+    <End Role="Tb_Equipment_Info" Type="Self.Tb_Equipment_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tb_Equipment_Type">
+        <PropertyRef Name="EqTypeID" />
+      </Principal>
+      <Dependent Role="Tb_Equipment_Info">
+        <PropertyRef Name="EqType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tb_Equipment_Info_Tb_Station_Info">
+    <End Role="Tb_Station_Info" Type="Self.Tb_Station_Info" Multiplicity="0..1" />
+    <End Role="Tb_Equipment_Info" Type="Self.Tb_Equipment_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tb_Station_Info">
+        <PropertyRef Name="Sn" />
+      </Principal>
+      <Dependent Role="Tb_Equipment_Info">
+        <PropertyRef Name="Sn" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tb_Fault_Code_Tb_Fault_Class">
+    <End Role="Tb_Fault_Class" Type="Self.Tb_Fault_Class" Multiplicity="0..1" />
+    <End Role="Tb_Fault_Code" Type="Self.Tb_Fault_Code" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tb_Fault_Class">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Tb_Fault_Code">
+        <PropertyRef Name="FauClasses" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tb_Fault_Code_Tb_Fault_Code">
+    <End Role="Tb_Station_Info" Type="Self.Tb_Station_Info" Multiplicity="0..1" />
+    <End Role="Tb_Fault_Code" Type="Self.Tb_Fault_Code" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tb_Station_Info">
+        <PropertyRef Name="Sn" />
+      </Principal>
+      <Dependent Role="Tb_Fault_Code">
+        <PropertyRef Name="EqID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tb_Fault_Code_Tb_Fault_Type">
+    <End Role="Tb_Fault_Type" Type="Self.Tb_Fault_Type" Multiplicity="0..1" />
+    <End Role="Tb_Fault_Code" Type="Self.Tb_Fault_Code" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tb_Fault_Type">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Tb_Fault_Code">
+        <PropertyRef Name="FauType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tb_Fault_Info_Tb_Equipment_Info">
+    <End Role="Tb_Equipment_Info" Type="Self.Tb_Equipment_Info" Multiplicity="0..1" />
+    <End Role="Tb_Fault_Info" Type="Self.Tb_Fault_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tb_Equipment_Info">
+        <PropertyRef Name="EqID" />
+      </Principal>
+      <Dependent Role="Tb_Fault_Info">
+        <PropertyRef Name="EqID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tb_Fault_Info_Tb_Equipment_Type">
+    <End Role="Tb_Equipment_Type" Type="Self.Tb_Equipment_Type" Multiplicity="0..1" />
+    <End Role="Tb_Fault_Info" Type="Self.Tb_Fault_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tb_Equipment_Type">
+        <PropertyRef Name="EqTypeID" />
+      </Principal>
+      <Dependent Role="Tb_Fault_Info">
+        <PropertyRef Name="EqType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tb_Fault_Info_Tb_Fault_Code">
+    <End Role="Tb_Fault_Code" Type="Self.Tb_Fault_Code" Multiplicity="0..1" />
+    <End Role="Tb_Fault_Info" Type="Self.Tb_Fault_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tb_Fault_Code">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Tb_Fault_Info">
+        <PropertyRef Name="FauCodeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tb_Fault_Work_Tb_Fault_Code">
+    <End Role="Tb_Fault_Code" Type="Self.Tb_Fault_Code" Multiplicity="0..1" />
+    <End Role="Tb_Fault_Work" Type="Self.Tb_Fault_Work" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tb_Fault_Code">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Tb_Fault_Work">
+        <PropertyRef Name="FauCodeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ParkDataCenterModelStoreContainer">
+    <EntitySet Name="Tb_Equipment_Info" EntityType="Self.Tb_Equipment_Info" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tb_Equipment_Type" EntityType="Self.Tb_Equipment_Type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tb_Fault_Class" EntityType="Self.Tb_Fault_Class" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tb_Fault_Code" EntityType="Self.Tb_Fault_Code" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tb_Fault_CodeInfo" EntityType="Self.Tb_Fault_CodeInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tb_Fault_Data" EntityType="Self.Tb_Fault_Data" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tb_Fault_Info" EntityType="Self.Tb_Fault_Info" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tb_Fault_Type" EntityType="Self.Tb_Fault_Type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tb_Fault_Work" EntityType="Self.Tb_Fault_Work" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tb_Flow_Status" EntityType="Self.Tb_Flow_Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tb_Station_Info" EntityType="Self.Tb_Station_Info" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Tb_Equipment_Info_Tb_Equipment_Type" Association="Self.FK_Tb_Equipment_Info_Tb_Equipment_Type">
+      <End Role="Tb_Equipment_Type" EntitySet="Tb_Equipment_Type" />
+      <End Role="Tb_Equipment_Info" EntitySet="Tb_Equipment_Info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tb_Equipment_Info_Tb_Station_Info" Association="Self.FK_Tb_Equipment_Info_Tb_Station_Info">
+      <End Role="Tb_Station_Info" EntitySet="Tb_Station_Info" />
+      <End Role="Tb_Equipment_Info" EntitySet="Tb_Equipment_Info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tb_Fault_Code_Tb_Fault_Class" Association="Self.FK_Tb_Fault_Code_Tb_Fault_Class">
+      <End Role="Tb_Fault_Class" EntitySet="Tb_Fault_Class" />
+      <End Role="Tb_Fault_Code" EntitySet="Tb_Fault_Code" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tb_Fault_Code_Tb_Fault_Code" Association="Self.FK_Tb_Fault_Code_Tb_Fault_Code">
+      <End Role="Tb_Station_Info" EntitySet="Tb_Station_Info" />
+      <End Role="Tb_Fault_Code" EntitySet="Tb_Fault_Code" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tb_Fault_Code_Tb_Fault_Type" Association="Self.FK_Tb_Fault_Code_Tb_Fault_Type">
+      <End Role="Tb_Fault_Type" EntitySet="Tb_Fault_Type" />
+      <End Role="Tb_Fault_Code" EntitySet="Tb_Fault_Code" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tb_Fault_Info_Tb_Equipment_Info" Association="Self.FK_Tb_Fault_Info_Tb_Equipment_Info">
+      <End Role="Tb_Equipment_Info" EntitySet="Tb_Equipment_Info" />
+      <End Role="Tb_Fault_Info" EntitySet="Tb_Fault_Info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tb_Fault_Info_Tb_Equipment_Type" Association="Self.FK_Tb_Fault_Info_Tb_Equipment_Type">
+      <End Role="Tb_Equipment_Type" EntitySet="Tb_Equipment_Type" />
+      <End Role="Tb_Fault_Info" EntitySet="Tb_Fault_Info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tb_Fault_Info_Tb_Fault_Code" Association="Self.FK_Tb_Fault_Info_Tb_Fault_Code">
+      <End Role="Tb_Fault_Code" EntitySet="Tb_Fault_Code" />
+      <End Role="Tb_Fault_Info" EntitySet="Tb_Fault_Info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tb_Fault_Work_Tb_Fault_Code" Association="Self.FK_Tb_Fault_Work_Tb_Fault_Code">
+      <End Role="Tb_Fault_Code" EntitySet="Tb_Fault_Code" />
+      <End Role="Tb_Fault_Work" EntitySet="Tb_Fault_Work" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

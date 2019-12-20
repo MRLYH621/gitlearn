@@ -1,0 +1,131 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace CoronaDataCenter.Business
+{
+    public class MyConst
+    {
+        public const string UserName = "QH_UserName";
+        public const string WXUserName = "WX_UserName";
+        public const string WXCode = "WX_Code";
+        public const string PassWord = "QH_PassWord";
+        public const string UserModel = "QH_UserModel";
+        public const string StartTime = "StartTime";
+        public const string EndTime = "EndTime";
+        public const string IPAddress = "IPAddress";
+        public const string Permission = "Permission";//权限模块编码
+
+        //public const string NBQKey = "NBQ_Parm";
+        public const string ZCNBQKey = "ZCNBQ_Parm";
+        public const string NBQLSKey = "NBQ_LS_Parm";
+        public const string HLXKey = "HLX_Parm";
+        public const string HLXLSKey = "HLX_LS_Parm";
+        public const string ZLGKey = "ZLG_Parm";
+        public const string ZLGLSKey = "ZLG_LS_Parm";
+        public const string JLGKey = "JLG_Parm";
+        public const string JLGLSKey = "JLG_LS_Parm";
+        public const string HJCKey = "HJC_Parm";
+        public const string HJCLSKey = "HJC_LS_Parm";
+        public const string JLBKey = "JLB_Parm";
+        public const string JLBLSKey = "JLB_LS_Parm";
+        public const string GFZKey = "GFZ_Parm";
+        public const string GFZLSKey = "GFZ_LS_Parm";
+        //public const string BMSKey = "BMS_Parm";
+        public const string BMSLSKey = "BMS_LS_Parm";
+        public const string XBKey = "XB_Parm";
+        public const string XBLSKey = "XB_LS_Parm";
+        public const string SVGKey = "SVG_Parm";
+        public const string SVGLSKey = "SVG_LS_Parm";
+        public const string BWDKey = "BWD_Parm";
+        public const string BWDLSKey = "BWD_LS_Parm";
+        public const string CNGKey = "CNG_Parm";
+        public const string CNGLSKey = "CNG_LS_Parm";
+        public const string SXBLQKey = "SXBLQ_Parm";
+        public const string SXBLQLSKey = "SXBLQ_LS_Parm";
+        public const string SVGWKKey = "SVGWK_Parm";
+        public const string SVGWKLSKey = "SVGWK_LS_Parm";
+        public const string SVGBHKey = "SVGBH_Parm";
+        public const string SVGBHLSKey = "SVGBH_LS_Parm";
+        public const string BYQJGKey = "BYQJG_Parm";
+        public const string BYQJGLSKey = "BYQJG_LS_Parm";
+
+        public const string WGENKey = "WGEN_Parm";
+        public const string WGENLSKey = "WGEN_LS_Parm";
+        public const string WTHPKey = "WTHP_Parm";
+        public const string WTHPLSKey = "WTHP_LS_Parm";
+        public const string WCNVKey = "WCNV_Parm";
+        public const string WCNVLSKey = "WCNV_LS_Parm";
+        public const string WYAWKey = "WYAW_Parm";
+        public const string WYAWLSKey = "WYAW_LS_Parm";
+        public const string WPITKey = "WPIT_Parm";
+        public const string WPITLSKey = "WPIT_LS_Parm";
+        public const string WNACKey = "WNAC_Parm";
+        public const string WNACLSKey = "WNAC_LS_Parm";
+        public const string WREPKey = "WREP_Parm";
+        public const string WREPLSKey = "WREP_LS_Parm";
+        public const string WEGWKey = "WEGW_Parm";
+        public const string WEGWLSKey = "WEGW_LS_Parm";
+        public const string WPOGKey = "WPOG_Parm";
+        public const string WPOGLSKey = "WPOG_LS_Parm";
+        public const string WGBXKey = "WGBX_Parm";
+        public const string WGBXLSKey = "WGBX_LS_Parm";
+        public const string PTGKey = "PTG_Parm";
+        public const string PTGLSKey = "PTG_LS_Parm";
+
+        public const string ZLPKey = "ZlP_Parm";
+        public const string ZLPLSKey = "ZLP_LS_Parm";
+
+        public const string CXBHKey = "CXBH_Parm";
+        public const string CXBHLSKey = "CXBH_LS_Parm";
+
+        public const string ZYBYQKey = "ZYBYQ_Parm";
+        public const string ZYBYQLSKey = "ZYBYQ_LS_Parm";
+
+        public const string JXGKey = "JXG_Parm";
+        public const string JXGLSKey = "JXG_LS_Parm";
+
+        public const string DNBKey = "DNB_Parm";
+        public const string DNBLSKey = "DNB_LS_Parm";
+        //缓存
+        public const string AllUsers = "allUsers";
+        public const string AllGroups = "allGroups";
+        public const string AllRoles = "allRoles";
+        public const string AllStations = "allStations";
+
+        public const string StationSelectList = "StationSelectList";
+        public const string AllEquipmentTypes = "allEquipmentTypes";
+        public const string AllEquipmentFactorys = "allEquipmentFactorys";
+        public const string AllEquipmentModels = "allEquipmentModels";
+        public const string AllNetNodes = "allNetNodes";
+        public const string ModuleCode = "ModuleCode";
+
+        //Session站点Sn
+        public const string CurStation = "CurStation";
+        public const string Weather = "Weather";
+
+        public const string PCSKey = "PCS_Parm";
+        public const string PCSLSKey = "PCS_LS_Parm";
+        public const string BMSZKey = "BMSZ_Parm";
+        public const string BMSMKey = "BMSM_Parm";
+        public const string FUHEKey = "FUHE_Parm";
+        public const string GCHKey = "GCH_Parm";
+        public const string CHNKKey = "CHNK_Parm";
+        public const string WDKQKey = "WDKQ_Parm";
+        public const string WGKey = "WG_Parm";
+        public const string WDGKey = "WDG_Parm";
+        public const string BMSKey = "BMS_Parm";
+        public const string NBQKey = "NBQ_Parm";
+
+        //工作流类型
+        public const string FlowTypePaigong = "故障派工";
+        public const string FlowTypeTongxun = "通讯报警";
+        public const string FlowTypeCaigou = "采购申请";
+        public const string FlowTypeBaofei = "报废申请";
+        public const string FlowTypeLinshi = "临时任务派工";
+        public const string FlowTypeYujing = "预警派工";
+        public const string FlowTypeKucun = "库存管理";
+        public const string FlowTypeGuzhang = "故障报警";
+    }
+}

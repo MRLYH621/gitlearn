@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using CoronaDataCenter.Business;
+using CoronaDataCenter.Models;
+namespace CoronaDataCenter.Controllers
+{
+    public class StationController : Controller
+    {
+        //
+        // GET: /Station/
+
+        StationInofManager staman = new StationInofManager();
+        public ActionResult Index()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 获取所有电站信息
+        /// </summary>
+        /// <returns></returns>
+        public List<StationInfoModel> GetAllStationInfo()
+        {
+            List<StationInfoModel> list = new List<StationInfoModel>();
+            list = staman.GetAllStationInfo();
+            return list;
+        }
+        /// <summary>
+        /// 获取所有电站数据信息
+        /// </summary>
+        /// <returns></returns>
+        public List<StationDataModel> GetStationData()
+        {
+            List<StationDataModel> list = new List<StationDataModel>();
+            list = staman.GetStation();
+            return list;
+        }
+        
+
+    }
+}

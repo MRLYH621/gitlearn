@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ParkDataCenterModelStoreContainer" CdmEntityContainer="ParkDataCenterEntities">
+    <EntitySetMapping Name="Tb_Equipment_Info">
+      <EntityTypeMapping TypeName="ParkDataCenterModel.Tb_Equipment_Info">
+        <MappingFragment StoreEntitySet="Tb_Equipment_Info">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="EqID" ColumnName="EqID" />
+          <ScalarProperty Name="Sn" ColumnName="Sn" />
+          <ScalarProperty Name="EqAdress" ColumnName="EqAdress" />
+          <ScalarProperty Name="EqGroup" ColumnName="EqGroup" />
+          <ScalarProperty Name="EqPoolType" ColumnName="EqPoolType" />
+          <ScalarProperty Name="EqStatus" ColumnName="EqStatus" />
+          <ScalarProperty Name="EqType" ColumnName="EqType" />
+          <ScalarProperty Name="EqName" ColumnName="EqName" />
+          <ScalarProperty Name="EqFactory" ColumnName="EqFactory" />
+          <ScalarProperty Name="EqVersions" ColumnName="EqVersions" />
+          <ScalarProperty Name="EqTranstime" ColumnName="EqTranstime" />
+          <ScalarProperty Name="EqRatedPower" ColumnName="EqRatedPower" />
+          <ScalarProperty Name="EqIsUsing" ColumnName="EqIsUsing" />
+          <ScalarProperty Name="EqNextEquit" ColumnName="EqNextEquit" />
+          <ScalarProperty Name="EqInstallTime" ColumnName="EqInstallTime" />
+          <ScalarProperty Name="EqNetLineID" ColumnName="EqNetLineID" />
+          <ScalarProperty Name="EqGroupNextId" ColumnName="EqGroupNextId" />
+          <ScalarProperty Name="EqInstallSite" ColumnName="EqInstallSite" />
+          <ScalarProperty Name="EqInstallWay" ColumnName="EqInstallWay" />
+          <ScalarProperty Name="EqInstallHeight" ColumnName="EqInstallHeight" />
+          <ScalarProperty Name="EqInstallUnit" ColumnName="EqInstallUnit" />
+          <ScalarProperty Name="EqInstallMan" ColumnName="EqInstallMan" />
+          <ScalarProperty Name="EqImage" ColumnName="EqImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tb_Equipment_Type">
+      <EntityTypeMapping TypeName="ParkDataCenterModel.Tb_Equipment_Type">
+        <MappingFragment StoreEntitySet="Tb_Equipment_Type">
+          <ScalarProperty Name="EqTypeID" ColumnName="EqTypeID" />
+          <ScalarProperty Name="EqTypeName" ColumnName="EqTypeName" />
+          <ScalarProperty Name="EqTypeParentID" ColumnName="EqTypeParentID" />
+          <ScalarProperty Name="IsUsing" ColumnName="IsUsing" />
+          <ScalarProperty Name="EqStationType" ColumnName="EqStationType" />
+          <ScalarProperty Name="EqTableTitle" ColumnName="EqTableTitle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tb_Fault_Class">
+      <EntityTypeMapping TypeName="ParkDataCenterModel.Tb_Fault_Class">
+        <MappingFragment StoreEntitySet="Tb_Fault_Class">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FauClasses" ColumnName="FauClasses" />
+          <ScalarProperty Name="FauColor" ColumnName="FauColor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tb_Fault_Code">
+      <EntityTypeMapping TypeName="ParkDataCenterModel.Tb_Fault_Code">
+        <MappingFragment StoreEntitySet="Tb_Fault_Code">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Sn" ColumnName="Sn" />
+          <ScalarProperty Name="EqID" ColumnName="EqID" />
+          <ScalarProperty Name="EqType" ColumnName="EqType" />
+          <ScalarProperty Name="FauType" ColumnName="FauType" />
+          <ScalarProperty Name="FauBitType" ColumnName="FauBitType" />
+          <ScalarProperty Name="FauParm" ColumnName="FauParm" />
+          <ScalarProperty Name="FauCode" ColumnName="FauCode" />
+          <ScalarProperty Name="FauDescription" ColumnName="FauDescription" />
+          <ScalarProperty Name="FauClasses" ColumnName="FauClasses" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tb_Fault_CodeInfo">
+      <EntityTypeMapping TypeName="ParkDataCenterModel.Tb_Fault_CodeInfo">
+        <MappingFragment StoreEntitySet="Tb_Fault_CodeInfo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="faultcodeid" ColumnName="faultcodeid" />
+          <ScalarProperty Name="classes" ColumnName="classes" />
+          <ScalarProperty Name="solutions" ColumnName="solutions" />
+          <ScalarProperty Name="tools" ColumnName="tools" />
+          <ScalarProperty Name="reasons" ColumnName="reasons" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tb_Fault_Data">
+      <EntityTypeMapping TypeName="ParkDataCenterModel.Tb_Fault_Data">
+        <MappingFragment StoreEntitySet="Tb_Fault_Data">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="EqID" ColumnName="EqID" />
+          <ScalarProperty Name="FauCodeA" ColumnName="FauCodeA" />
+          <ScalarProperty Name="FauCodeB" ColumnName="FauCodeB" />
+          <ScalarProperty Name="FauTime" ColumnName="FauTime" />
+          <ScalarProperty Name="parm_001" ColumnName="parm_001" />
+          <ScalarProperty Name="parm_002" ColumnName="parm_002" />
+          <ScalarProperty Name="parm_003" ColumnName="parm_003" />
+          <ScalarProperty Name="parm_004" ColumnName="parm_004" />
+          <ScalarProperty Name="parm_005" ColumnName="parm_005" />
+          <ScalarProperty Name="parm_006" ColumnName="parm_006" />
+          <ScalarProperty Name="parm_007" ColumnName="parm_007" />
+          <ScalarProperty Name="parm_008" ColumnName="parm_008" />
+          <ScalarProperty Name="parm_009" ColumnName="parm_009" />
+          <ScalarProperty Name="parm_010" ColumnName="parm_010" />
+          <ScalarProperty Name="parm_011" ColumnName="parm_011" />
+          <ScalarProperty Name="parm_012" ColumnName="parm_012" />
+          <ScalarProperty Name="parm_013" ColumnName="parm_013" />
+          <ScalarProperty Name="parm_014" ColumnName="parm_014" />
+          <ScalarProperty Name="parm_015" ColumnName="parm_015" />
+          <ScalarProperty Name="parm_016" ColumnName="parm_016" />
+          <ScalarProperty Name="parm_017" ColumnName="parm_017" />
+          <ScalarProperty Name="parm_018" ColumnName="parm_018" />
+          <ScalarProperty Name="parm_019" ColumnName="parm_019" />
+          <ScalarProperty Name="parm_020" ColumnName="parm_020" />
+          <ScalarProperty Name="parm_021" ColumnName="parm_021" />
+          <ScalarProperty Name="parm_022" ColumnName="parm_022" />
+          <ScalarProperty Name="parm_023" ColumnName="parm_023" />
+          <ScalarProperty Name="parm_024" ColumnName="parm_024" />
+          <ScalarProperty Name="parm_025" ColumnName="parm_025" />
+          <ScalarProperty Name="parm_026" ColumnName="parm_026" />
+          <ScalarProperty Name="parm_027" ColumnName="parm_027" />
+          <ScalarProperty Name="parm_028" ColumnName="parm_028" />
+          <ScalarProperty Name="parm_029" ColumnName="parm_029" />
+          <ScalarProperty Name="parm_030" ColumnName="parm_030" />
+          <ScalarProperty Name="parm_031" ColumnName="parm_031" />
+          <ScalarProperty Name="parm_032" ColumnName="parm_032" />
+          <ScalarProperty Name="parm_033" ColumnName="parm_033" />
+          <ScalarProperty Name="parm_034" ColumnName="parm_034" />
+          <ScalarProperty Name="parm_035" ColumnName="parm_035" />
+          <ScalarProperty Name="parm_036" ColumnName="parm_036" />
+          <ScalarProperty Name="parm_037" ColumnName="parm_037" />
+          <ScalarProperty Name="parm_038" ColumnName="parm_038" />
+          <ScalarProperty Name="parm_039" ColumnName="parm_039" />
+          <ScalarProperty Name="parm_040" ColumnName="parm_040" />
+          <ScalarProperty Name="parm_041" ColumnName="parm_041" />
+          <ScalarProperty Name="parm_042" ColumnName="parm_042" />
+          <ScalarProperty Name="parm_043" ColumnName="parm_043" />
+          <ScalarProperty Name="parm_044" ColumnName="parm_044" />
+          <ScalarProperty Name="parm_045" ColumnName="parm_045" />
+          <ScalarProperty Name="parm_046" ColumnName="parm_046" />
+          <ScalarProperty Name="parm_047" ColumnName="parm_047" />
+          <ScalarProperty Name="parm_048" ColumnName="parm_048" />
+          <ScalarProperty Name="parm_049" ColumnName="parm_049" />
+          <ScalarProperty Name="parm_050" ColumnName="parm_050" />
+          <ScalarProperty Name="parm_051" ColumnName="parm_051" />
+          <ScalarProperty Name="parm_052" ColumnName="parm_052" />
+          <ScalarProperty Name="parm_053" ColumnName="parm_053" />
+          <ScalarProperty Name="parm_054" ColumnName="parm_054" />
+          <ScalarProperty Name="parm_055" ColumnName="parm_055" />
+          <ScalarProperty Name="parm_056" ColumnName="parm_056" />
+          <ScalarProperty Name="parm_057" ColumnName="parm_057" />
+          <ScalarProperty Name="parm_058" ColumnName="parm_058" />
+          <ScalarProperty Name="parm_059" ColumnName="parm_059" />
+          <ScalarProperty Name="parm_060" ColumnName="parm_060" />
+          <ScalarProperty Name="parm_061" ColumnName="parm_061" />
+          <ScalarProperty Name="parm_062" ColumnName="parm_062" />
+          <ScalarProperty Name="parm_063" ColumnName="parm_063" />
+          <ScalarProperty Name="parm_064" ColumnName="parm_064" />
+          <ScalarProperty Name="parm_065" ColumnName="parm_065" />
+          <ScalarProperty Name="parm_066" ColumnName="parm_066" />
+          <ScalarProperty Name="parm_067" ColumnName="parm_067" />
+          <ScalarProperty Name="parm_068" ColumnName="parm_068" />
+          <ScalarProperty Name="parm_069" ColumnName="parm_069" />
+          <ScalarProperty Name="parm_070" ColumnName="parm_070" />
+          <ScalarProperty Name="parm_071" ColumnName="parm_071" />
+          <ScalarProperty Name="parm_072" ColumnName="parm_072" />
+          <ScalarProperty Name="parm_073" ColumnName="parm_073" />
+          <ScalarProperty Name="parm_074" ColumnName="parm_074" />
+          <ScalarProperty Name="parm_075" ColumnName="parm_075" />
+          <ScalarProperty Name="parm_076" ColumnName="parm_076" />
+          <ScalarProperty Name="parm_077" ColumnName="parm_077" />
+          <ScalarProperty Name="parm_078" ColumnName="parm_078" />
+          <ScalarProperty Name="parm_079" ColumnName="parm_079" />
+          <ScalarProperty Name="parm_080" ColumnName="parm_080" />
+          <ScalarProperty Name="parm_081" ColumnName="parm_081" />
+          <ScalarProperty Name="parm_082" ColumnName="parm_082" />
+          <ScalarProperty Name="parm_083" ColumnName="parm_083" />
+          <ScalarProperty Name="parm_084" ColumnName="parm_084" />
+          <ScalarProperty Name="parm_085" ColumnName="parm_085" />
+          <ScalarProperty Name="parm_086" ColumnName="parm_086" />
+          <ScalarProperty Name="parm_087" ColumnName="parm_087" />
+          <ScalarProperty Name="parm_088" ColumnName="parm_088" />
+          <ScalarProperty Name="parm_089" ColumnName="parm_089" />
+          <ScalarProperty Name="parm_090" ColumnName="parm_090" />
+          <ScalarProperty Name="parm_091" ColumnName="parm_091" />
+          <ScalarProperty Name="parm_092" ColumnName="parm_092" />
+          <ScalarProperty Name="parm_093" ColumnName="parm_093" />
+          <ScalarProperty Name="parm_094" ColumnName="parm_094" />
+          <ScalarProperty Name="parm_095" ColumnName="parm_095" />
+          <ScalarProperty Name="parm_096" ColumnName="parm_096" />
+          <ScalarProperty Name="parm_097" ColumnName="parm_097" />
+          <ScalarProperty Name="parm_098" ColumnName="parm_098" />
+          <ScalarProperty Name="parm_099" ColumnName="parm_099" />
+          <ScalarProperty Name="parm_100" ColumnName="parm_100" />
+          <ScalarProperty Name="parm_101" ColumnName="parm_101" />
+          <ScalarProperty Name="parm_102" ColumnName="parm_102" />
+          <ScalarProperty Name="parm_103" ColumnName="parm_103" />
+          <ScalarProperty Name="parm_104" ColumnName="parm_104" />
+          <ScalarProperty Name="parm_105" ColumnName="parm_105" />
+          <ScalarProperty Name="parm_106" ColumnName="parm_106" />
+          <ScalarProperty Name="parm_107" ColumnName="parm_107" />
+          <ScalarProperty Name="parm_108" ColumnName="parm_108" />
+          <ScalarProperty Name="parm_109" ColumnName="parm_109" />
+          <ScalarProperty Name="parm_110" ColumnName="parm_110" />
+          <ScalarProperty Name="parm_111" ColumnName="parm_111" />
+          <ScalarProperty Name="parm_112" ColumnName="parm_112" />
+          <ScalarProperty Name="parm_113" ColumnName="parm_113" />
+          <ScalarProperty Name="parm_114" ColumnName="parm_114" />
+          <ScalarProperty Name="parm_115" ColumnName="parm_115" />
+          <ScalarProperty Name="parm_116" ColumnName="parm_116" />
+          <ScalarProperty Name="parm_117" ColumnName="parm_117" />
+          <ScalarProperty Name="parm_118" ColumnName="parm_118" />
+          <ScalarProperty Name="parm_119" ColumnName="parm_119" />
+          <ScalarProperty Name="parm_120" ColumnName="parm_120" />
+          <ScalarProperty Name="parm_121" ColumnName="parm_121" />
+          <ScalarProperty Name="parm_122" ColumnName="parm_122" />
+          <ScalarProperty Name="parm_123" ColumnName="parm_123" />
+          <ScalarProperty Name="parm_124" ColumnName="parm_124" />
+          <ScalarProperty Name="parm_125" ColumnName="parm_125" />
+          <ScalarProperty Name="parm_126" ColumnName="parm_126" />
+          <ScalarProperty Name="parm_127" ColumnName="parm_127" />
+          <ScalarProperty Name="parm_128" ColumnName="parm_128" />
+          <ScalarProperty Name="FauCode1" ColumnName="FauCode1" />
+          <ScalarProperty Name="FauCode2" ColumnName="FauCode2" />
+          <ScalarProperty Name="FauCode3" ColumnName="FauCode3" />
+          <ScalarProperty Name="FauCode4" ColumnName="FauCode4" />
+          <ScalarProperty Name="FauCode5" ColumnName="FauCode5" />
+          <ScalarProperty Name="FauCode6" ColumnName="FauCode6" />
+          <ScalarProperty Name="FauCode7" ColumnName="FauCode7" />
+          <ScalarProperty Name="FauCode8" ColumnName="FauCode8" />
+          <ScalarProperty Name="FauCode9" ColumnName="FauCode9" />
+          <ScalarProperty Name="FauCode10" ColumnName="FauCode10" />
+          <ScalarProperty Name="FauCode11" ColumnName="FauCode11" />
+          <ScalarProperty Name="FauCode12" ColumnName="FauCode12" />
+          <ScalarProperty Name="FauCode13" ColumnName="FauCode13" />
+          <ScalarProperty Name="FauCode14" ColumnName="FauCode14" />
+          <ScalarProperty Name="FauCode15" ColumnName="FauCode15" />
+          <ScalarProperty Name="FauCode16" ColumnName="FauCode16" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tb_Fault_Info">
+      <EntityTypeMapping TypeName="ParkDataCenterModel.Tb_Fault_Info">
+        <MappingFragment StoreEntitySet="Tb_Fault_Info">
+          <ScalarProperty Name="FauID" ColumnName="FauID" />
+          <ScalarProperty Name="EqID" ColumnName="EqID" />
+          <ScalarProperty Name="EqType" ColumnName="EqType" />
+          <ScalarProperty Name="FauCodeID" ColumnName="FauCodeID" />
+          <ScalarProperty Name="FauTranstime" ColumnName="FauTranstime" />
+          <ScalarProperty Name="FauRecoverytime" ColumnName="FauRecoverytime" />
+          <ScalarProperty Name="FauTimes" ColumnName="FauTimes" />
+          <ScalarProperty Name="FauState" ColumnName="FauState" />
+          <ScalarProperty Name="RepeatTime" ColumnName="RepeatTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tb_Fault_Type">
+      <EntityTypeMapping TypeName="ParkDataCenterModel.Tb_Fault_Type">
+        <MappingFragment StoreEntitySet="Tb_Fault_Type">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tb_Fault_Work">
+      <EntityTypeMapping TypeName="ParkDataCenterModel.Tb_Fault_Work">
+        <MappingFragment StoreEntitySet="Tb_Fault_Work">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FauCodeID" ColumnName="FauCodeID" />
+          <ScalarProperty Name="WorkSetter" ColumnName="WorkSetter" />
+          <ScalarProperty Name="WorkSetTime" ColumnName="WorkSetTime" />
+          <ScalarProperty Name="WorkGetter" ColumnName="WorkGetter" />
+          <ScalarProperty Name="WorkGetTime" ColumnName="WorkGetTime" />
+          <ScalarProperty Name="WorkTools" ColumnName="WorkTools" />
+          <ScalarProperty Name="WorkSafety" ColumnName="WorkSafety" />
+          <ScalarProperty Name="WorkStatue" ColumnName="WorkStatue" />
+          <ScalarProperty Name="WorkEndTime" ColumnName="WorkEndTime" />
+          <ScalarProperty Name="Sn" ColumnName="Sn" />
+          <ScalarProperty Name="EqID" ColumnName="EqID" />
+          <ScalarProperty Name="WorkFauArea" ColumnName="WorkFauArea" />
+          <ScalarProperty Name="WorkFaulogicArea" ColumnName="WorkFaulogicArea" />
+          <ScalarProperty Name="WorkFauSolution" ColumnName="WorkFauSolution" />
+          <ScalarProperty Name="WorkFauDescription" ColumnName="WorkFauDescription" />
+          <ScalarProperty Name="WorkFauReason" ColumnName="WorkFauReason" />
+          <ScalarProperty Name="WorkCode" ColumnName="WorkCode" />
+          <ScalarProperty Name="WorkID" ColumnName="WorkID" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="WorkTranstime" ColumnName="WorkTranstime" />
+          <ScalarProperty Name="WorkDisGetTime" ColumnName="WorkDisGetTime" />
+          <ScalarProperty Name="WorkDisEndTime" ColumnName="WorkDisEndTime" />
+          <ScalarProperty Name="FauInfoID" ColumnName="FauInfoID" />
+          <ScalarProperty Name="Guarder" ColumnName="Guarder" />
+          <ScalarProperty Name="WorkTicket" ColumnName="WorkTicket" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tb_Flow_Status">
+      <EntityTypeMapping TypeName="ParkDataCenterModel.Tb_Flow_Status">
+        <MappingFragment StoreEntitySet="Tb_Flow_Status">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FlowID" ColumnName="FlowID" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="StatusOrder" ColumnName="StatusOrder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tb_Station_Info">
+      <EntityTypeMapping TypeName="ParkDataCenterModel.Tb_Station_Info">
+        <MappingFragment StoreEntitySet="Tb_Station_Info">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Sn" ColumnName="Sn" />
+          <ScalarProperty Name="StaName" ColumnName="StaName" />
+          <ScalarProperty Name="StaDesPower" ColumnName="StaDesPower" />
+          <ScalarProperty Name="StaDesUnit" ColumnName="StaDesUnit" />
+          <ScalarProperty Name="StaProvince" ColumnName="StaProvince" />
+          <ScalarProperty Name="StaCity" ColumnName="StaCity" />
+          <ScalarProperty Name="StaAddress" ColumnName="StaAddress" />
+          <ScalarProperty Name="StaTimeZone" ColumnName="StaTimeZone" />
+          <ScalarProperty Name="StaDaylightTime" ColumnName="StaDaylightTime" />
+          <ScalarProperty Name="StaNSeconds" ColumnName="StaNSeconds" />
+          <ScalarProperty Name="StaNCornerPoints" ColumnName="StaNCornerPoints" />
+          <ScalarProperty Name="StaOwner" ColumnName="StaOwner" />
+          <ScalarProperty Name="StaNDegree" ColumnName="StaNDegree" />
+          <ScalarProperty Name="StaSSecond" ColumnName="StaSSecond" />
+          <ScalarProperty Name="StaSCornerPoints" ColumnName="StaSCornerPoints" />
+          <ScalarProperty Name="StaSDegree" ColumnName="StaSDegree" />
+          <ScalarProperty Name="StaInvestor" ColumnName="StaInvestor" />
+          <ScalarProperty Name="StaOperUnit" ColumnName="StaOperUnit" />
+          <ScalarProperty Name="StaContractor" ColumnName="StaContractor" />
+          <ScalarProperty Name="StaAreaID" ColumnName="StaAreaID" />
+          <ScalarProperty Name="StaPubTime" ColumnName="StaPubTime" />
+          <ScalarProperty Name="StaEelPrice" ColumnName="StaEelPrice" />
+          <ScalarProperty Name="StaEelSubsidy" ColumnName="StaEelSubsidy" />
+          <ScalarProperty Name="StaIsUsing" ColumnName="StaIsUsing" />
+          <ScalarProperty Name="StaImage" ColumnName="StaImage" />
+          <ScalarProperty Name="StaType" ColumnName="StaType" />
+          <ScalarProperty Name="StaGroupArea" ColumnName="StaGroupArea" />
+          <ScalarProperty Name="StaGroupEff" ColumnName="StaGroupEff" />
+          <ScalarProperty Name="StaAirPressure" ColumnName="StaAirPressure" />
+          <ScalarProperty Name="StaFeedInType" ColumnName="StaFeedInType" />
+          <ScalarProperty Name="StaClass" ColumnName="StaClass" />
+          <ScalarProperty Name="StaDiagram" ColumnName="StaDiagram" />
+          <ScalarProperty Name="StaCAHighEarlyWarning" ColumnName="StaCAHighEarlyWarning" />
+          <ScalarProperty Name="StaFAHighEarlyWarning" ColumnName="StaFAHighEarlyWarning" />
+          <ScalarProperty Name="StaRemark" ColumnName="StaRemark" />
+          <ScalarProperty Name="ParkID" ColumnName="ParkID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

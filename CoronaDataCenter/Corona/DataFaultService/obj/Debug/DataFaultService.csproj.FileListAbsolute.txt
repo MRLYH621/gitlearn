@@ -1,0 +1,14 @@
+D:\新建文件夹 (3)\DataFaultService\bin\Debug\DataFaultService.exe.config
+D:\新建文件夹 (3)\DataFaultService\bin\Debug\DataFaultService.exe
+D:\新建文件夹 (3)\DataFaultService\bin\Debug\DataFaultService.pdb
+D:\新建文件夹 (3)\DataFaultService\bin\Debug\EntityFramework.dll
+D:\新建文件夹 (3)\DataFaultService\bin\Debug\EntityFramework.SqlServer.dll
+D:\新建文件夹 (3)\DataFaultService\bin\Debug\EntityFramework.xml
+D:\新建文件夹 (3)\DataFaultService\bin\Debug\EntityFramework.SqlServer.xml
+D:\新建文件夹 (3)\DataFaultService\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\新建文件夹 (3)\DataFaultService\obj\Debug\DataFaultService.csprojResolveAssemblyReference.cache
+D:\新建文件夹 (3)\DataFaultService\obj\Debug\DataFaultService.FaultService.resources
+D:\新建文件夹 (3)\DataFaultService\obj\Debug\DataFaultService.ProjectInstaller.resources
+D:\新建文件夹 (3)\DataFaultService\obj\Debug\DataFaultService.csproj.GenerateResource.Cache
+D:\新建文件夹 (3)\DataFaultService\obj\Debug\DataFaultService.exe
+D:\新建文件夹 (3)\DataFaultService\obj\Debug\DataFaultService.pdb

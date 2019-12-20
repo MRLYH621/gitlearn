@@ -1,0 +1,54 @@
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\CoronaDataCenter.Business.dll.config
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\CoronaDataCenter.Business.dll
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\CoronaDataCenter.Business.pdb
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\EntityFramework.Fakes.fakesconfig
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\CoronaDataCenter.CommonTools.dll
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\CoronaDataCenter.Models.dll
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\EntityFramework.dll
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\EntityFramework.Fakes.dll
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\EntityFramework.SqlServer.dll
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\FastSocket.Client.dll
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\FastSocket.Server.dll
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\Microsoft.QualityTools.Testing.Fakes.dll
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\Newtonsoft.Json.dll
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\FastSocket.SocketBase.dll
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\TD.dll
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\CoronaDataCenter.CommonTools.pdb
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\CoronaDataCenter.Models.pdb
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\EntityFramework.xml
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\EntityFramework.Fakes.xml
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\EntityFramework.SqlServer.xml
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+D:\新建文件夹 (3)\CoronaDataCenter.Business\bin\Debug\zh-Hans\Microsoft.QualityTools.Testing.Fakes.resources.dll
+D:\新建文件夹 (3)\CoronaDataCenter.Business\obj\Debug\CoronaDataCenter.Business.csprojFakesResolveAssemblyReference.cache
+D:\新建文件夹 (3)\CoronaDataCenter.Business\obj\Debug\CoronaDataCenter.Business.csprojResolveAssemblyReference.cache
+D:\新建文件夹 (3)\CoronaDataCenter.Business\obj\Debug\CoronaDataCenter.Business.dll
+D:\新建文件夹 (3)\CoronaDataCenter.Business\obj\Debug\CoronaDataCenter.Business.pdb
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\CoronaDataCenter.Business.dll.config
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\CoronaDataCenter.Business.dll
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\CoronaDataCenter.Business.pdb
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\EntityFramework.Fakes.fakesconfig
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\CoronaDataCenter.CommonTools.dll
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\CoronaDataCenter.Models.dll
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\EntityFramework.dll
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\EntityFramework.Fakes.dll
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\EntityFramework.SqlServer.dll
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\FastSocket.Client.dll
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\FastSocket.Server.dll
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\Microsoft.QualityTools.Testing.Fakes.dll
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\Newtonsoft.Json.dll
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\TD.dll
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\FastSocket.SocketBase.dll
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\CoronaDataCenter.CommonTools.pdb
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\CoronaDataCenter.Models.pdb
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\EntityFramework.xml
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\EntityFramework.Fakes.xml
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\EntityFramework.SqlServer.xml
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\zh-Hans\EntityFramework.resources.dll
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\bin\Debug\zh-Hans\Microsoft.QualityTools.Testing.Fakes.resources.dll
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\obj\Debug\CoronaDataCenter.Business.csprojFakesResolveAssemblyReference.cache
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\obj\Debug\CoronaDataCenter.Business.csprojResolveAssemblyReference.cache
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\obj\Debug\CoronaDataCenter.Business.dll
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Business\obj\Debug\CoronaDataCenter.Business.pdb

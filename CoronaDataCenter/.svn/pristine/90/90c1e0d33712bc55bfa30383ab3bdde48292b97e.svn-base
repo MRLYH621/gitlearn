@@ -1,0 +1,370 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using CoronaDataCenter.Models;
+using System.Collections;
+using System.Web;
+
+namespace CoronaDataCenter.Business
+{
+    public class AccountManager
+    {
+        private static Hashtable HsUsers;
+        /// <summary>
+        /// 刷新缓存
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="refreshTip"></param>
+        public void refreshHash(AccountModel account, string refreshTip)
+        {
+            if (HsUsers != null)
+            {
+                if (HsUsers[MyConst.AllUsers] as List<AccountModel> != null)
+                {
+                    List<AccountModel> list = HsUsers[MyConst.AllUsers] as List<AccountModel>;
+                    AccountModel old = list.Find(p => p.ID == account.ID);
+                    if (refreshTip == "update")
+                    {                        
+                        if (old != null)//修改
+                        {
+                            for (int i = list.Count - 1; i >= 0; i--)
+                            {
+                                if (list[i] == old)
+                                {
+                                    //list.Remove(old);
+                                    list[i] = account;
+                                }
+                            }
+                            //list.Add(account);
+                        }
+                    }
+                    else if(refreshTip == "delete")
+                    {
+                        if(old != null)
+                        {
+                            //删除
+                            for (int i = list.Count - 1; i >= 0; i--)
+                            {
+                                if (list[i] == old)
+                                {
+                                    list.Remove(old);
+                                }
+                            }
+                        }
+                    }
+                    else if (refreshTip == "add")
+                    {
+                        list.Add(account);//添加
+                    }
+
+                }
+            }
+        }
+        /// <summary>
+        /// 缓存获取所有账户
+        /// </summary>
+        /// <returns></returns>
+        public List<AccountModel> GetUsers()
+        {
+            List<AccountModel> userlist = new List<AccountModel>();
+            if (HsUsers != null)
+            {
+                if (HsUsers[MyConst.AllUsers] as List<AccountModel> == null)
+                {
+                    userlist = GetAllUsers();
+                    HsUsers[MyConst.AllUsers] = userlist;
+                }
+                else
+                {
+                    userlist = HsUsers[MyConst.AllUsers] as List<AccountModel>;
+                }
+            }
+            else
+            {
+                HsUsers = new Hashtable();
+                userlist = GetAllUsers();
+                if (HsUsers.Contains(MyConst.AllUsers))
+                    HsUsers[MyConst.AllUsers] = userlist;
+                else
+                    HsUsers.Add(MyConst.AllUsers, userlist);
+
+            }
+            return userlist;
+        }
+	    /// <summary>
+        /// 获得拥有电站管理权限的所有账户
+        /// </summary>
+        /// <param name="sn"></param>
+        /// <returns></returns>
+        public List<AccountModel> GetUsersByStation(string sn)
+        {
+            List<AccountModel> accList = new List<AccountModel>();
+            //StationInfoManager staMan = new StationInfoManager();
+            //StationPermissionModel staModel = staMan.GetStationPermission(sn);
+            //accList = GetUsers().FindAll(a => staModel.GroupID.Split(',').Contains(a.Group.ToString()));
+            return accList;
+        }
+
+        /// <summary>
+        /// 从数据库重新获取缓存
+        /// </summary>
+        /// <returns></returns>
+        public List<AccountModel> RefreshGetUsers()
+        {
+            List<AccountModel> userlist = new List<AccountModel>();
+            userlist = GetAllUsers();
+            HsUsers[MyConst.AllUsers] = userlist;
+            return userlist;
+        }
+        /// <summary>
+        /// 创建账户
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public int InsertUsers(AccountModel model)
+        {
+            int right = 0;
+            List<AccountModel> lists = GetLoginUsers(model.UserName);
+            if (lists.Count == 0)
+            {
+                string sql = "insert into tb_users values(0,'" + model.UserName + "','" + model.Password + "','" + model.Unit + "','" + model.Email + "','" + model.Phone
+                    + "','" + model.FullName + "'," + model.Role + "," + model.Group + ",0,'1900-01-01')";
+                right = DataAccess.ExecuteNoQueryGetValue(sql);
+                if (right > 0)
+                {
+                    string select = "select id from tb_users where username='" + model.UserName + "'";
+                    string id = DataAccess.ExecuteScalarGetValue(select);
+                    model.ID = Convert.ToInt32(id);
+                    //RoleManager rMan = new RoleManager();
+                    //model.UserRole = rMan.GetRoles().Find(r => r.ID == model.Role);
+                    //GroupManager gMan = new GroupManager();
+                    //model.UserGroup = gMan.GetGroups().Find(g => g.ID == model.Group);
+                    refreshHash(model, "add");
+                }                
+            }
+            return right;
+        }
+        public int InsertUsers(List<AccountModel> lists)
+        {
+            int right = 0;            
+            if (lists.Count > 0)
+            {
+                string sql = "insert into tb_users values";
+                foreach (var model in lists)
+                {
+                    if (!IsExitUser(model.UserID))
+                    {
+                        sql += "(" + model.UserID + ",'" + model.UserName + "','" + model.Password + "','" + model.Unit + "','" + model.Email + "','" + model.Phone
+                        + "','" + model.FullName + "'," + model.Role + "," + model.Group + ",0,'"+DateTime.Now+"'),";
+                    }
+                }                
+                right = DataAccess.ExecuteNoQueryGetValue(sql.Substring(0,sql.Length-1));
+                if (right > 0)
+                {
+                    RefreshGetUsers();
+                }
+            }
+            return right;
+        }
+        private bool IsExitUser(string userid)
+        {
+            bool isExit = false;
+            isExit = GetUsers().FindAll(a => a.UserID.Equals(userid)).Count > 0 ? true : false;
+            return isExit;
+        }
+        /// <summary>
+        /// 获得所有账户
+        /// </summary>
+        /// <returns></returns>
+        public List<AccountModel> GetAllUsers()
+        {
+            List<AccountModel> lists =new List<AccountModel>();        
+            string sql = "select * from tb_users order by id";
+            DataTable userDT = DataAccess.ExecuteGetDataTable(sql);            
+            //RoleManager rMan=new RoleManager();
+            //GroupManager gMan=new GroupManager();
+            if (userDT.Rows.Count > 0)
+            {
+                for (int i = 0; i < userDT.Rows.Count; i++)
+                {
+                    AccountModel model = new AccountModel();
+                    model.ID = Convert.ToInt32(userDT.Rows[i]["id"].ToString());
+                    model.UserID = userDT.Rows[i]["userid"].ToString();
+                    model.UserName = userDT.Rows[i]["username"].ToString();
+                    model.Password = userDT.Rows[i]["userpassword"].ToString();
+                    model.Unit = userDT.Rows[i]["userunit"].ToString();
+                    model.Email = userDT.Rows[i]["useremail"].ToString();
+                    model.Phone = userDT.Rows[i]["userphone"].ToString();
+                    model.FullName = userDT.Rows[i]["userfullname"].ToString();
+                    model.Role = Convert.ToInt32(userDT.Rows[i]["userrole"].ToString() == "" ? "-1" : userDT.Rows[i]["userrole"].ToString());
+                    model.Group = Convert.ToInt32(userDT.Rows[i]["usergroup"].ToString() == "" ? "-1" : userDT.Rows[i]["usergroup"].ToString());
+                    model.IsUsing = Convert.ToInt32(userDT.Rows[i]["UserIsUsing"].ToString()== "" ? "1" : userDT.Rows[i]["UserIsUsing"].ToString());
+                    //model.UserRole = rMan.GetOneRoles(model.Role);
+                    //model.UserGroup = gMan.GetOneGroups(model.Group);                   
+                    lists.Add(model);
+                }
+            }           
+            return lists;
+        }
+        /// <summary>
+        /// 获得当前登录账户
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public List<AccountModel> GetLoginUsers(string userName)
+        {
+            string sql = "select * from tb_users where username='" + userName + "'";
+            DataTable userDT = DataAccess.ExecuteGetDataTable(sql);
+            List<AccountModel> lists = new List<AccountModel>();
+            //RoleManager rMan = new RoleManager();
+            //GroupManager gMan = new GroupManager();
+            if (userDT.Rows.Count > 0)
+            {
+                for (int i = 0; i < userDT.Rows.Count; i++)
+                {
+                    AccountModel model = new AccountModel();
+                    model.ID = Convert.ToInt32(userDT.Rows[i]["userid"].ToString());
+                    model.UserName = userDT.Rows[i]["username"].ToString();
+                    model.Password = userDT.Rows[i]["userpassword"].ToString();
+                    model.Unit = userDT.Rows[i]["userunit"].ToString();
+                    model.Email = userDT.Rows[i]["useremail"].ToString();
+                    model.Phone = userDT.Rows[i]["userphone"].ToString();
+                    model.FullName = userDT.Rows[i]["userfullname"].ToString();
+                    model.Role = Convert.ToInt32(userDT.Rows[i]["userrole"].ToString() == "" ? "-1" : userDT.Rows[i]["userrole"].ToString());
+                    model.Group = Convert.ToInt32(userDT.Rows[i]["usergroup"].ToString() == "" ? "-1" : userDT.Rows[i]["usergroup"].ToString());
+                    model.IsUsing = Convert.ToInt32(userDT.Rows[i]["UserIsUsing"].ToString() == "" ? "1" : userDT.Rows[i]["UserIsUsing"].ToString());
+                    //model.UserRole = rMan.GetOneRoles(model.Role);
+                    //model.UserGroup = gMan.GetOneGroups(model.Group);
+                  
+                    lists.Add(model);
+                }
+            }
+            return lists;
+        }
+        /// <summary>
+        /// 用户登录成功返回“OK”
+        /// </summary>
+        /// <param name="username">账户名</param>
+        /// <param name="password">密码</param>
+        /// <returns>返回OK登录成功</returns>
+        public string UserLogin(string username, string password)
+        {
+            string loginMsg = string.Empty;
+            List<AccountModel> userList = GetUsers().FindAll(u => u.UserName == username);
+            if (userList != null)
+            {
+                if (userList.Count > 0)
+                {
+                    if (userList.Exists(u => u.Password.Equals(password)) & userList.Exists(u => u.IsUsing.Equals(1)))
+                        loginMsg = "OK";
+                    else if (userList.Exists(u => u.IsUsing.Equals(0)))
+                    {
+                        loginMsg = "该账户已经被禁用，不能登录！";
+                    }
+                    else
+                        loginMsg = "密码不正确！";
+                }
+                else
+                    loginMsg = "该用户不存在！";
+            }
+            else
+                loginMsg = "该用户不存在！";
+
+            return loginMsg;
+        }
+        /// <summary>
+        /// 获得权限项相关的用户
+        /// </summary>
+        /// <param name="userIDs"></param>
+        /// <returns></returns>
+        public List<AccountModel> GetUsersOfPermission(string userIDs)
+        {
+            List<AccountModel> users = new List<AccountModel>();
+            List<AccountModel> rlists = GetUsers();
+            //if (!string.IsNullOrEmpty(userIDs))
+            //{
+            //    List<AccountModel> rlists = GetUsers();
+            //    if (rlists != null)
+            //        users = rlists.FindAll(r => arry.Contains(r.ID.ToString()));
+            //}
+            return rlists;
+        }
+        /// <summary>
+        /// 修改一个账户对象
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>如果返回值大于0，则表示修改成功，否则修改失败</returns>
+        public int ModifyUser(AccountModel model)
+        {
+            string sql = "update tb_users set";
+
+            if (!string.IsNullOrEmpty(model.Password))
+            {
+                sql += " userpassword='" + model.Password + "',";
+            }
+
+
+            sql += " username='" + model.UserName + "',userunit='" + model.Unit + "',useremail='" + model.Email + "',userphone='" + model.Phone
+              + "',userfullname='" + model.FullName + "',userrole=" + model.Role + ",usergroup=" + model.Group + ",UserIsUsing=" + model.IsUsing;
+
+            sql += " where id=" + model.ID;
+            int num = DataAccess.ExecuteNoQueryGetValue(sql);
+            if (num > 0)
+            {
+                //RoleManager rMan = new RoleManager();
+                //model.UserRole = rMan.GetRoles().Find(r => r.ID == model.Role);
+                //GroupManager gMan = new GroupManager();
+                //model.UserGroup = gMan.GetGroups().Find(g => g.ID == model.Group);
+                refreshHash(model, "update");
+            }
+            return num;
+        }
+        /// <summary>
+        /// 修改制定账户的制定字段的值
+        /// </summary>
+        /// <param name="fieldname"></param>
+        /// <param name="fieldvalue"></param>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        public int ModifyUser(string fieldname,string fieldvalue,string userid)
+        {
+            string sql = "update tb_users set "+fieldname+"="+fieldvalue+" where id=" + userid;
+            int num = DataAccess.ExecuteNoQueryGetValue(sql);
+            if (num > 0)
+            {
+                AccountModel model = GetUsers().Find(u => u.ID.ToString() == userid);
+                if (fieldname == "UserIsUsing") { model.IsUsing = Convert.ToInt32(fieldvalue); }
+                refreshHash(model, "update");
+            }
+            return num;
+        }
+        /// <summary>
+        /// 删除一个账户
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        public int DeleteUser(string userid)
+        {
+            string sql = "delete from tb_users where id=" + userid;
+            int num = DataAccess.ExecuteNoQueryGetValue(sql);
+            if (num > 0)
+            {
+                AccountModel model = GetUsers().Find(u => u.ID.ToString() == userid);
+                refreshHash(model, "delete");
+            }
+            return num;
+        }
+    }
+
+    /// <summary>
+    /// 节能减排枚举
+    /// </summary>
+    public enum SerType
+    {
+        COx = 0,
+        SOx = 1,
+        NOx = 2
+    }
+}

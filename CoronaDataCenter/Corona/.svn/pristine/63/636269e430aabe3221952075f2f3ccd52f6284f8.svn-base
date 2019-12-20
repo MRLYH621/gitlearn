@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CoronaDataCenter.Models
+{
+    ///负荷仿真(Tb_Load)	
+    public class Tb_LoadModel
+    {
+        public int ID { get; set; } //
+        public int Load_Type { get; set; } //	负荷类型		int
+        public DateTime Load_Date { get; set; } //	典型日		date
+        public float Load_Parm_001 { get; set; } //1h功率	kW/kJ	float
+        public float Load_Parm_002 { get; set; } //2h功率	kW/kJ	float
+        public float Load_Parm_003 { get; set; } //3h功率	kW/kJ	float
+        public float Load_Parm_004 { get; set; } //4h功率	kW/kJ	float
+        public float Load_Parm_005 { get; set; } //5h功率	kW/kJ	float
+        public float Load_Parm_006 { get; set; } //6h功率	kW/kJ	float
+        public float Load_Parm_007 { get; set; } //7h功率	kW/kJ	float
+        public float Load_Parm_008 { get; set; } //8h功率	kW/kJ	float
+        public float Load_Parm_009 { get; set; } //9h功率	kW/kJ	float
+        public float Load_Parm_010 { get; set; } //10h功率	kW/kJ	float
+        public float Load_Parm_011 { get; set; } //11h功率	kW/kJ	float
+        public float Load_Parm_012 { get; set; } //12h功率	kW/kJ	float
+        public float Load_Parm_013 { get; set; } //13h功率	kW/kJ	float
+        public float Load_Parm_014 { get; set; } //14h功率	kW/kJ	float
+        public float Load_Parm_015 { get; set; } //15h功率	kW/kJ	float
+        public float Load_Parm_016 { get; set; } //16h功率	kW/kJ	float
+        public float Load_Parm_017 { get; set; } //17h功率	kW/kJ	float
+        public float Load_Parm_018 { get; set; } //18h功率	kW/kJ	float
+        public float Load_Parm_019 { get; set; } //19h功率	kW/kJ	float
+        public float Load_Parm_020 { get; set; } //20h功率	kW/kJ	float
+        public float Load_Parm_021 { get; set; } //21h功率	kW/kJ	float
+        public float Load_Parm_022 { get; set; } //22h功率	kW/kJ	float
+        public float Load_Parm_023 { get; set; } //23h功率	kW/kJ	float
+        public float Load_Parm_024 { get; set; } //24h功率	kW/kJ	float
+
+    }
+}

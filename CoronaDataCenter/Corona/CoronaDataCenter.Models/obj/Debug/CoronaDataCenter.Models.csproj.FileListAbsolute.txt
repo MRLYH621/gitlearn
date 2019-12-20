@@ -1,0 +1,23 @@
+D:\新建文件夹 (3)\CoronaDataCenter.Models\bin\Debug\CoronaDataCenter.Models.dll.config
+D:\新建文件夹 (3)\CoronaDataCenter.Models\bin\Debug\CoronaDataCenter.Models.dll
+D:\新建文件夹 (3)\CoronaDataCenter.Models\bin\Debug\CoronaDataCenter.Models.pdb
+D:\新建文件夹 (3)\CoronaDataCenter.Models\bin\Debug\EntityFramework.dll
+D:\新建文件夹 (3)\CoronaDataCenter.Models\bin\Debug\EntityFramework.SqlServer.dll
+D:\新建文件夹 (3)\CoronaDataCenter.Models\bin\Debug\EntityFramework.xml
+D:\新建文件夹 (3)\CoronaDataCenter.Models\bin\Debug\EntityFramework.SqlServer.xml
+D:\新建文件夹 (3)\CoronaDataCenter.Models\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\新建文件夹 (3)\CoronaDataCenter.Models\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+D:\新建文件夹 (3)\CoronaDataCenter.Models\obj\Debug\CoronaDataCenter.Models.dll
+D:\新建文件夹 (3)\CoronaDataCenter.Models\obj\Debug\CoronaDataCenter.Models.pdb
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Models\bin\Debug\CoronaDataCenter.Models.dll.config
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Models\bin\Debug\CoronaDataCenter.Models.dll
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Models\bin\Debug\CoronaDataCenter.Models.pdb
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Models\bin\Debug\EntityFramework.dll
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Models\bin\Debug\EntityFramework.SqlServer.dll
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Models\bin\Debug\EntityFramework.xml
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Models\bin\Debug\EntityFramework.SqlServer.xml
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Models\bin\Debug\zh-Hans\EntityFramework.resources.dll
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Models\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Models\obj\Debug\CoronaDataCenter.Models.csprojResolveAssemblyReference.cache
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Models\obj\Debug\CoronaDataCenter.Models.dll
+E:\svn\CoronaDataCenter\Corona\CoronaDataCenter.Models\obj\Debug\CoronaDataCenter.Models.pdb

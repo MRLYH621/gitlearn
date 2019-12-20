@@ -1,0 +1,257 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+using CoronaDataCenter.Models;
+using System.Data;
+using System.Web;
+
+namespace CoronaDataCenter.Business
+{
+    public class RoleManager
+    {
+        public static Hashtable HsRoles;
+        /// <summary>
+        /// 刷新缓存
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="refreshTip"></param>
+        private void refreshHash(RoleModel account, string refreshTip)
+        {
+            if (HsRoles != null)
+            {
+                if (HsRoles[MyConst.AllRoles] as List<RoleModel> != null)
+                {
+                    List<RoleModel> list = HsRoles[MyConst.AllRoles] as List<RoleModel>;
+                    RoleModel old = list.Find(p => p.ID == account.ID);
+                    if (refreshTip == "update")
+                    {
+                        if (old != null)//修改
+                        {
+                            for (int i = list.Count - 1; i >= 0; i--)
+                            {
+                                if (list[i] == old)
+                                {
+                                    list.Remove(old);
+                                }
+                            }
+                            list.Add(account);
+                        }
+                    }
+                    else if (refreshTip == "delete")
+                    {
+                        if (old != null)
+                        {
+                            //删除
+                            for (int i = list.Count - 1; i >= 0; i--)
+                            {
+                                if (list[i] == old)
+                                {
+                                    list.Remove(old);
+                                }
+                            }
+                        }
+                    }
+                    else if (refreshTip == "add")
+                    {
+                        list.Add(account);//添加
+                    }
+
+                }
+            }
+        }
+        /// <summary>
+        /// 缓存获取所有账户
+        /// </summary>
+        /// <returns></returns>
+        public List<RoleModel> GetRoles()
+        {
+            List<RoleModel> userlist = new List<RoleModel>();
+            if (HsRoles != null)
+            {
+                if (HsRoles[MyConst.AllRoles] as List<RoleModel> == null)
+                {
+                    userlist = GetAllRoles();
+                    HsRoles[MyConst.AllRoles] = userlist;
+                }
+                else
+                {
+                    userlist = HsRoles[MyConst.AllRoles] as List<RoleModel>;
+                }
+            }
+            else
+            {
+                HsRoles = new Hashtable();
+                userlist = GetAllRoles();
+
+                if (HsRoles.Contains(MyConst.AllRoles))
+                    HsRoles[MyConst.AllRoles] = userlist;
+                else
+                    HsRoles.Add(MyConst.AllRoles, userlist); 
+            }
+            return userlist;
+        }
+        /// <summary>
+        /// 创建一个角色
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public int InsertRole(RoleModel model)
+        {
+            int re = 0;
+            RoleModel lists = GetRoleByName(model.Name);
+            if (lists.Name == null)
+            {
+                string sql = "insert into tb_role values('" + model.Name + "','" + model.Description + "')";
+                re = DataAccess.ExecuteNoQueryGetValue(sql);
+                if (re > 0)
+                {
+                    string select = "select roleid from tb_role where rolename='" + model.Name+"'";
+                    string roleid = DataAccess.ExecuteScalarGetValue(select);
+                    model.ID = Convert.ToInt32(roleid);
+                    refreshHash(model, "add");
+                }
+            }
+            return model.ID;
+        }
+        /// <summary>
+        /// 获得所有角色对象，为缓存服务
+        /// </summary>
+        /// <returns></returns>
+        public List<RoleModel> GetAllRoles()
+        {
+            string sql = "select * from tb_role";
+            DataTable userDT = DataAccess.ExecuteGetDataTable(sql);
+            List<RoleModel> lists = new List<RoleModel>();
+            if (userDT.Rows.Count > 0)
+            {
+                for (int i = 0; i < userDT.Rows.Count; i++)
+                {
+                    RoleModel model = new RoleModel();
+                    model.ID = Convert.ToInt32(userDT.Rows[i]["roleid"].ToString());
+                    model.Name = userDT.Rows[i]["rolename"].ToString();
+                    model.Description = userDT.Rows[i]["roledescription"].ToString();
+                    lists.Add(model);
+                }
+            }
+            return lists;
+        }
+        /// <summary>
+        /// 获得所有角色对象，为缓存服务
+        /// </summary>
+        /// <returns></returns>
+        public RoleModel GetRoleByName(string name)
+        {
+            string sql = "select * from tb_role where rolename='"+name+"'";
+            DataTable userDT = DataAccess.ExecuteGetDataTable(sql);
+            RoleModel model = new RoleModel();
+            if (userDT.Rows.Count > 0)
+            {
+                model.ID = Convert.ToInt32(userDT.Rows[0]["roleid"].ToString());
+                model.Name = userDT.Rows[0]["rolename"].ToString();
+                model.Description = userDT.Rows[0]["roledescription"].ToString();
+            }
+            return model;
+        }
+        /// <summary>
+        /// 从缓存获得某一个角色对象
+        /// </summary>
+        /// <param name="roleID">角色ID</param>
+        /// <returns></returns>
+        public RoleModel GetOneRoles(int roleID)
+        {
+            RoleModel role = new RoleModel();
+            List<RoleModel> rlists = GetRoles();
+            if (rlists != null)
+                role = rlists.Find(r => r.ID == roleID);
+
+            return role;
+        }
+        /// <summary>
+        /// 获取权限项相关的角色
+        /// </summary>
+        /// <param name="roleIDs"></param>
+        /// <returns></returns>
+        public List<RoleModel> GetRolesOfPermission(string roleIDs)
+        {
+            List<RoleModel> roles = new List<RoleModel>();
+            List<RoleModel> rlists = GetRoles();
+            //if (!string.IsNullOrEmpty(roleIDs))
+            //{
+            //    ArrayList arry = CommonTools.GetArrayByString(roleIDs);
+
+            //    List<RoleModel> rlists = GetRoles();
+            //    if (rlists != null)
+            //        roles = rlists.FindAll(r => arry.Contains(r.ID.ToString()));
+            //}
+            return rlists;
+        }
+
+        /// <summary>
+        /// 修改一个角色对象
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public int ModifyRole(RoleModel model)
+        {
+            string sql = "update tb_role set rolename='" + model.Name + "',roledescription='" + model.Description + "' where roleid=" + model.ID;
+            int num = DataAccess.ExecuteNoQueryGetValue(sql);
+            if (num > 0)
+            {
+                refreshHash(model, "update");
+                //更新相关用户的缓存
+                //AccountManager aMan = new AccountManager();
+                //foreach (var item in aMan.GetUsers().FindAll(u => u.Role == model.ID))
+                //{
+                //    //item.UserRole = model;
+                //    aMan.refreshHash(item, "update");
+                //}
+            }
+            return num;
+        }
+        /// <summary>
+        /// 修改制定角色的制定字段的值
+        /// </summary>
+        /// <param name="fieldname"></param>
+        /// <param name="fieldvalue"></param>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        public int ModifyRole(string fieldname, string fieldvalue, int roleid)
+        {
+            string sql = "update tb_role set " + fieldname + "=" + fieldvalue + " where roleid=" + roleid;
+            int num = DataAccess.ExecuteNoQueryGetValue(sql);
+            if (num > 0)
+            {
+                RoleModel model = new RoleModel() { ID = roleid };
+                if (fieldname == "rolename") { model.Name = fieldvalue; }
+                if (fieldname == "roledescription") { model.Description = fieldvalue; }
+                refreshHash(model, "update");
+                //更新相关用户的缓存
+                //AccountManager aMan = new AccountManager();
+                //foreach (var item in aMan.GetUsers().FindAll(u => u.Role == model.ID))
+                //{
+                //    item.UserRole = model;
+                //    aMan.refreshHash(item, "update");
+                //}
+            }
+            return num;
+        }
+        /// <summary>
+        /// 删除一个角色(逻辑不严谨，删除角色后，权限表对应的数据没有修改)
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        public int DeleteRole(int roleid)
+        {
+            string sql = "delete from tb_role where roleid=" + roleid;
+            int num = DataAccess.ExecuteNoQueryGetValue(sql);
+            if (num > 0)
+            {
+                RoleModel model = new RoleModel() { ID = roleid };
+                refreshHash(model, "delete");
+
+            }
+            return num;
+        }
+    }
+}
