@@ -1,0 +1,144 @@
+<template>
+        <div id='ensemble' class="ensemble">
+            <div class="E_left">
+                <div>
+                     <input type="text" placeholder="请输入关键词" v-model="ipt1">
+                     <Button type="primary">查询</Button>
+                     <Button type="primary" @click="addlist">新增</Button>
+                </div>
+                <div class='productivityanalysis-screen-box-table'>
+                        <table border="1" border-color="red">
+                                <thead>
+                                <tr>
+                                        <th>指标名称</th>
+                                        <th>指标类别</th>
+                                        <th>指标代码</th>
+                                        <th>模型公式</th>
+                                        <th>编辑</th>
+                                </tr>
+                                </thead>
+                                <tbody v-for="(item,index) in totalData2">
+                                <tr>
+                                        <td>{{item.RoleName}}</td>
+                                        <td>{{item.RoleDescription}}</td>
+                                        <td>{{item.code}}</td>
+                                        <td>{{item.formula}}</td>
+                                        <td>
+                                        <Icon type="ios-create-outline" title="编辑角色" style='cursor: pointer' @click="append(item.RoleID,index)"/>
+                                        <Icon type="ios-trash-outline"style="padding:5px" title='删除' @click="dele(item.RoleID)"/> <!-- @click="dele(item.RoleID)" -->
+                                        </td>
+                                </tr>
+                                </tbody>
+                        </table>
+                        <el-dialog title="指标信息编辑" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+                                <div>
+                                   <el-form :label-position="labelPosition" label-width="100px" :model="formLabelAlign">
+                                        <el-form-item label="指标名称：">
+                                                <el-input v-model="formLabelAlign.ipt2" placeholder="请输入指标名称"></el-input>
+                                        </el-form-item>
+                                        <el-form-item label="指标类别：">
+                                                <el-input v-model="formLabelAlign.ipt3" placeholder="请输入指标类别"></el-input>
+                                        </el-form-item>
+                                        <el-form-item label="指标代码：">
+                                                <el-input v-model="formLabelAlign.ipt4" placeholder="请输入指标代码："></el-input>
+                                        </el-form-item>
+                                        <el-form-item label="模型公式：">
+                                                <el-input  type="textarea"  v-model="formLabelAlign.ipt5" placeholder="请输入模型公式"></el-input>
+                                        </el-form-item>
+                                        <el-button type="primary" @click="submitone()">主要按钮</el-button>
+                                     </el-form>      
+                                </div>
+                                <span slot="footer" class="dialog-footer">
+                                        <el-button @click="dialogVisible = false">取 消</el-button>
+                                        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+                                </span>
+                        </el-dialog>
+                        <div class='fenyeBox'>
+                                <!-- <Page :total="dataCount" :page-size="PageSize" show-elevator @on-change='handlePageSize' :current='yeMaRole' /> -->
+                        </div>
+                </div>
+            </div>
+             <div class="float_right">
+                <router-link to="/Economicparameter">基准参数</router-link>
+                <router-link to="/Datumparameter">经济参数</router-link>
+            </div>
+        </div>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        totalData2:[
+                {RoleID:"1",RoleName:"XXX",RoleDescription:"XXX",code:"XXX",formula:'XXX',},
+                {RoleID:"2",RoleName:"XXX",RoleDescription:"XXX",code:"XXX",formula:'XXX'},
+                {RoleID:"3",RoleName:"XXX",RoleDescription:"XXX",code:"XXX",formula:'XXX',}
+        ],
+        ipt1:"",
+        formLabelAlign:{
+                ipt2:"",
+                ipt3:"",
+                ipt4:"",
+                ipt5:"",
+        },
+        dialogVisible:false,
+        labelPosition: 'right',
+      };
+    },
+    methods: {
+             
+        addlist(){
+                this.dialogVisible = !this.dialogVisible
+        },
+        append(RoleID,index){
+                this.dialogVisible = !this.dialogVisible
+        },
+        dele(RoleID){
+                this.totalData2.splice(RoleID, 1);
+        },
+        handleClose(done) {
+                this.$confirm('确认关闭？')
+                .then(_ => {
+                done();
+                })
+                .catch(_ => {});
+      }, 
+      submitone(){
+              console.log("222")
+      }
+    }
+  };
+</script>
+<style scoped>
+        .ensemble{display: flex;justify-content: flex-start;}
+        .E_left{width: 70%}
+        .productivityanalysis-screen-box-table{
+        width:100%;
+        margin-top:10px
+        }
+    .productivityanalysis-screen-box-table table{
+        width:100%;
+        color:#00e265
+    }
+    .productivityanalysis-screen-box-table table td,.productivityanalysis-screen-box-table table th{
+        height: 30px;
+        line-height: 30px;
+        text-align: center
+    }
+    .productivityanalysis-screen-box-table table thead{
+        font-size:700
+    }
+     .productivityanalysis-screen-box-table table tbody{
+        font-size:700;
+        color:white
+    }
+    .fenyeBox{
+        width: 100%;
+        height: 60px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+    .float_right{display: flex}
+    .float_right a{display: block;width: 100px;height: 40px;line-height: 40px;color: #fff;background: #2d8cf0;border-radius: 5px;flex: 1;margin: 5px;text-align: center;font-size: 16px;font-weight: 700}
+</style>

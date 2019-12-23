@@ -1,0 +1,65 @@
+<template>
+        <div id='ensemble '>
+           <div class="flex_box">
+                   <div class="flexBox"  v-for="site in Arrlist" @click="xitong">
+                                <h3>{{site.name}}</h3>
+                                <div>
+                                        <div>
+                                            <img src="" alt="">
+                                        </div>
+                                        <ul>
+                                                <li><h3>综合指数：{{site.composite}}</h3></li>
+                                                <li></li>
+                                                <li>运行模式：{{site.pattern}}</li>
+                                                <li>系统容量：{{site.capacity}}MW</li>
+                                        </ul>
+                                        <span>地址：{{site.adress}}</span>
+                                </div>
+                   </div>
+           </div>
+        </div>
+</template>
+<script>
+        export default{
+                data () {
+                        return {
+                                classObject: {
+                                        class1: true 
+                                },
+                                Arrlist:[
+                                        {name:"科诺伟业10MW光储系统",pattern:"XXXX",capacity:"10",type:"光储类型",adress:"北京市海淀区",composite:"4.9"},
+                                        {name:"XXXX系统",pattern:"XXXXX",capacity:"10",type:"光储类型",adress:"山东省济南市",composite:"4.9"},
+                                        {name:"科诺伟业10MW光储系统",pattern:"XXXX",capacity:"10",type:"光储类型",adress:"河北省保定市",composite:"4.3"},
+                                        {name:"XXXX系统",pattern:"XXXXX",capacity:"10",type:"光储类型",adress:"天津市西青区",composite:"3.9"},
+                                        {name:"科诺伟业10MW光储系统",pattern:"XXXX",capacity:"10",type:"光储类型",adress:"山东省济南市",composite:"4.2"},
+                                        {name:"XXXX系统",pattern:"XXXXX",capacity:"10",type:"光储类型",adress:"河北省保定市",composite:"2.9"},
+                                        {name:"科诺伟业10MW光储系统",pattern:"XXXX",capacity:"10",type:"光储类型",adress:"北京市海淀区",composite:"4.4"},
+                                        {name:"XXXX系统",pattern:"XXXXX",capacity:"10",type:"光储类型",adress:"河北省保定市",composite:"3.9"},
+                                ]
+                        }
+                },
+                methods:{
+                        xitong(){
+                                this.$router.push({path:'/Systemevaluation'})
+                        }
+                },
+        }
+</script>
+<style scoped>
+        .flex_box{
+                display: flex;
+            display: -webkit-flex;
+            flex-wrap: wrap;
+        }
+        .flex_box .flexBox {
+                color:#fff;
+                width: 24%;
+                border: 1px solid #ddd;
+                margin: 10px 5px;
+                padding: 5px;
+                box-sizing: border-box;
+                box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.8);
+                border-radius: 5px;
+        }
+        
+</style>

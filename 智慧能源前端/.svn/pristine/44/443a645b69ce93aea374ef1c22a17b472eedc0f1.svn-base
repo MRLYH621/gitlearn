@@ -1,0 +1,371 @@
+<template>
+        <div id='information '>
+        <div id="crumbs" style="width: 100%;height: 40px;line-height: 40ppx;padding:5px 20px">
+            <ul>
+                <li><a href="#">当前页 <Icon type="ios-home-outline"></Icon></a></li>
+                <li><a href="#">运行评估</a></li>
+                <li><a href="#">集中展示</a></li>
+                 <li><a href="#">在线评估</a></li>
+            </ul>
+             <span @click="back" class="goback">返回</span>
+        </div>
+            <div class="top_H">
+                    <h3>在线评估</h3>
+                    <router-link to="/Assessmentreport">生成系统评估报告</router-link>
+            </div>
+                <div class="demo-split">
+                        <Split>
+                            <div slot="left" class="demo-split-pane">
+                                <div class="history">
+                                    <h3>历史数据导入</h3>
+                                    <Button type="primary" size="large" @click="exportData"><Icon type="ios-download-outline"></Icon>导出</Button>
+                                </div>
+                                <div class='productivityanalysis-screen-box-table'>
+                                        <table border="1" border-color="red">
+                                                <thead>
+                                                        <tr>
+                                                          <th>指标排名</th>
+                                                          <th>指标值</th>
+                                                          <th>指标对标</th>
+                                                          <th>指标排名</th>
+                                                        </tr>
+                                                 </thead>
+                                                 <tbody v-for="item in data2">
+                                                    <tr>
+                                                    <td>{{item.T_Name}}</td>
+                                                    <td :class="[{'r': (item.pt_parm_004 <= 3 )},
+                                                    {'g': (item.pt_parm_004 > 3 && item.pt_parm_004 <= 4 )},
+                                                    {'b': (item.pt_parm_004 > 4)}]">{{item.pt_parm_004}}</td>
+                                                    <td>{{item.pt_parm_005}}</td>
+                                                    <td>{{item.T_Name}}</td>
+                                                    </tr>
+                                                </tbody>
+                                           </table>
+                                          <div class='fenyeBox'>
+                                          <Page :total="totalDate" show-elevator  @on-change='handlePageSize' :current='yeMa' />
+                
+                                          </div>
+                                 </div>
+                                <!-- <Table :columns="columns1" :data="data2"></Table>
+                                 <div class='fenyeBox'>
+                                    <Page :total="totalDate" show-elevator @on-change='handlePageSize' :current='yeMa' />
+                                </div> -->
+                            </div>
+                            <div slot="right" class="demo-split-pane  no-padding">
+                                    <Split mode="vertical">
+                                            <div slot="top" class="demo-split-pane right_top">
+                                                    <div style="margin-top:15%;width:30%;">
+                                                        <Select v-model="model4" size="large" style="width:125px">
+                                                            <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                                                        </Select>
+                                                        <Button type="primary" style="width:100px;margin-top:20px;margin-left:10px;">确定</Button>
+                                                    </div>
+                                                    <div id="container_line" class="container_line_box"></div>
+                                            </div>
+                                            <div slot="bottom" class="demo-split-pane right_bottom">
+                                                    <div class="right_bottom_content" style="padding-top:5%;">
+                                                        <div class="right_bottom_content_T" >
+                                                                <Select v-model="model4" size="large" style="width:100px">
+                                                                        <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                                                                    </Select>
+                                                                    <Button type="primary">添加</Button>
+                                                        </div>
+                                                        <div class="right_bottom_content_B" style="margin:10px 0 0 25px;">
+                                                                <div class="ZB"></div>
+                                                                <Button type="primary" style="width:100px;margin-top:20px;">关联</Button>
+                                                        </div>
+                                                       
+                                                    </div>
+                                                    <div id='cobtainerBox_circle' class="cobtainerBox_circle_box" style="width: 300px;height: 300px;"></div>
+                                            </div>
+                                    </Split>
+                                
+                            </div>
+                        </Split>
+                    </div>
+        </div>  
+</template>
+<script>
+    export default{
+        data(){
+            return{
+                value6: '',
+                model4: '',
+                 totalDate: 0,
+                yeMa: 1,
+                columns1: [
+                    {
+                        title: '指标名称',
+                        key: 'name'
+                    },
+                    {
+                        title: '指标值',
+                        key: 'value'
+                    },
+                    {
+                        title: '指标对标',
+                        key: 'benchmarking'
+                    },
+                    {
+                        title: '指标排名',
+                        key: 'ranking'
+                    }
+                ],
+                data2: [
+                    {
+                        T_Name: '参数值',
+                        pt_parm_004: '5',
+                        pt_parm_005: '参数值',
+                        ranking: '2016-10-03',
+                        cellClassName: {
+                            value: 'demo-table-info-cell-address',
+                        }
+                    },
+                    {
+                        T_Name: '参数值',
+                        pt_parm_004: '3.5',
+                        pt_parm_005: '参数值',
+                        ranking: '2016-10-03',
+                        cellClassName: {
+                            value: 'demo-table-info-cell-name'
+                        }
+                    },
+                    {
+                        T_Name: '参数值',
+                        pt_parm_004: '0.6',
+                        pt_parm_005: '参数值',
+                        ranking: '2016-10-03',
+                        cellClassName: {
+                            value: 'demo-table-info-cell-age',
+                        }
+                    },
+                    {
+                        T_Name: '参数值',
+                        pt_parm_004: '1',
+                        pt_parm_005: '参数值',
+                        ranking: '2016-10-03',
+                        cellClassName: {
+                            value: 'demo-table-info-cell-age',
+                        }
+                    },
+                    {
+                        name: '参数值',
+                        value: '参数值',
+                        benchmarking: '参数值',
+                        ranking: '2016-10-03',
+                        cellClassName: {
+                            value: 'demo-table-info-cell-name'
+                        }
+                    },
+                ],
+                cityList: [
+                    {
+                        value: '指标一',
+                        label: '指标一'
+                    },
+                    {
+                        value: '指标二',
+                        label: '指标二'
+                    },
+                ],
+            }
+        },
+        mounted:function (){
+            this.get_echarts();
+            this.get_circle();
+		},
+        methods:{
+            back(){
+                this.$router.go(-1);//返回上一层
+            },
+            exportData(){
+                this.$refs.table.exportCsv({
+                        filename: 'The original data'
+                    });
+            },
+            get_echarts(){
+                let myChart = this.$echarts.init(document.getElementById('container_line'));
+				// 把配置和数据放这里
+				myChart.setOption({
+                        title:{
+                            text:"指标对标折线图",
+                            color:"#fff"
+                        },
+                        xAxis: {
+                        type: 'category',
+                        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                    },
+                    tooltip: {},
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [{
+                        data: [820, 932, 901, 934, 1290, 1330, 1320],
+                        type: 'line'
+                    }]
+                })              
+            },
+             get_circle(){
+                let myChart1 = this.$echarts.init(document.getElementById('cobtainerBox_circle'));
+                myChart1.setOption({
+                    title: {
+                        text: '指标关联雷达图',
+                        left:'center',
+                       textStyle: {
+                                fontWeight:'normal',              //标题颜色
+                                color:'#fff'
+                            },
+                    },
+                    tooltip: {},
+                    // legend: {
+                    //     data: ['预算分配（Allocated Budget）', '实际开销（Actual Spending）']
+                    // },
+                    radar: {
+                        // shape: 'circle',
+                        name: {
+                            textStyle: {
+                                color: '#fff',
+                                backgroundColor: '#999',
+                                borderRadius: 3,
+                                padding: [3, 5]
+                        }
+                        },
+                        indicator: [
+                        { name: 'A', max: 6500},
+                        { name: 'B', max: 16000},
+                        { name: 'C', max: 30000},
+                        ]
+                    },
+                    series: [{
+                        name: '预算 vs 开销（Budget vs spending）',
+                        type: 'radar',
+                        // areaStyle: {normal: {}},
+                        data : [
+                            {
+                                value : [4300, 10000, 28000],
+                                name : '预算分配（Allocated Budget）'
+                            },
+                            {
+                                value : [5000, 14000, 28000],
+                                name : '实际开销（Actual Spending）'
+                            }
+                        ]
+                    }]
+                })         
+            },
+             handlePageSize: function(e) {
+                this.yeMa = e;
+            },
+        }
+    }
+</script>
+<style scoped>
+    .r{
+        background-color: #f00;
+    }
+    .g{
+        background-color: #0f0;
+    }
+    .b{
+        background-color: #00f;
+	 }
+  .goback{
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        padding: 0px 20px 0 20px;
+        text-align: center;
+        background-color: #000;
+        color: #fff;
+        text-decoration: none; 
+        text-align: center;
+        font-size: 14px;
+        position: relative;
+        display: block;
+        float: right;
+        cursor: pointer;
+    }
+    .goback:before{
+            display: none;
+     }
+     .goback:after{
+        content: "";
+        border-right: 20px solid #000;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+        position: absolute;
+        left: -20px;
+        top: 0;
+     }
+    .container_box{
+        display: flex;
+        color:#fff;
+    }
+    .container_box>div{
+        flex: 1;
+        
+    }
+    .demo-split{
+        height: 600px;
+        /* border: 1px solid #dcdee2; */
+        color: #fff;
+    }
+    .demo-split-pane{
+        padding: 10px;
+    }
+    .right_bottom,.right_top{
+        display: flex;
+        justify-content: flex-start;
+    }
+    .demo-split-pane.no-padding{
+        height: 600px;
+        padding: 0;
+    }
+    .container_line_box{
+        width: 300px;
+        height: 300px;
+    }
+    .top_H{position:relative}
+    .top_H>h3{
+        text-align: center;  font-size: 18px; color: #3366CC;width: 40%;margin: 0 auto;height: 30px;line-height: 30px;background: #fff;border-radius: 5px;
+    }
+    .top_H .goback{position:absolute;top:10px;right:0}
+    .top_H>a{
+        height: 40px;line-height: 40px;width: 210px;text-align: center;font-size: 18px;font-weight: 700;color: #fff;background: #3366CC;display: block;border-radius: 5px;margin-bottom: 15px;
+    }
+    .ZB{
+        height: 100px;overflow-y: scroll;width: 100px;border: 3px solid #ccc;border-radius: 3px;padding-left: 3px;
+    }
+    .productivityanalysis-screen-box-table table {
+  width: 100%;
+  color: #fff;
+}
+.productivityanalysis-screen-box-table table td,
+.productivityanalysis-screen-box-table table th {
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+.productivityanalysis-screen-box-table table thead {
+    font-size: 14px;
+}
+.productivityanalysis-screen-box-table table thead th {
+    font-weight: bold
+}
+.productivityanalysis-screen-box-table table tbody {
+  font-size: 700;
+  color: white;
+}
+   
+  .fenyeBox {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.history{line-height: 40px;display: flex;margin-bottom: 10px;}
+.history>h3{width: 25%;font-size: 18px;}
+</style>

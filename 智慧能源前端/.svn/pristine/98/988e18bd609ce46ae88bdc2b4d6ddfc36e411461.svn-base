@@ -1,0 +1,183 @@
+<!-- <template>
+  <div class="hello">
+      <el-container>
+          <el-header>
+              <div>
+                  <img src="../assets/logo.png" alt="">
+              </div>
+
+          </el-header>
+          <el-container>
+            <el-aside >
+              
+                <el-row class="tac">
+                    <el-col :span="12">
+                        <el-menu
+                          default-active="1" 
+                          class="el-menu-vertical-demo"
+                          @open="handleOpen"
+                          @close="handleClose"
+                          background-color="#545c64"
+                          text-color="#fff"
+                          active-text-color="#ffd04b">
+                          <el-submenu index="1">
+                            <template slot="title">
+                              <i class="el-icon-location"></i>
+                              <span>能源监测</span>
+                            </template>
+                            <el-menu-item-group>
+                              <el-menu-item index="/Ensemblemonitoring"  @click="goTo('/Ensemblemonitoring')">集中监测</el-menu-item>
+                            </el-menu-item-group>
+                          </el-submenu>
+                          <el-submenu index="2">
+                              <template slot="title">
+                                <i class="el-icon-location"></i>
+                                <span>运行评估</span>
+                              </template>
+                              <el-menu-item-group>
+                                <el-menu-item index="/Centralizeddisplay" @click="goTo('/Centralizeddisplay')">集中展示</el-menu-item>
+                              </el-menu-item-group>
+                            </el-submenu>
+                        </el-menu>
+                      </el-col>
+                 </el-row>
+            </el-aside>
+            <el-main>
+                       <router-view></router-view>
+            </el-main>
+          </el-container>
+        </el-container>
+    
+  </div>
+</template>
+
+<script>
+ export default {
+   
+    methods: {
+      handleOpen(key, keyPath) {
+        console.log(key, keyPath);
+      },
+      handleClose(key, keyPath) {
+        console.log(key, keyPath);
+      }, 
+      goTo(path) {
+      this.$router.replace(path);
+    }
+    }
+  }
+</script>
+
+<style scoped>
+h1, h2 {
+  font-weight: normal;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 200px;
+    min-height: 400px;
+  }
+</style> -->
+<template>
+    <el-container>
+        <el-header style="text-align: right; font-size: 12px">
+            <el-dropdown>
+              <i class="el-icon-setting" style="margin-right: 15px"></i>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item>查看</el-dropdown-item>
+                <el-dropdown-item>新增</el-dropdown-item>
+                <el-dropdown-item>删除</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+            <span>王小虎</span>
+          </el-header>
+          <el-container>
+              <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
+                  <el-menu :default-openeds="['1']"  default-active="/Ensemblemonitoring" @open="handleOpen" @close="handleClose">
+                    <el-submenu index="1">
+                      <template slot="title"><i class="el-icon-message"></i>能源监测</template>
+                      <el-menu-item-group>
+                        <el-menu-item index="/Ensemblemonitoring" @click="goTo('/Ensemblemonitoring')">集中监测</el-menu-item>
+                      </el-menu-item-group>
+                    </el-submenu>
+                    <el-submenu index="2">
+                      <template slot="title"><i class="el-icon-menu"></i>运行评估</template>
+                      <el-menu-item-group>
+                        <el-menu-item index="/Centralizeddisplay" @click="goTo('/Centralizeddisplay')">集中展示</el-menu-item>
+                      </el-menu-item-group>
+                    </el-submenu>
+                    <el-submenu index="3">
+                      <template slot="title"><i class="el-icon-setting"></i>运行优化</template>
+                      <el-menu-item-group>
+                        <el-menu-item index="/Investmentdecision" @click="goTo('/Investmentdecision')">投资决策</el-menu-item>
+                        <el-menu-item index="/Optimaloperation" @click="goTo('/Optimaloperation')">优化运行</el-menu-item>
+                        <el-menu-item index="/Simulationdata" @click="goTo('/Simulationdata')">仿真数据</el-menu-item>
+                      </el-menu-item-group>
+                    </el-submenu>
+                    <el-submenu index="4">
+                        <template slot="title"><i class="el-icon-setting"></i>平台设置</template>
+                        <el-menu-item-group>
+                          <el-menu-item index="/Usermanagement" @click="goTo('/Usermanagement')">用户管理</el-menu-item>
+                          <el-menu-item index="/Evaluationindexsetting" @click="goTo('/Evaluationindexsetting')">评价指标设置</el-menu-item>
+                          <el-menu-item index="/Assessmentmodelmanagement" @click="goTo('/Assessmentmodelmanagement')">评估模型管理</el-menu-item>
+                        </el-menu-item-group>
+                      </el-submenu>
+                  </el-menu>
+                </el-aside>
+              <el-main>
+                 <router-view/>
+              </el-main>
+            </el-container>
+           
+           
+          </el-container>
+        </template>  
+          <style>
+            .el-header {
+              background-color: #B3C0D1;
+              color: #333;
+              line-height: 60px;
+            }
+            
+            .el-aside {
+              color: #333;
+            }
+          </style>
+          
+          <script>
+            export default {
+              data() {
+                const item = {
+                  date: '2016-05-02',
+                  name: '王小虎',
+                  address: '上海市普陀区金沙江路 1518 弄'
+                };
+                return {
+                  tableData: Array(20).fill(item),
+                }
+              },
+              methods: { 
+                  goTo(path) {
+                  this.$router.replace(path);
+                },
+                handleOpen(key, keyPath) {
+                  console.log(key, keyPath);
+                },
+                handleClose(key, keyPath) {
+                  console.log(key, keyPath);
+                }
+                }
+            };
+            
+          </script>
+    

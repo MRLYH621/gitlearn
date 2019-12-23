@@ -1,0 +1,271 @@
+<template>
+        <div id='ensemble' >
+                <div id="crumbs" style="width: 100%;height: 40px;line-height: 40ppx;padding:5px 20px">
+                        <ul>
+                                <li><a href="#">当前页<Icon type="ios-home-outline"></Icon></a></li>
+                                <li><a href="#">平台设置</a></li>
+                                <li><a href="#">评估模型管理</a></li>
+                                <li><a href="#">模型参数设置</a></li>
+                                <li><a href="#">经济参数</a></li>
+                        </ul>
+                        <span @click="back" class="goback">返回</span>
+                </div>
+                <div class="ensemble">
+                        <div class="E_left">
+                                <div>
+                                        <input type="text" placeholder="请输入参数名称" v-model="Name">
+                                        <Button type="primary" @click="getDataByName">查询</Button>
+                                        <Button type="primary" @click="addlist">新增</Button>
+                                </div>
+                                <div class='productivityanalysis-screen-box-table'>
+                                        <table border="1" border-color="red">
+                                                <thead>
+                                                <tr>
+                                                        <th>参数名称</th>
+                                                        <th>参数代码</th>
+                                                        <th>时域</th>
+                                                        <th>地域</th>
+                                                        <th>值</th>
+                                                        <th>单位</th>
+                                                        <th>编辑</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody v-for="(item,index) in totalData2">
+                                                        <tr>
+                                                                <td>{{item.E_Name}}</td>
+                                                                <td>{{item.E_Code}}</td>
+                                                                <td>{{item.E_Domain}}</td>
+                                                                <td>{{item.E_Region}}</td>
+                                                                <td>{{item.E_Value}}</td>
+                                                                <td>{{item.E_Unit}}</td>
+                                                                <td>
+                                                                        <Icon type="ios-create-outline" title="编辑参数" style='cursor: pointer' @click="append(item,index)"/>
+                                                                        <Icon type="ios-trash-outline"style="padding:5px" title='删除参数' @click="dele(item.ID)"/>
+                                                                </td>
+                                                        </tr>
+                                                </tbody>
+                                        </table>
+                                        <el-dialog title="参数信息编辑" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+                                                <div>
+                                                <el-form :label-position="labelPosition" label-width="100px" :model="model">
+                                                        <el-form-item label="参数名称：">
+                                                                <el-input v-model="model.Name" placeholder="请输入参数名称"></el-input>
+                                                        </el-form-item>
+                                                        <el-form-item label="参数代码：">
+                                                                <el-input v-model="model.Code" placeholder="请输入参数类别"></el-input>
+                                                        </el-form-item>
+                                                        <el-form-item label="时域：">
+                                                                <el-input v-model="model.Domain" placeholder="请输入时域"></el-input>
+                                                        </el-form-item>
+                                                        <el-form-item label="地域：">
+                                                                <el-input v-model="model.Region" placeholder="请输入地域"></el-input>
+                                                        </el-form-item>
+                                                        <el-form-item label="参数值：">
+                                                                <el-input @keydown="handleInput2"  v-model="model.Value" placeholder="请输入参数值"></el-input>
+                                                        </el-form-item>
+                                                        <el-form-item label="单位：">
+                                                                <el-input v-model="model.Unit" placeholder="请输入单位"></el-input>
+                                                        </el-form-item>
+                                                </el-form>      
+                                                </div>
+                                                <span slot="footer" class="dialog-footer">
+                                                        <el-button @click="dialogVisible = false">取 消</el-button>
+                                                        <el-button type="primary" @click="submitone">确 定</el-button>
+                                                </span>
+                                        </el-dialog>
+                                        <div class='fenyeBox'>
+                                                <!-- <Page :total="dataCount" :page-size="PageSize" show-elevator @on-change='handlePageSize' :current='yeMaRole' /> -->
+                                        </div>
+                                </div>
+                        </div>
+                </div>    
+        </div>
+</template>
+<script>
+export default {
+        data() {
+                return {
+                        totalData2:[ ],
+                        Name:"",
+                        model:{
+                                        ID:0,
+                                        Name:"",
+                                        Code:"",
+                                        Domain:"",
+                                        Region:"",
+                                        Value:0,
+                                        Unit:"",
+                                        saveOrUpd:false,
+                        },
+                        dialogVisible:false,
+                        labelPosition: 'right',
+                };
+        },
+        mounted(){
+                this.getData();
+        },
+        methods: {
+                back(){
+                        this.$router.go(-1);//返回上一层
+                },
+                addlist(){
+                        this.dialogVisible = !this.dialogVisible;
+                        this.model.ID = 0;
+                        this.model.Name = '';
+                        this.model.Code = '';
+                        this.model.Domain= '';
+                        this.model.Region= '';
+                        this.model.Value = 0;
+                        this.model.Unit = '';
+                        this.model.saveOrUpd = false;
+                },                
+                handleInput2(e) {  //验证小数
+                        // 通过正则过滤小数点后两位
+                        e.target.value = (e.target.value.match(/^\d*(\.?\d{0,1})/g)[0]) || null
+                },
+                append(item,index){
+                        this.dialogVisible = !this.dialogVisible;
+                        this.model.ID = item.ID;
+                        this.model.Name = item.E_Name;
+                        this.model.Code = item.E_Code;
+                        this.model.Domain=  item.E_Domain;
+                        this.model.Region=  item.E_Region;
+                        this.model.Value = item.E_Value;
+                        this.model.Unit = item.E_Unit;
+                        this.model.saveOrUpd = true;
+                },
+                dele(ID){
+                        var oldthis = this;
+                        var params = new URLSearchParams();
+                        var url = this.$api+'Plat/DeleteEconomy';
+                        params.append('',ID);
+                        this.$axios.post(url, params).then(function (response) {
+                                if(response.data == -1){
+                                        alert("删除失败！");
+                                }else{
+                                        alert("删除成功！");    
+                                        oldthis.getData();      
+                                }
+                        }).catch(function (error) {
+                                oldthis.$toast(error);
+                        });
+                },
+                handleClose(done) {
+                        this.$confirm('确认关闭？').then(_ => {
+                                done();
+                        }).catch(_ => {});
+                }, 
+                submitone(){
+                        var params = new URLSearchParams();         
+                        var url = "";
+                        if(this.model.saveOrUpd){
+                                url = this.$api+'Plat/UpdateEconomy';   
+                                params.append('ID',this.model.ID);  
+                                   
+                        }else{
+                                url = this.$api+'Plat/AddEconomy';    
+                        }                 
+                        var oldThis = this;
+                        if(this.model.Name ==''){
+                                alert("请输入参数名称！");
+                                return;
+                        }
+                        if(this.model.Code ==''){
+                                alert("请输入参数代码！");
+                                return;
+                        }    
+                        if(this.model.Domain ==''){
+                                alert("请输入时域！");
+                                return;
+                        }                        
+                        if(this.model.Region ==''){
+                                alert("请输入地域！");
+                                return;
+                        }
+                        if(this.model.Value ==''){
+                                alert("请输入参数值！");
+                                return;
+                        }                        
+                        if(this.model.Unit ==''){
+                                alert("请输入单位！");
+                                return;
+                        }
+
+                        params.append('E_Name',this.model.Name);     
+                        params.append('E_Code',this.model.Code);
+                        params.append('E_Domain',this.model.Domain);
+                        params.append('E_Region',this.model.Region);
+                        params.append('E_Value',this.model.Value);
+                        params.append('E_Unit',this.model.Unit);
+                        this.$axios.post(url, params).then(function (response) {
+                                if(response.data == -1){
+                                        alert('保存失败！');
+                                }else if(response.data == -2){
+                                        alert('保存失败！');
+                                }
+                                else{                                        
+                                        oldThis.dialogVisible = !oldThis.dialogVisible;
+                                        oldThis.getData();          
+                                }
+                        }).catch(function (error) {
+                        　　    alert(error);
+                        });
+                },
+                getData(){
+                        var url = this.$api+'Plat/GetEconomy';
+                        var oldThis = this;
+                        this.$axios.get(url).then(function (response) {
+                                oldThis.totalData2=[];
+                                oldThis.totalData2=response.data;
+                        }).catch(function (error) {
+                        　　    alert(error);
+                        });
+                },
+                getDataByName(){
+                        var url = this.$api+'Plat/GetEconomy?Name='+this.Name;
+                        var oldThis = this;
+                        this.$axios.get(url).then(function (response) {
+                                oldThis.totalData2=[];
+                                oldThis.totalData2=response.data;
+                        }).catch(function (error) {
+                        　　    alert(error);
+                        });
+
+                },
+        }
+};
+</script>
+<style scoped>
+        .ensemble{display: flex;justify-content: flex-start;}
+        .E_left{width: 70%}
+        .productivityanalysis-screen-box-table{
+        width:100%;
+        margin-top:10px
+        }
+    .productivityanalysis-screen-box-table table{
+        width:100%;
+        color:#00e265
+    }
+    .productivityanalysis-screen-box-table table td,.productivityanalysis-screen-box-table table th{
+        height: 30px;
+        line-height: 30px;
+        text-align: center
+    }
+    .productivityanalysis-screen-box-table table thead{
+        font-size:700
+    }
+     .productivityanalysis-screen-box-table table tbody{
+        font-size:700;
+        color:white
+    }
+    .fenyeBox{
+        width: 100%;
+        height: 60px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+    .float_right{display: flex}
+    .float_right a{display: block;width: 100px;height: 40px;line-height: 40px;color: #fff;background: #2d8cf0;border-radius: 5px;flex: 1;margin: 5px;text-align: center;font-size: 16px;font-weight: 700}
+</style>

@@ -1,0 +1,452 @@
+<template>
+        <div id='detection '>
+            <div id="crumbs" style="width: 100%;height: 40px;line-height: 40ppx;padding:5px 20px">
+            <ul>
+                <li><a href="#">当前页 <Icon type="ios-home-outline"></Icon></a></li>
+                <li><a href="#">能源监测</a></li>
+                <li><a href="#">集中监测</a></li>
+                 <li><a href="#">系统检测</a></li>
+            </ul>
+        </div>
+            <div class="container_box">
+                <div class="left_img" style="color: #fff">
+                    <div class="left_img_j" style="text-align: center;margin: 0 auto;width: 8%;">
+                            <div>
+                                    <img src="../../image/8.png" alt="">
+                                    <span>电网</span>
+                                </div>
+                                <div class="to_bottom" style="height: 100px;width: 3px; background: #000;margin: 0 auto"></div>
+                                <div>
+                                    <img src="../../image/dianbiao.png" alt="">
+                                    <span>电表14</span>
+                                </div>
+                    </div>
+                    <div class="left_img_f">
+                        <div class="to_right_l" style="width: 90%;margin: 0 auto;height: 3px; background: #000;position: relative;"></div>
+                         <div style="width: 90%; display: flex; justify-content: space-between;margin: 0 auto;position: relative;">
+                            <div class="to_bottom_b" style="width: 3px;height: 500px;background: #000;padding-top: 130px;">
+                                <div class="img_Lcenter">
+                                        <img src="../../image/dianbiao.png" alt="">
+                                        <span>电表1</span>
+                                </div>
+                                <div class="img_LNcenter">
+                                        <img src="../../image/battery1.png" alt="">
+                                        <span>100Kw光伏逆变器</span>
+                                </div>
+                                <div  class="electricImgBox2" style="top:445px;">
+                                    <img src="../../image/sun-on.gif" alt="">
+                                    <span>102.96Kw光伏阵列</span>
+                                </div>
+                            </div>
+                            <div class="to_bottom_a" style="position: absolute;top: 0;left: 180px;">
+                                <div style=" width: 3px;height: 50px;background: #000;position: relative;">
+                                        <div style="width: 95px;height: 3px;background: #000;position: absolute;top: 50px;left: -95px;">
+                                            <div style="width: 3px;height: 450px;background: #000;position: absolute;top: 5px;left: 0;padding-top: 75px;">
+                                                    <div class="img_Lcenter ">
+                                                            <img src="../../image/dianbiao.png" alt="">
+                                                            <span>电表2</span>
+                                                        </div>
+                                                        <div class="img_LTcenter">
+                                                                <img src="../../image/dianbiao.png" alt="">
+                                                                <span>电表2</span>
+                                                        </div>
+                                                        <div class="img_LFcenter">
+                                                                <img src="../../image/dianbiao.png" alt="">
+                                                                <span>电表2</span>
+                                                        </div>
+                                                        <div class="electricImgBox2">
+                                                                <img src="../../image/dianbiao.png" alt="">
+                                                                <span>288kWh蓄电池组</span>
+                                                        </div>
+                                                        <div style="position:relative;top:310px;left:20px">
+                                                            <div style="width:150px;border:1px dashed #f90;"></div>
+                                                            <div style="position:absolute;top:-20px;left:40px;">
+                                                                 <img src="../../image/dianbiao.png" alt="">
+                                                                 <div style="border-left:2px dashed #f90;height:85px;position:absolute;left:25px;">
+                                                                     <div style="border-top:2px dashed #f90;width:245px;position:absolute;top:85px;">
+                                                                        <div style="border-left:2px dashed #f90;height:45px;position:absolute;left:245px;top:-45px"></div>
+                                                                     </div>
+                                                                 </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                            </div>  
+                                        </div>
+                                        <div  style="width: 95px;height: 3px;background: #000;position: absolute;top: 50px;left:0;">
+                                            <div style="width: 3px;height: 450px;background: #000;position: absolute;top: 5px;right: 0;padding-top: 75px;">
+                                                       <div class="img_Lcenter">
+                                                            <img src="../../image/dianbiao.png" alt="">
+                                                            <span>电表2</span>
+                                                        </div>
+                                                        <div class="img_LTcenter">
+                                                                <img src="../../image/dianbiao.png" alt="">
+                                                                <span>电表2</span>
+                                                        </div>
+                                                        <div class="img_LFcenter">
+                                                                <img src="../../image/dianbiao.png" alt="">
+                                                                <span>电表2</span>
+                                                        </div>
+                                                        <div class="electricImgBox2">
+                                                                <img src="../../image/dianbiao.png" alt="">
+                                                                <span>198kWh蓄电池组</span>
+                                                        </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="to_bottom_c">
+                                <div style="width: 3px;height: 50px;background: #000;position: relative;">
+                                    <div style="width: 120px;height: 3px;background: #000;position: absolute;top: 50px;left: -120px;">
+                                            <div style="height: 3px;width: 100px;background: #000;position: absolute;top: 50px;left: -100px;">
+                                                    <div style="width: 3px;height: 200px;background: #000;padding-top: 25px;">
+                                                         <div>
+                                                                <div class="img_LMcenter">
+                                                                    <img src="../../image/dianbiao.png" alt="">
+                                                                    <span>电表10</span>
+                                                                </div>
+                                                                <div class="img_LMcenter">
+                                                                    <img src="../../image/dianbiao.png" alt="">
+                                                                    <span>10KW内部负载</span>
+                                                                </div>
+                                                           </div>
+                                                        <div style="width: 50px;height: 3px;background: #000;position: absolute;top: 200px;left: -50px;">
+                                                            <div style="width: 3px;height: 200px;background: #000;position: absolute;top: 5px;left: 0px;padding-top: 25px;">
+                                                                 <div class="img_LLcenter_one"style="position:relative">
+                                                                    <div class="img_LLcenter">
+                                                                        <img src="../../image/dianbiao.png" alt="">
+                                                                         <span>电表10</span>
+                                                                    </div>
+                                                                    <div class="img_LLcenter">
+                                                                        <img src="../../image/dianbiao.png" alt="">
+                                                                        <span>10KW内部负载</span>
+                                                                    </div>
+                                                                   </div>
+                                                            </div>
+                                                        </div>
+                                                        <div style="width: 3px;height: 200px;background: #000;position: absolute;top: 200px;padding-top: 30px;">
+                                                             <div  class="img_LLcenter_two" style="width:50px;margin-left:-25px;position:relative">
+                                                                <div class="img_LLcenter">
+                                                                    <img src="../../image/dianbiao.png" alt="">
+                                                                    <span>电表10</span>
+                                                                </div>
+                                                                <div class="img_LLcenter">
+                                                                    <img src="../../image/battery1.png" alt="">
+                                                                    <span>4.8kW蓄电池组</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div style="width: 50px;height: 3px;background: #000;position: absolute;top: 200px;left: 0px;">
+                                                             <div style="width: 3px;height: 200px;background: #000;position: absolute;top: 5px;left: 50px;padding-top: 25px;">
+                                                                 <div class="img_LLcenter_tree" style="width:50px;margin-left:-25px;position:relative">
+                                                                    <div class="img_LLcenter">
+                                                                        <img src="../../image/dianbiao.png" alt="">
+                                                                        <span>电表10</span>
+                                                                    </div>
+                                                                    <div class="img_LLcenter">
+                                                                        <img src="../../image/dianbiao.png" alt="">
+                                                                    </div>
+                                                                </div>
+                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        <div style="width: 3px;height: 450px;background: #000;position: absolute;top: 5px;left: 0;padding-top: 75px;">
+                                            <div class="img_Lcenter">
+                                                <img src="../../image/dianbiao.png" alt="">
+                                                <span>电表10</span>
+                                            </div>
+                                            <div class="electricImgBox2">
+                                                <img src="../../image/lightbulb-on.png" alt="">
+                                                <span>45kW办公负载</span>
+                                            </div>
+                                        </div>
+                                        <div  style="width: 3px;height: 450px;background: #000;position: absolute;top: 5px;left: 80px;padding-top: 75px;">
+                                                <div class="img_Lcenter">
+                                                        <img src="../../image/dianbiao.png" alt="">
+                                                        <span>电表11</span>
+                                                    </div>
+                                                    <div class="electricImgBox2">
+                                                        <img src="../../image/lightbulb-on.png" alt="">
+                                                        <span>45kW办公负载</span>
+                                                    </div>
+                                        </div>
+                                    </div>
+                                    <div style="width: 120px;height: 3px;background: #000;position: absolute;top: 50px;left: 0px;">
+                                            <div style="width: 3px;height: 450px;background: #000;position: absolute;top: 5px;right:80px;padding-top: 75px;">
+                                                    <div class="img_Lcenter">
+                                                        <img src="../../image/dianbiao.png" alt="">
+                                                        <span>电表12</span>
+                                                    </div>
+                                                    <div class="electricImgBox2">
+                                                            <img src="../../image/lightbulb-on.png" alt="">
+                                                        <span>200kW实验负载</span>
+                                                    </div>
+                                            </div>
+                                            <div  style="width: 3px;height: 450px;background: #000;position: absolute;top: 5px;right: 0;padding-top: 75px;">
+                                                    <div class="img_Lcenter">
+                                                            <img src="../../image/dianbiao.png" alt="">
+                                                            <span>电表13</span>
+                                                        </div>
+                                                        <div class="electricImgBox2">
+                                                            <img src="../../image/lightbulb-on.png" alt="">
+                                                            <span>200kW实验负载</span>
+                                                        </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                       
+
+                </div>
+                 <div class="right">
+                <div class="right_top">
+                        <span><a  @click="xitong()">系统信息</a></span>
+                        <span><a  @click="shebei()">设备信息</a></span>
+                        <button @click="back" class="goback">返回</button>
+                </div>
+                 <div class="right_flex" >
+                        <div>
+                            <span>瞬时功率</span>
+                            <img src="../../image/sun-on.gif" alt="">
+                            <span>{{a1}} kW</span>
+                        </div>
+                        <div>
+                            <span>当日发电量</span>
+                            <img src="../../image/sun-on.gif" alt="">
+                            <span>{{a2}} kWh</span>
+                        </div>
+                        <div>
+                            <span>累计发电量</span>
+                            <img src="../../image/sun-on.gif" alt="">
+                            <span>{{a3}} kWh</span>
+                        </div>
+                        <div>
+                            <span>当日用电量</span>
+                            <img src="../../image/sun-on.gif" alt="">
+                            <span>{{a4}} kWh</span>
+                        </div>
+                        <div>
+                            <span>累计用电量</span>
+                            <img src="../../image/sun-on.gif" alt="">
+                            <span>{{a5}} kWh</span>
+                        </div>
+                        <div>
+                            <span>安全运行</span>
+                            <img src="../../image/sun-on.gif" alt="">
+                            <span>{{a6}} 天</span>
+                        </div>
+                        <div>
+                            <span>辐射强度</span>
+                            <img src="../../image/fushe.png" alt="">
+                            <span>{{a7}} W/m²</span>
+                        </div>
+                        <div>
+                            <span>风速</span>
+                            <img src="../../image/fengsu.png" alt="">
+                            <span>{{a8}} m/s</span>
+                        </div>
+                        <div>
+                            <span>环境温度</span>
+                            <img src="../../image/wendu.png" alt="">
+                            <span>{{a9}} ℃</span>
+                        </div>
+                        <div>
+                            <span>风向</span>
+                            <img src="../../image/fengxiang.png" alt="">
+                            <span>{{a10}}</span>
+                        </div>
+                        <div>
+                            <span>CO₂ 减排量</span>
+                            <img src="../../image/jianpai.png" alt="">
+                            <span>{{a11}} t</span>
+                        </div>
+                </div>
+                </div>
+            </div>
+           
+                
+               
+          
+        </div>
+</template>
+<script>
+        export default{
+            data(){
+                return{
+                    a1:0,
+                    a2:0,
+                    a3:0,
+                    a4:0,
+                    a5:0,
+                    a6:0,
+                    a7:0,
+                    a8:0,
+                    a9:0,
+                    a10:"无风",
+                    a11:0,
+                }
+            },
+            mounted(){
+                this.getArrlist();
+            },
+            methods:{
+                back(){
+                    this.$router.go(-1);//返回上一层
+                }, 
+                getArrlist(){
+                    this.$axios.get(this.$api+'Station/GetStationDataBySn?sn=' + this.$route.query.sn).then((data) =>  {
+                            this.as = data.data.DZZ_Parm_002
+                            this.a1 = data.data.DZZ_Parm_005
+                            this.a2 = data.data.DZZ_Parm_003
+                            this.a3 = data.data.DZZ_Parm_004
+                            this.a4 = data.data.DZZ_Parm_006
+                            this.a5 = data.data.DZZ_Parm_008
+                            this.a6 = data.data.DZZ_Parm_003
+                            this.a7 = data.data.DZZ_Parm_003
+                            this.a8 = data.data.DZZ_Parm_003
+                            this.a9 = data.data.DZZ_Parm_003
+                            // this.a10 = data.data.DZZ_Parm_003
+                            this.a11 = data.data.DZZ_Parm_003
+                    })
+                },
+                xitong(){
+                        this.$router.push({path:'/Systeminformation',query:{sn:this.$route.query.sn}})
+                },
+                shebei(){
+                        this.$router.push({path:'/Deviceinformation',query:{sn:this.$route.query.sn}})
+                },
+        },
+        }
+</script>
+<style scoped>
+.right_top button{border:none;}
+.goback{
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        width: 90px;
+        height: 50px;
+        line-height: 50px;
+        padding: 0px 20px 0 20px;
+        text-align: center;
+        background-color: #000;
+        color: #fff;
+        text-decoration: none; 
+        text-align: center;
+        font-size: 14px;
+        position: relative;
+        display: block;
+        float: right;
+        cursor: pointer;
+        margin-left:20px;
+    }
+    .goback:before{
+            display: none;
+     }
+     .goback:after{
+        content: "";
+        border-right: 20px solid #000;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+        position: absolute;
+        left: -20px;
+        top: 0;
+     }
+    .right{
+        overflow: hidden;
+        float: right;
+        width: 30%;
+        color: #fff
+    }
+    .right_top{width:100%;height:60px;}
+     .right_top span{
+        width: 95px;
+        height: 50px;
+        display: block;
+        background: #4169E1;
+        border-radius: 5px;
+        line-height: 50px;
+        color: #fff;
+        font-size: 18px;
+        text-align: center;
+        float: left;
+        margin: 3px 5px
+    }
+    .right_top span>a {
+        color: #fff
+    }
+    .right .right_flex{
+        display: flex;
+        display: -webkit-flex;
+        flex-wrap: wrap;
+        width:70%;float:right
+    }
+    .right .right_flex>div{
+        width:100px;height:100px;background:#fff;color:#3366CC;border:2px solid #ddd;font-size:18px;font-weight: 700;margin:5px;text-align:center
+    }
+    .right .right_flex>div img{display:block;width:50px;height:50px;margin:0 auto}
+    /* .container_box{ */
+        /* display: flex;
+        justify-content:flex-start */
+        /* overflow:hidden */
+    /* } */
+    /* .container_box>div{
+        flex: 1
+    } */
+    .container_box>.left_img{
+        width:65%;
+        float:left;
+    }
+    .right>button{
+        cursor: pointer;
+    }
+    .right_table{
+        display: flex;
+    }
+    .right_table>ul{
+        flex:1
+    }
+    .right_table>ul>li{
+        line-height: 40px;
+        background: #fff;
+        border-radius: 5px;
+        font-size: 20px;
+        font-weight: bold;
+        width: 80%;
+        margin: 10px 0
+    }
+    .left_img_j img, .left_img_f img{
+        width: 50px;height: 50px;display: block
+    }
+    .img_Lcenter,.img_LNcenter,.img_LTcenter,.img_LFcenter{
+        width: 100px;
+        text-align: center;
+        margin-left: -25px;
+        display:flex
+        /* height: 150px; */
+    }
+    .electricImgBox2{
+         width: 100px;
+        text-align: center;position:absolute;top:415px;left:-25px;
+    }
+    .img_Lcenter>span,.img_LMcenter>span,.electricImgBox2>span{
+        width: 50px;
+        text-align: center;
+        display: block;
+    }
+    .img_LMcenter{
+        width: 100px;
+        text-align: center;
+        margin-left: -25px;
+        height: 85px;
+        display:flex
+    }
+    .img_LLcenter_one >.img_LLcenter:nth-child(1){margin-left:-25px;width:50px;}
+    .img_LLcenter{text-align:center;}
+    .img_LLcenter_one .img_LLcenter:nth-child(2){margin-left:-25px;}
+    .img_LNcenter{position:absolute;top:300px;}
+     .img_LTcenter{position:absolute;top:150px;}
+     .img_LFcenter{position:absolute;top:300px;}
+    .img_LLcenter_one .img_LLcenter:nth-child(2),.img_LLcenter_two .img_LLcenter:nth-child(2), .img_LLcenter_tree .img_LLcenter:nth-child(2){position:absolute;top:140px;}
+</style>

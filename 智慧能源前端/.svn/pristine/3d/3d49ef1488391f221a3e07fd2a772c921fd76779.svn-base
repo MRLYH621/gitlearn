@@ -1,0 +1,82 @@
+import Vue from 'vue'
+import Router from 'vue-router'
+import index from '@/components/index'
+import Denglu from '@/components/Denglu'
+import Ensemblemonitoring from '@/components/Energymonitoring/Ensemblemonitoring'
+import Systemdetection from '@/components/Energymonitoring/Systemdetection'  //系统检测
+import Systeminformation from '@/components/Energymonitoring/Systeminformation'  //系统信息
+import Deviceinformation from '@/components/Energymonitoring/Deviceinformation'  //设备信息
+import Centralizeddisplay from '@/components/Operationalevaluation/Centralizeddisplay'
+import Investmentdecision from '@/components/Operationoptimization/Investmentdecision' //投资决策
+import Optimaloperation from '@/components/Operationoptimization/Optimaloperation'//优化运行
+import Simulationdata from '@/components/Operationoptimization/Simulationdata'//仿真数据
+import Assessmentmodelmanagement from '@/components/Platformsetup/Assessmentmodelmanagement' //评估模型管理
+import Evaluationindexsetting from '@/components/Platformsetup/Evaluationindexsetting' //评价指标设置
+import Usermanagement from '@/components/Platformsetup/Usermanagement'  //用户管理
+
+
+Vue.use(Router)
+
+export default new Router({
+  mode: 'history',
+  routes: [
+    {
+      path: '/',
+      name: 'Denglu',
+      component: Denglu
+    },
+    
+    {
+      path: '/index',
+      name: 'index',
+      component: index, //导航
+      children:[
+        {
+          path: '/Ensemblemonitoring',
+          name: 'Ensemblemonitoring',
+          component: Ensemblemonitoring //集合监测
+        }, {
+          path: '/Systemdetection',
+          name: 'Systemdetection',
+          component: Systemdetection //集合监测
+        },{
+          path: '/Systeminformation',
+          name: 'Systeminformation',
+          component: Systeminformation //系统信息
+        },{
+          path: '/Deviceinformation',
+          name: 'Deviceinformation',
+          component: Deviceinformation //设备信息
+        }, {
+          path: '/Centralizeddisplay',
+          name: 'Centralizeddisplay',
+          component: Centralizeddisplay //集中展示
+        }, {
+          path: '/Investmentdecision',
+          name: 'Investmentdecision',
+          component: Investmentdecision //投资决策
+        }, {
+          path: '/Optimaloperation',
+          name: 'Optimaloperation',
+          component: Optimaloperation //优化运行
+        }, {
+          path: '/Simulationdata',
+          name: 'Simulationdata',
+          component: Simulationdata //仿真数据
+        }, {
+          path: '/Assessmentmodelmanagement',
+          name: 'Assessmentmodelmanagement',
+          component: Assessmentmodelmanagement //评估模型管理
+        }, {
+          path: '/Evaluationindexsetting',
+          name: 'Evaluationindexsetting',
+          component: Evaluationindexsetting //评价指标设置
+        },{
+          path: '/Usermanagement',
+          name: 'Usermanagement',
+          component: Usermanagement //用户管理
+        },
+      ]
+    },
+  ]
+})

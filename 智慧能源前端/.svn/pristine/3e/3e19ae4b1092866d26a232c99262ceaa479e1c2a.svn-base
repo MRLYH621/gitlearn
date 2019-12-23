@@ -1,0 +1,86 @@
+<template>
+        <div id='ensemble '>
+        <div id="crumbs" style="width: 100%;height: 40px;line-height: 40ppx;padding:5px 20px">
+            <ul>
+                <li><a href="#">当前页 <Icon type="ios-home-outline"></Icon></a></li>
+                <li><a href="#">运行评估</a></li>
+                <li><a href="#">集中展示</a></li>
+            </ul>
+        </div>
+           <div class="flex_box">
+                   <div class="flexBox"  v-for="site in Arrlist" @click="xitong(site.name,site.id)">
+                                <h3>{{site.name}}</h3>
+                                <div class="top_H">
+                                        <div class="top_H_img">
+                                            <img src="../../image/sun-on.gif" alt="">
+                                        </div>
+                                        <ul>
+                                                <li><h3>综合指数：{{site.composite}}</h3></li>
+                                                <li>指数2：{{site.pattern}}</li>
+                                                <li>指数2：{{site.pattern}}</li>
+                                                <li>系统容量：{{site.capacity}}MW</li>
+                                                <li>地址：{{site.adress}}</li>
+                                        </ul>
+                                </div>
+                   </div>
+           </div>
+        </div>
+</template>
+<script>
+        export default{
+                data () {
+                        return {
+                                classObject: {
+                                        class1: true 
+                                },
+                                Arrlist:[
+                                        {id:0,name:"科诺伟业10MW光储系统",pattern:"XXXX",capacity:"10",type:"光储类型",adress:"北京市海淀区",composite:"4.9"},
+                                        {id:1,name:"XXXX系统",pattern:"XXXXX",capacity:"10",type:"光储类型",adress:"山东省济南市",composite:"4.9"},
+                                        {id:2,name:"在线评估",pattern:"XXXX",capacity:"10",type:"光储类型",adress:"河北省保定市",composite:"4.3"},
+                                        {id:3,name:"XXXX系统",pattern:"XXXXX",capacity:"10",type:"光储类型",adress:"天津市西青区",composite:"3.9"},
+                                        {id:4,name:"科诺伟业10MW光储系统",pattern:"XXXX",capacity:"10",type:"光储类型",adress:"山东省济南市",composite:"4.2"},
+                                        {id:5,name:"XXXX系统",pattern:"XXXXX",capacity:"10",type:"光储类型",adress:"河北省保定市",composite:"2.9"},
+                                        {id:6,name:"在线评估",pattern:"XXXX",capacity:"10",type:"光储类型",adress:"北京市海淀区",composite:"4.4"},
+                                        {id:7,name:"XXXX系统",pattern:"XXXXX",capacity:"10",type:"光储类型",adress:"河北省保定市",composite:"3.9"},
+                                ]
+                        }
+                },
+                methods:{
+                        xitong(name,id){
+                                if(name == "在线评估"){
+                                        this.$router.push({path:'/Onlineassessment'}) 
+                                }else{
+                                        this.$router.push({path:'/Systemevaluation',query:{id:id}})
+                                }
+                               
+                        }
+                },
+        }
+</script>
+<style scoped>
+        .flex_box{
+                display: flex;
+            display: -webkit-flex;
+            flex-wrap: wrap;
+        }
+        .flex_box .flexBox {
+                color:#fff;
+                width: 24%;
+                border: 1px solid #ddd;
+                margin: 10px 5px;
+                padding: 5px;
+                box-sizing: border-box;
+                box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.8);
+                border-radius: 5px;
+        }
+        .top_H_img>img{
+                display: block;width: 50px;position: absolute;top: 50%;
+        }
+        .top_H{
+                display: flex;
+                justify-content: flex-start;
+        }
+        .top_H_img{
+                position:relative;height:50px;width:50px;
+        }
+</style>

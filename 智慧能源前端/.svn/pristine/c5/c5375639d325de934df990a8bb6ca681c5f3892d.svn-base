@@ -1,0 +1,361 @@
+<template>
+        <div id='information '>
+        <div>
+                    <h3>示例系统（系统名称）</h3>
+                    <button @click="back">返回</button>
+            </div>
+                <div class="demo-split">
+                        <Split>
+                            <div slot="left" class="demo-split-pane no-padding">
+                                    <div>
+                                        <h3>设备基本信息</h3>
+                                    </div>
+                                    <el-table
+                                    :data="tableData4"
+                                    style="width: 100%"
+                                    max-height="250">
+                                    <el-table-row
+                                      fixed
+                                      prop="date"
+                                      label="日期"
+                                      width="150">
+                                    </el-table-row>
+                                    <el-table-row
+                                      prop="name"
+                                      label="姓名"
+                                      width="120">
+                                    </el-table-row>
+                                    <el-table-row
+                                      prop="province"
+                                      label="省份"
+                                      width="120">
+                                    </el-table-row>
+                                    <el-table-row
+                                      prop="city"
+                                      label="市区"
+                                      width="120">
+                                    </el-table-row>
+                                    <el-table-row
+                                      prop="address"
+                                      label="地址"
+                                      width="300">
+                                    </el-table-row>
+                                    <el-table-row
+                                      prop="zip"
+                                      label="邮编"
+                                      width="120">
+                                    </el-table-row>
+                                    <el-table-row
+                                      fixed="right"
+                                      label="操作"
+                                      width="120">
+                                      <template slot-scope="scope">
+                                        <el-button
+                                          @click.native.prevent="deleteRow(scope.$index, tableData4)"
+                                          type="text"
+                                          size="small">
+                                          移除
+                                        </el-button>
+                                      </template>
+                                    </el-table-row>
+                                  </el-table>
+                                  <div class="block">
+                                    <el-pagination
+                                      @size-change="handleSizeChange"
+                                      @current-change="handleCurrentChange"
+                                      :current-page.sync="currentPage3"
+                                      :page-size="100"
+                                      layout="prev, pager, next, jumper"
+                                      :total="1000">
+                                    </el-pagination>
+                                  </div>
+                            </div>
+                            <div slot="right" class="demo-split-pane">
+                                    <div>
+                                            <el-date-picker v-model="value6" type="daterange" range-separator="至"                  start-placeholder="开始日期" end-placeholder="结束日期">
+                                            </el-date-picker>
+                                            <button>查询</button>
+                                    </div>
+                                <div>
+                                    <input type="text" placeholder="请输入参数名称"> 
+                                    <button>精准查询</button>
+                                    <button>导出数据</button>
+                                </div>
+                                <Table height="200" :columns="columns1" :data="data2"></Table>
+                            </div>
+                        </Split>
+                    </div>
+        </div>  
+</template>
+<script>
+    export default{
+        data(){
+            return{
+                value6: '',
+                currentPage3: 5,
+                row1: [
+                    {
+                        title: 'Name',
+                        key: 'name',
+                        render: (h, params) => {
+                            return h('div', [
+                                h('Icon', {
+                                    props: {
+                                        type: 'person'
+                                    }
+                                }),
+                                h('strong', params.row.name)
+                            ]);
+                        }
+                    },
+                    {
+                        title: 'Function',
+                        key: 'function'
+                    },
+                    {
+                        title: 'Signal ',
+                        key: 'signal '
+                    },  {
+                        title: 'Fault ',
+                        key: 'fault '
+                    },  {
+                        title: 'type',
+                        key: 'type'
+                    },  {
+                        title: 'Model',
+                        key: 'model'
+                    },  {
+                        title: 'Manufactor',
+                        key: 'manufactor'
+                    },  {
+                        title: 'Call',
+                        key: 'call'
+                    },
+                    {
+                        title: 'edit',
+                        key: 'edit',
+                        width: 150,
+                        align: 'center',
+                        render: (h, params) => {
+                            return h('div', [
+                                h('Button', {
+                                    props: {
+                                        type: 'primary',
+                                        size: 'small'
+                                    },
+                                    style: {
+                                        marginRight: '5px'
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.show(params.index)
+                                        }
+                                    }
+                                }, 'View'),
+                                h('Button', {
+                                    props: {
+                                        type: 'error',
+                                        size: 'small'
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.remove(params.index)
+                                        }
+                                    }
+                                }, 'Delete')
+                            ]);
+                        }
+                    }
+                ],
+                data6: [
+                    {
+                        name: 'John Brown',
+                        function: 18,
+                        model: 'New York No. 1 Lake Park'
+                    },
+                    {
+                        name: 'John Brown',
+                        function: 18,
+                        model: 'New York No. 1 Lake Park'
+                    },
+                    {
+                        name: 'John Brown',
+                        function: 18,
+                        model: 'New York No. 1 Lake Park'
+                    },
+                    {
+                        name: 'John Brown',
+                        function: 18,
+                        model: 'New York No. 1 Lake Park'
+                    },
+                ],
+                columns1: [
+                    {
+                        title: '时间',
+                        key: 'date'
+                    },
+                    {
+                        title: '参数名称',
+                        key: 'name'
+                    },
+                    {
+                        title: '参数名称',
+                        key: 'name'
+                    },
+                    {
+                        title: '参数名称',
+                        key: 'name'
+                    },
+                    {
+                        title: '参数名称',
+                        key: 'name'
+                    }
+                ],
+                data2: [
+                    {
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        date: '2016-10-03'
+                    },
+                    {
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        date: '2016-10-01'
+                    },
+                    {
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        date: '2016-10-02'
+                    },
+                    {
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        date: '2016-10-04'
+                    },
+                    {
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        date: '2016-10-03'
+                    },
+                    {
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        date: '2016-10-01'
+                    },
+                    {
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        date: '2016-10-02'
+                    },
+                    {
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        date: '2016-10-04'
+                    }
+                ],
+                tableData4: [{
+          date: '2016-05-03',
+          name: '王小虎',
+          province: '上海',
+          city: '普陀区',
+          address: '上海市普陀区金沙江路 1518 弄',
+          zip: 200333
+        }, {
+          date: '2016-05-02',
+          name: '王小虎',
+          province: '上海',
+          city: '普陀区',
+          address: '上海市普陀区金沙江路 1518 弄',
+          zip: 200333
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          province: '上海',
+          city: '普陀区',
+          address: '上海市普陀区金沙江路 1518 弄',
+          zip: 200333
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          province: '上海',
+          city: '普陀区',
+          address: '上海市普陀区金沙江路 1518 弄',
+          zip: 200333
+        }, {
+          date: '2016-05-08',
+          name: '王小虎',
+          province: '上海',
+          city: '普陀区',
+          address: '上海市普陀区金沙江路 1518 弄',
+          zip: 200333
+        }, {
+          date: '2016-05-06',
+          name: '王小虎',
+          province: '上海',
+          city: '普陀区',
+          address: '上海市普陀区金沙江路 1518 弄',
+          zip: 200333
+        }, {
+          date: '2016-05-07',
+          name: '王小虎',
+          province: '上海',
+          city: '普陀区',
+          address: '上海市普陀区金沙江路 1518 弄',
+          zip: 200333
+        }]
+            }
+        },
+        methods:{
+            back(){
+                this.$router.go(-1);//返回上一层
+            },
+            deleteRow(index, rows) {
+                rows.splice(index, 1);
+            },
+            handleSizeChange(val) {
+                console.log(`每页 ${val} 条`);
+            },
+            handleCurrentChange(val) {
+                console.log(`当前页: ${val}`);
+            }
+        },
+    }
+</script>
+<style scoped>
+    .container_box{
+        display: flex;
+        color:#fff;
+    }
+    .container_box>div{
+        flex: 1;
+        
+    }
+    .demo-split{
+        height: 600px;
+        /* border: 1px solid #dcdee2; */
+        color: #fff;
+    }
+    .demo-split-pane{
+        padding: 10px;
+    }
+    .demo-split-pane.no-padding{
+        height: 600px;
+        padding: 0;
+    }
+</style>

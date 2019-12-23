@@ -1,0 +1,248 @@
+<template>
+        <div id='ensemble' >
+        <div id="crumbs" style="width: 100%;height: 40px;line-height: 40ppx;padding:5px 20px">
+            <ul>
+                <li><a href="#">当前页 <Icon type="ios-home-outline"></Icon></a></li>
+                <li><a href="#">平台设置</a></li>
+                <li><a href="#">评估模型管理</a></li>
+                 <li><a href="#">模型编辑</a></li>
+            </ul>
+        </div>
+        <div class="ensemble"> 
+            <div class="E_left">
+                <div>
+                     <input type="text" placeholder="请输入指标名称" v-model="Name">
+                     <Button type="primary" @click="getDataByName">查询</Button>
+                     <Button type="primary" @click="addlist">新增</Button>
+                </div>
+                <div class='productivityanalysis-screen-box-table'>
+                        <table border="1" border-color="red">
+                                <thead>
+                                <tr>
+                                        <th>指标名称</th>
+                                        <th>指标类别</th>
+                                        <th>指标代码</th>
+                                        <th>模型公式</th>
+                                        <th>编辑</th>
+                                </tr>
+                                </thead>
+                                <tbody v-for="(item,index) in totalData2">
+                                <tr>
+                                        <td>{{item.T_Name}}</td>
+                                        <td>{{item.T_Type}}</td>
+                                        <td>{{item.T_Code}}</td>
+                                        <td>{{item.T_Formula}}</td>
+                                        <td>
+                                        <Icon type="ios-create-outline" title="编辑指标" style='cursor: pointer' @click="append(item,index)"/>
+                                        <Icon type="ios-trash-outline"style="padding:5px" title='删除指标' @click="dele(item.ID)"/>
+                                        </td>
+                                </tr>
+                                </tbody>
+                        </table>
+                        <el-dialog title="指标信息编辑" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+                                <div>
+                                        <el-form :label-position="labelPosition" label-width="100px" :model="model">
+                                                <el-form-item label="指标名称：">
+                                                        <el-input v-model="model.Name" placeholder="请输入指标名称"></el-input>
+                                                </el-form-item>
+                                                <el-form-item label="指标类别：">
+                                                        <el-input v-model="model.Type" placeholder="请输入指标类别"></el-input>
+                                                </el-form-item>
+                                                <el-form-item label="指标代码：">
+                                                        <el-input v-model="model.Code" placeholder="请输入指标代码："></el-input>
+                                                </el-form-item>
+                                                <el-form-item label="模型公式：">
+                                                        <el-input  type="textarea"  v-model="model.Formula" placeholder="请输入模型公式"></el-input>
+                                                </el-form-item>
+                                                <!--<el-button type="primary" @click="submitone()">主要按钮</el-button>-->
+                                        </el-form>      
+                                </div>
+                                <span slot="footer" class="dialog-footer">
+                                        <el-button @click="dialogVisible = false">取 消</el-button>
+                                        <el-button type="primary" @click="submitone">确 定</el-button>
+                                </span>
+                        </el-dialog>
+                        <div class='fenyeBox'>
+                                <!-- <Page :total="dataCount" :page-size="PageSize" show-elevator @on-change='handlePageSize' :current='yeMaRole' /> -->
+                        </div>
+                </div>
+            </div>
+             <div class="float_right">
+                <router-link to="/Economicparameter">基准参数</router-link>
+                <router-link to="/Datumparameter">经济参数</router-link>
+            </div>
+        </div>
+        </div>
+</template>
+<script>
+  export default {
+        data() {
+                return {
+                        totalData2:[],
+                        Name:"",
+                        model:{
+                                ID:0,
+                                Name:"",
+                                Type:"",
+                                Code:"",
+                                Formula:"",
+                                saveOrUpd:false,
+                        },
+                        dialogVisible:false,
+                        labelPosition: 'right',
+                };
+        },
+        mounted(){
+                this.getData();
+        },
+        methods: { 
+                addlist(){
+                        this.dialogVisible = !this.dialogVisible
+                        this.model.ID = 0;
+                        this.model.Name = '';
+                        this.model.Type = '';
+                        this.model.Code = '';
+                        this.model.Formula = '';
+                        this.model.saveOrUpd = false;
+                },
+                append(item,index){
+                        this.dialogVisible = !this.dialogVisible;
+                        console.log(item);
+                        this.model.ID = item.ID;
+                        this.model.Name = item.T_Name;
+                        this.model.Type = item.T_Type;
+                        this.model.Code = item.T_Code;
+                        this.model.Formula = item.T_Formula;
+                        this.model.saveOrUpd = true;
+                },
+                dele(ID){
+                        var oldthis = this;
+                        var params = new URLSearchParams();
+                        var url = this.$api+'Plat/DeleteTarget';
+                        params.append('',ID);
+                        this.$axios.post(url, params).then(function (response) {
+                                console.log(response.data);
+                                if(response.data == -1){
+                                        alert("删除失败！");
+                                }else{
+                                        alert("删除成功！");    
+                                        oldthis.getData();      
+                                }
+                        }).catch(function (error) {
+                        oldthis.$toast(error);
+                        });
+                },
+                handleClose(done) {
+                        this.$confirm('确认关闭？').then(_ => {  done();  
+                        }
+                        ).catch(_ => {});
+                }, 
+                submitone(){
+                        var params = new URLSearchParams();
+                        
+                        var url = "";
+                        if(this.model.saveOrUpd){
+                                url = this.$api+'Plat/UpdateTarget';   
+                                params.append('ID',this.model.ID);  
+                                   
+                        }else{
+                                url = this.$api+'Plat/AddTarget';    
+                        }                 
+                        var oldThis = this;
+                        if(this.model.Name ==''){
+                                alert("请输入指标名称！");
+                                return;
+                        }
+                        if(this.model.Type ==''){
+                                alert("请输入指标类型！");
+                                return;
+                        }                        
+                        if(this.model.Code ==''){
+                                alert("请输入指标代码！");
+                                return;
+                        }                        
+                        if(this.model.Formula ==''){
+                                alert("请输入模型公式！");
+                                return;
+                        }
+
+                        params.append('T_Name',this.model.Name);     
+                        params.append('T_Type',this.model.Type);
+                        params.append('T_Code',this.model.Code);
+                        params.append('T_Formula',this.model.Formula);
+                        
+
+                        this.$axios.post(url, params).then(function (response) {
+                                if(response.data == -1){
+                                        alert('保存失败！');
+                                }else if(response.data == -2){
+                                        alert('保存失败！');
+                                }
+                                else{                                        
+                                        oldThis.dialogVisible = !oldThis.dialogVisible;
+                                        //alert('保存成功！');    
+                                        oldThis.getData();          
+                                }
+                        }).catch(function (error) {
+                        　　    alert(error);
+                        });
+                },
+                getData(){
+                        var url = this.$api+'Plat/GetTarget';
+                        var oldThis = this;
+                        this.$axios.get(url).then(function (response) {
+                                oldThis.totalData2=[];
+                                oldThis.totalData2=response.data;
+                        }).catch(function (error) {
+                        　　    alert(error);
+                        });
+
+                },
+                getDataByName(){
+                        var url = this.$api+'Plat/GetTarget?Name='+this.Name;
+                        var oldThis = this;
+                        this.$axios.get(url).then(function (response) {
+                                oldThis.totalData2=[];
+                                oldThis.totalData2=response.data;
+                        }).catch(function (error) {
+                        　　    alert(error);
+                        });
+
+                },
+        }
+};
+</script>
+<style scoped>
+        .ensemble{display: flex;justify-content: flex-start;}
+        .E_left{width: 70%}
+        .productivityanalysis-screen-box-table{
+        width:100%;
+        margin-top:10px
+        }
+    .productivityanalysis-screen-box-table table{
+        width:100%;
+        color:#00e265
+    }
+    .productivityanalysis-screen-box-table table td,.productivityanalysis-screen-box-table table th{
+        height: 30px;
+        line-height: 30px;
+        text-align: center
+    }
+    .productivityanalysis-screen-box-table table thead{
+        font-size:700
+    }
+     .productivityanalysis-screen-box-table table tbody{
+        font-size:700;
+        color:white
+    }
+    .fenyeBox{
+        width: 100%;
+        height: 60px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+    .float_right{display: flex}
+    .float_right a{display: block;width: 100px;height: 40px;line-height: 40px;color: #fff;background: #2d8cf0;border-radius: 5px;flex: 1;margin: 5px;text-align: center;font-size: 16px;font-weight: 700}
+</style>

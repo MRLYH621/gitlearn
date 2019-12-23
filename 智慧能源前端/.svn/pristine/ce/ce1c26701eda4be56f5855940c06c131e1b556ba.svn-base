@@ -1,0 +1,79 @@
+<template>
+        <div id='ensemble '>
+        <div id="crumbs" style="width: 100%;height: 40px;line-height: 40ppx;padding:5px 20px">
+            <ul>
+                <li><a href="#">当前页 <Icon type="ios-home-outline"></Icon></a></li>
+                <li><a href="#">能源监测</a></li>
+                <li><a href="#">集中监测</a></li>
+            </ul>
+        </div>
+           <div class="flex_box">
+                   <div class="flexBox"  v-for="site in Arrlist"  @click="xitong">
+                                <div>
+                                        <div style="float: left;">
+                                            <div class="flex_boximg">
+                                                <img src="../../assets/images/u147.png" alt="" >
+                                            </div>
+                                        </div>
+                                        <ul style="float:left;margin-left:10px;">
+                                                <li>运行模式：{{site.pattern}}</li>
+                                                <li>系统容量：{{site.capacity}}MW</li>
+                                                <li>今日发电量：{{site.type}}</li>
+                                                <li>今日用电量：{{site.pattern}}MW</li>
+                                                 <li>累计发电量：{{site.type}}</li>
+                                                <li>累计用电量：{{site.pattern}}MW</li>
+                                        </ul>
+                                </div>
+                   </div>
+           </div>
+        </div>
+</template>
+<script>
+        export default{
+                data () {
+                        return {
+                                Arrlist:[
+                                        {name:"科诺伟业10MW光储系统",pattern:"XXXX",capacity:"10",type:"光储类型",adress:"北京市海淀区王庄路1号"},
+                                        {name:"XXXX系统",pattern:"XXXXX",capacity:"10",type:"光储类型",adress:"北京市海淀区王庄路1号"},
+                                        {name:"科诺伟业10MW光储系统",pattern:"XXXX",capacity:"10",type:"光储类型",adress:"北京市海淀区王庄路1号"},
+                                        {name:"XXXX系统",pattern:"XXXXX",capacity:"10",type:"光储类型",adress:"北京市海淀区王庄路1号"},
+                                        {name:"科诺伟业10MW光储系统",pattern:"XXXX",capacity:"10",type:"光储类型",adress:"北京市海淀区王庄路1号"},
+                                        {name:"XXXX系统",pattern:"XXXXX",capacity:"10",type:"光储类型",adress:"北京市海淀区王庄路1号"},
+                                        {name:"科诺伟业10MW光储系统",pattern:"XXXX",capacity:"10",type:"光储类型",adress:"北京市海淀区王庄路1号"},
+                                        {name:"XXXX系统",pattern:"XXXXX",capacity:"10",type:"光储类型",adress:"北京市海淀区王庄路1号"},
+                                ]
+                        }
+                },
+                methods:{
+                        xitong(){
+                                this.$router.push({path:'/Systemdetection'})
+                        }
+                },
+        }
+</script>
+<style scoped>
+        .flex_box{
+                display: flex;
+            display: -webkit-flex;
+            flex-wrap: wrap;
+        }
+        .flex_box .flexBox{
+                color:#fff;
+                width: 24%;
+                border: 1px solid #ddd;
+                margin: 10px 5px;
+                padding: 10px;
+                box-sizing: border-box;
+                box-shadow: 0px 1px 3px #000;
+                border-radius: 5px;
+                cursor: pointer;
+                background: #3366CC;
+                overflow:hidden;
+        }
+        .flex_boximg{
+                position:relative;height:50px;width:50px;
+        }
+        .flex_boximg>img{
+                display: block;width: 50px;position: absolute;top: 50%;vertical-align: middle;
+        }
+</style>

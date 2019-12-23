@@ -1,0 +1,61 @@
+<template>
+        <div id='ensemble '>
+           <div class="flex_box">
+                   <div class="flexBox"  v-for="site in Arrlist"  @click="xitong">
+                                <div>
+                                        <div style="float: left;">
+                                            <img src="../../assets/images/u147.png" alt="" style="display: block;width: 50px;height: 50px;align-items: center">
+                                        </div>
+                                        <ul>
+                                                <li>运行模式：{{site.pattern}}</li>
+                                                <li>系统容量：{{site.capacity}}MW</li>
+                                                <li>运行模式：{{site.type}}</li>
+                                                <li>系统容量：{{site.adress}}MW</li>
+                                        </ul>
+                                </div>
+                   </div>
+           </div>
+        </div>
+</template>
+<script>
+        export default{
+                data () {
+                        return {
+                                Arrlist:[
+                                        {name:"科诺伟业10MW光储系统",pattern:"XXXX",capacity:"10",type:"光储类型",adress:"北京市海淀区王庄路1号"},
+                                        {name:"XXXX系统",pattern:"XXXXX",capacity:"10",type:"光储类型",adress:"北京市海淀区王庄路1号"},
+                                        {name:"科诺伟业10MW光储系统",pattern:"XXXX",capacity:"10",type:"光储类型",adress:"北京市海淀区王庄路1号"},
+                                        {name:"XXXX系统",pattern:"XXXXX",capacity:"10",type:"光储类型",adress:"北京市海淀区王庄路1号"},
+                                        {name:"科诺伟业10MW光储系统",pattern:"XXXX",capacity:"10",type:"光储类型",adress:"北京市海淀区王庄路1号"},
+                                        {name:"XXXX系统",pattern:"XXXXX",capacity:"10",type:"光储类型",adress:"北京市海淀区王庄路1号"},
+                                        {name:"科诺伟业10MW光储系统",pattern:"XXXX",capacity:"10",type:"光储类型",adress:"北京市海淀区王庄路1号"},
+                                        {name:"XXXX系统",pattern:"XXXXX",capacity:"10",type:"光储类型",adress:"北京市海淀区王庄路1号"},
+                                ]
+                        }
+                },
+                methods:{
+                        xitong(){
+                                this.$router.push({path:'/Systemdetection'})
+                        }
+                },
+        }
+</script>
+<style scoped>
+        .flex_box{
+                display: flex;
+            display: -webkit-flex;
+            flex-wrap: wrap;
+        }
+        .flex_box .flexBox{
+                color:#fff;
+                width: 24%;
+                border: 1px solid #ddd;
+                margin: 10px 5px;
+                padding: 10px;
+                box-sizing: border-box;
+                box-shadow: 0px 1px 3px #000;
+                border-radius: 5px;
+                cursor: pointer;
+                background: #3366CC;
+        }
+</style>

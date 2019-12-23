@@ -1,0 +1,322 @@
+<template>
+        <div id='information '>
+        <div id="crumbs" style="width: 100%;height: 40px;line-height: 40ppx;padding:5px 20px">
+            <ul>
+                <li><a href="#">当前页 <Icon type="ios-home-outline"></Icon></a></li>
+                <li><a href="#">能源监测</a></li>
+                <li><a href="#">集中监测</a></li>
+                 <li><a href="#">系统检测</a></li>
+                <li><a href="#">系统信息</a></li>
+            </ul>
+             <button @click="back" class="goback">返回</button>
+        </div>
+            <div class="top_H">
+                    <h3>{{name}}</h3>
+            </div>
+                <div class="demo-split">
+                        <Split >
+                            <div slot="left" class="demo-split-pane no-padding">
+                                <Split v-model="split3" mode="vertical">
+                                    <div slot="top" class="demo-split-pane">
+                                            <ul class="list_pL">
+                                                    <li>系统类别：<span>{{type}}</span></li>
+                                                    <li>系统容量：<span>{{cap}}</span>MW</li>
+                                                    <li>运行模式：{{model}}</li>
+                                                    <li>地址：{{address}}</li>
+                                                </ul>
+                                    </div>
+                                    <div slot="bottom" class="demo-split-pane">
+                                        <div class="bottom_box">
+                                                <div class="now">
+                                                        <el-date-picker style="margin-left: .5em;"
+                                                         v-model="form.valueName"
+                                                         type="daterange"
+                                                         @change="date"
+                                                         value-format="yyyy-MM-dd"
+                                                         start-placeholder="开始日期"
+                                                         end-placeholder="结束日期">
+                                                         </el-date-picker>
+                                                         <Button type="primary" @click='Getcolums'>查询</Button>
+                                                   </div>       
+                                                <div>
+                                                        <div class="LF" >
+                                                                <span>供能用能分析</span>
+                                                            </div>
+                                                        <div id='container_column' style="width:400px;height:400px;margin:0 auto"></div>
+                                                </div>
+                                        </div>
+                                           
+                                           
+                                    </div>
+                                </Split>
+                            </div>
+                            <div slot="right" class="demo-split-pane">
+                                    <div class="LS" >
+                                            <span>历史数据查询</span>
+                                        </div>
+                                    <div>
+                                            <!-- range-separator="至"  -->
+                                            <el-date-picker v-model="form.valueName1" type="daterange"                  start-placeholder="开始日期" end-placeholder="结束日期">
+                                            </el-date-picker>
+                                            <Button type="primary">查询</Button>
+                                    </div>
+                                    <div style="line-height:60px;">
+                                            <input type="text" placeholder="请输入参数名称" class="history_data"  v-model="inputtext"> 
+                                            <Button type="primary"  size="large">精准查询</Button>
+                                            <Button type="primary" size="large" @click="exportData()"><Icon type="ios-download-outline"></Icon> 导出数据</Button>
+                                        </div>
+                                <Table height="300" :columns="columns1" :data="data2"></Table>
+                            </div>
+                        </Split>
+                    </div>
+        </div>  
+</template>
+<script>
+    export default{
+        data(){
+            return{
+                name:"",
+                type:'',
+                cap:"",
+                model:"",
+                address:"",
+                form: {
+                    valueName: [new Date(), new Date()],
+                    valueName1: [new Date(), new Date()]
+                },
+                SelectStartTime: "",
+                SelectEndTime: "",
+                inputtext: "",
+                split3:0.4,
+                columns1: [
+                    {
+                        title: '时间',
+                        key: 'date'
+                    },
+                    {
+                        title: '参数名称',
+                        key: 'name'
+                    },
+                    {
+                        title: '参数名称',
+                        key: 'name'
+                    },
+                    {
+                        title: '参数名称',
+                        key: 'name'
+                    },
+                    {
+                        title: '参数名称',
+                        key: 'name'
+                    }
+                ],
+                data2: [
+                    {
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        date: '2016-10-03'
+                    },
+                    {
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        date: '2016-10-01'
+                    },
+                    {
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        date: '2016-10-02'
+                    },
+                    {
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        date: '2016-10-04'
+                    },
+                    {
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        date: '2016-10-03'
+                    },
+                    {
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        date: '2016-10-01'
+                    },
+                    {
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        date: '2016-10-02'
+                    },
+                    {
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        name: '参数值',
+                        date: '2016-10-04'
+                    }
+                ]
+            }
+        },
+        mounted(){
+                this.gettiaozhuan();
+                this.get_container_column();
+            },
+        methods:{
+            back(){
+                this.$router.go(-1);//返回上一层
+            },
+            gettiaozhuan(){
+                    this.$axios.get(this.$api+'Station/GetStationInfoBySn?sn=' + this.$route.query.sn).then((data) =>  {
+                        var res = data.data
+                        this.name =res.Pname
+                        this.type = res.SysType
+                        this.cap = res.SysCap
+                        this.model = res.SysMode
+                        this.address = res.Paddress
+                    })
+                },
+                date(val) {
+                    this.form.valueName == val;
+                    this.SelectStartTime = val[0];
+                    this.SelectEndTime = val[1];
+                },
+                Getcolums(){
+                    this.get_container_column();
+                },
+                // 供能用能分析图表
+                get_container_column(){
+                        let myChart = this.$echarts.init(document.getElementById('container_column'));
+                        myChart.setOption({
+                                color: ['#003366', '#006699', '#4cabce', '#e5323e'],
+                                tooltip: {
+                                        trigger: 'axis',
+                                        axisPointer: {
+                                        type: 'shadow'
+                                        }
+                                },
+                                legend: {
+                                        data: ['Forest', 'Steppe', 'Desert', 'Wetland']
+                                },
+                                calculable: true,
+                                xAxis: [
+                                        {
+                                        type: 'category',
+                                        axisTick: {show: false},
+                                        data: ['2012', '2013', '2014', '2015', '2016'],
+                                        axisLabel: {
+                                                textStyle: {
+                                                        color: '#fff'
+                                                }
+                                        },
+                                        }
+                                ],
+                                yAxis: [
+                                        {
+                                            name:'',
+                                        type: 'value',
+                                        axisLabel: {
+                                                textStyle: {
+                                                        color: '#fff'
+                                                }
+                                        }
+                                        },
+                                ],
+                                series: [
+                                        {
+                                        name: 'Forest',
+                                        type: 'bar',
+                                        barGap: 0,
+                                        data: [320, 332, 301, 334, 390]
+                                        },
+                                        {
+                                        name: 'Steppe',
+                                        type: 'bar',
+                                        data: [220, 182, 191, 234, 290]
+                                        },
+                                        {
+                                        name: 'Desert',
+                                        type: 'bar',
+                                        data: [150, 232, 201, 154, 190]
+                                        },
+                                        {
+                                        name: 'Wetland',
+                                        type: 'bar',
+                                        data: [98, 77, 101, 99, 40]
+                                        }
+                                ]
+                        })
+                },
+       
+            },
+            // 导出数据
+            exportData (){
+                this.$refs.table.exportCsv({
+                    filename: '历史数据'
+                })
+            }
+    }
+</script>
+<style scoped>
+    .container_box{
+        display: flex;
+        color:#fff;
+    }
+    .container_box>div{
+        flex: 1;
+        
+    }
+    .demo-split{
+        height:700px;
+        /* border: 1px solid #dcdee2; */
+        color: #fff;
+        margin-top: 20px;
+    }
+    .demo-split-pane{
+        padding: 10px;
+    }
+    .demo-split-pane.no-padding{
+        height: 600px;
+        padding: 0;
+    }
+    .list_pL{margin: 50px 0px 20px 80px;}
+    .bottom_box{margin-top: 30px;text-align: center}
+    .ivu-split-trigger-con{
+        top: 40%;
+    }
+    .now{margin-bottom: 25px;}
+    .list_pL>li{
+        width: 80%;
+        height: 30px;
+        line-height: 30px;
+        font-size: 18px;
+        text-align: center;
+        border-radius: 5px;
+        background: #fff;
+        color: #3366CC;
+        font-weight: 700;
+        margin: 10px 0
+    }
+    .top_H>h3{
+        text-align: center;  font-size: 18px; color: #3366CC;width: 40%;margin: 0 auto;height: 30px;line-height: 30px;background: #fff;border-radius: 5px;
+    }
+    .history_data{height:40px;line-height:40px;border-radius:5px;}
+    .LF{
+        width: 30px;font-size: 18px;float: left;display:flex;align-items:center;height:425px;
+    }
+    .LS{
+        width: 30px;font-size: 18px;float: left;display:flex;align-items:center;height:425px;
+    }
+</style>

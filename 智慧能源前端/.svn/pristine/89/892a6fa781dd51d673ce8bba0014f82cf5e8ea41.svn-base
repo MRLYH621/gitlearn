@@ -1,0 +1,217 @@
+<template>
+        <div id='ensemble '>
+            <div class="demo-split">
+        <Split mode="vertical">
+            <div slot="top" class="demo-split-pane">
+                <div class='productivityanalysis-screen-box'>
+                    <div class='productivityanalysis-screen-box'>
+                        <div class="productivityanalysis-screen-box-shadow">
+                            <div class='title-i'>
+                                <i>角色信息表</i>
+                            </div>
+                        <div class='productivityanalysis-screen-box-nav'>
+                            <div class="energyStatistics-screen-box-select">
+                                <div style="width:306px;float:left;display:flex;justify-content: space-around">
+                                </div>
+                                <div style="width:120px;float:right;display:flex;justify-content:space-around;">
+                                    <button type="button" class="button-white" style="padding:0 10px;line-height: 28px" @click="addRole" >新增</button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class='productivityanalysis-screen-box-table'>
+                            <table border="1" border-color="red">
+                                <thead>
+                                    <tr>
+                                        <th>角色</th>
+                                        <th>描述</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody v-for="item in totalData2">
+                                    <tr>
+                                        <td>{{item.RoleName}}</td>
+                                        <td>{{item.RoleDescription}}</td>
+                                        <td>
+                                            <router-link :to="{path:'JSQX',query:{RoleID:item.RoleID}}">
+                                                <Icon type="ios-create-outline" title="编辑角色" style='cursor: pointer'/>
+                                            </router-link>
+                                            <Icon type="ios-trash-outline"style="padding:5px" title='删除'/> <!-- @click="dele(item.RoleID)" -->
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class='fenyeBox'>
+                                <!-- <Page :total="dataCount" :page-size="PageSize" show-elevator @on-change='handlePageSize' :current='yeMaRole' /> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div slot="bottom" class="demo-split-pane">
+                <div class="productivityanalysis-screen-box-shadow">
+                    <div class='title-i'>
+                        <i>账户信息</i>
+                    </div>
+                    <div class='productivityanalysis-screen-box-nav'>
+                        <div class="energyStatistics-screen-box-select">
+                            <div style="width:100px;float:left;display:flex;justify-content: space-around">
+                            <select class="productivityanalysis-Bov-select" v-model="Role" >   <!--@change="selectRole"-->
+                                <option :value="item.RoleID" v-for="item in selectOne">{{item.RoleName}}</option>      
+                            </select>
+                            </div>
+                        </div>
+                        </div>
+                            <div style="width:120px;float:right;display:flex;justify-content:space-around;">
+                                <button type="button" class="button-white" style="padding:0 10px;line-height: 28px" @click="addUser" >新增</button><!-- -->
+                            </div>
+                            <div class='productivityanalysis-screen-box-table'>
+                                <table border="1" border-color="red">
+                                    <thead>
+                                        <tr>
+                                            <!-- <th>
+                                                <input type='checkbox'>
+                                            </th> -->
+                                            <th>账户</th>
+                                            <th>用户名</th>
+                                            <th>手机号</th>
+                                            <th>邮箱</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody v-for="item in totalData">
+                                        <tr>
+                                            <!--<td>
+                                                 <input type='checkbox'></td> -->
+                                                <td>{{item.UserName}}</td>
+                                                <td>{{item.UserFullName}}</td>
+                                                <td>{{item.UserPhone}}</td>
+                                                <td>{{item.UserEmail}}</td>
+                                                <td>
+                                                    <router-link :to="{path:'UpdateUser',query:{UserID:item.UserID}}">
+                                                        <Icon type="ios-create-outline" title="编辑用户" style='cursor: pointer'/>
+                                                    </router-link>
+                                                    <Icon type="ios-trash-outline"style="padding:5px" title='删除' />
+                                                    <!--@click="deleUser(item.UserID)"-->
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                  <div class='fenyeBox'>
+                                    <!-- <Page :total="dataCount1" :page-size="PageSize1" show-elevator @on-change='handlePageSize1' :current='yeMa' />     -->
+                                  </div>
+                            </div>
+                        </div>
+            </div>
+        </Split>
+    </div>
+        </div>
+</template>
+<script>
+    export default {
+        data() {
+                return {
+                    totalData2:[
+                            {RoleID:0,RoleName:"管理",RoleDescription:"系统管理"},
+                            {RoleID:1,RoleName:"管理1",RoleDescription:"系统管理1"},
+                            {RoleID:2,RoleName:"管理2",RoleDescription:"系统管理2"},
+                            {RoleID:3,RoleName:"管理3",RoleDescription:"系统管理3"},
+                            {RoleID:4,RoleName:"管理4",RoleDescription:"系统管理4"},
+                    ],
+                    Role:"",
+                    selectOne:[
+                        {RoleID:0,RoleName:"管理",RoleDescription:"系统管理"},
+                        {RoleID:1,RoleName:"管理1",RoleDescription:"系统管理1"},
+                        {RoleID:2,RoleName:"管理2",RoleDescription:"系统管理2"},
+                        {RoleID:3,RoleName:"管理3",RoleDescription:"系统管理3"},
+                        {RoleID:4,RoleName:"管理4",RoleDescription:"系统管理4"},
+                    ],
+                    totalData:[
+                        {UserID:0,UserName:"管理员",UserFullName:"admin",UserPhone:"13566679223",UserEmail:"111@bjcorona.com"},
+                        {UserID:1,UserName:"管理员",UserFullName:"admin",UserPhone:"13566679223",UserEmail:"111@bjcorona.com"},
+                        {UserID:2,UserName:"管理员",UserFullName:"admin",UserPhone:"13566679223",UserEmail:"111@bjcorona.com"},
+                        {UserID:3,UserName:"管理员",UserFullName:"admin",UserPhone:"13566679223",UserEmail:"111@bjcorona.com"},
+                    ],
+            }
+        },
+        methods:{
+                addRole:function(){
+                        this.$router.push({path: '/JSQX',query:{ RoleID:'-1'}});
+                },
+                addUser:function(){
+                    this.$router.push({path: '/UpdateUser',query:{ UserID:'-1'}});
+                },
+        },
+    }
+</script>
+<style scoped>
+ .demo-split{
+        height: 800px;
+        border: 1px solid #dcdee2;
+    }
+    .demo-split-pane{
+        padding: 10px;
+    }
+    /* .productivityanalysis-screen-box-shadow{
+    width: 100%;
+    box-shadow: inset 2px 2px 1px RGB(30,30,30), 2px 2px 1px RGB(30,30,30);
+    border-radius: 6px;
+    background-color: RGB(43,50,58);
+    padding: 5px;
+    box-sizing: border-box;
+    } */
+    .title-i{
+    width: 100%;
+    height: 30px;
+    box-sizing: border-box;
+    }
+    .title-i i{
+    height: 30px;
+    line-height: 30px;
+    float: left;
+    color: white;
+    font-weight: 700;
+    }
+    .productivityanalysis-screen-box-nav{
+        width: 100%;
+        height: 30px;
+    }
+    .productivityanalysis-Bov-select{
+        float: right;
+        width: 100px;
+        height: 28px;
+        border: 1px solid black;
+        box-sizing: border-box;
+        margin-top: 1px;
+        border-radius: 5px
+    }
+    .productivityanalysis-screen-box-table{
+        width:100%;
+        margin-top:10px
+        }
+    .productivityanalysis-screen-box-table table{
+        width:100%;
+        color:#00e265
+    }
+    .productivityanalysis-screen-box-table table td,.productivityanalysis-screen-box-table table th{
+        height: 30px;
+        line-height: 30px;
+        text-align: center
+    }
+    .productivityanalysis-screen-box-table table thead{
+        font-size:700
+    }
+     .productivityanalysis-screen-box-table table tbody{
+        font-size:700;
+        color:white
+    }
+    .fenyeBox{
+        width: 100%;
+        height: 60px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+</style>

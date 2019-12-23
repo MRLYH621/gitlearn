@@ -1,0 +1,60 @@
+<template>
+    <div id='ensemble '>
+        <Form :model="formLeft" label-position="left" :label-width="100">
+                <FormItem label="系统名称：">
+                        <Select v-model="formLeft.select">
+                                <Option value="m1">系统名称</Option>
+                                <Option value="shanghai">London</Option>
+                                <Option value="shenzhen">Sydney</Option>
+                        </Select>
+                </FormItem>
+                <FormItem label="系统类型：">
+                        <Select v-model="formLeft.select1">
+                                <Option value="guangchu">光储系统</Option>
+                                <Option value="fenbushi">分布式天然气系统</Option>
+                                <Option value="shenzhen">Sydney</Option>
+                        </Select>
+                </FormItem>
+                <FormItem label="运行模式：">
+                        <Select v-model="formLeft.select2">
+                                <Option value="y1">削峰填谷</Option>
+                                <Option value="y2">需求侧响应</Option>
+                                <Option value="y3">经济运行</Option>
+                        </Select>
+                </FormItem>
+                <FormItem label="指标名称：">
+                        <Select v-model="formLeft.select3">
+                                <Option value="z1">指标名称</Option>
+                                <Option value="shanghai">London</Option>
+                                <Option value="shenzhen">Sydney</Option>
+                        </Select>
+                </FormItem>
+                <FormItem label="权   重：">
+                        <Input v-model="formLeft.input2"></Input>
+                </FormItem>
+                <FormItem label="指标对标：">
+                        <Input v-model="formLeft.input3"></Input>
+                </FormItem>
+        </Form>
+    </div>
+</template>
+<script>
+    export default {
+       data () {
+         return {
+            formLeft: {
+                input1: '',
+                input2: '',
+                input3: '',
+                select: '',
+                select1: '',
+                select2: '',
+                select3: '',
+          },
+         }
+        }
+    }
+</script>
+<style scoped>
+         .ivu-form .ivu-form-item-label{color: white !important}
+</style>

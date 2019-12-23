@@ -1,0 +1,365 @@
+<template>
+        <div id='ensemble '>
+        <div id="crumbs" style="width: 100%;height: 40px;line-height: 40ppx;padding:5px 20px">
+            <ul>
+                <li><a href="#">当前页 <Icon type="ios-home-outline"></Icon></a></li>
+                <li><a href="#">系统优化</a></li>
+                <li><a href="#">仿真数据</a></li>
+                 <li><a href="#">供能</a></li>
+            </ul>
+             <span @click="back" class="goback">返回</span>
+        </div>
+            <div class="ensemble">
+                <div class="flex_left">
+                      <div class="flex_left_t">
+                           <label for="">能源类型：</label>
+                           <el-select v-model="value4" clearable placeholder="请选择">
+                                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                          </el-select>
+                          <Button type="primary">确认</Button>
+                      </div>
+                        <div class="flex_left_t">
+                                        <label for="">选择供能设备：</label>
+                                        <el-select  v-model="value5"  clearable placeholder="请选择">
+                                                <el-option v-for="item in options1" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                                        </el-select>
+                                        <Button type="primary">确认</Button>
+                        </div>
+                         <div class="flex_left_t">
+                                        <label for="">典型日设置：</label>
+                                        <input type="text"  v-model="value5" class="ipt_value">
+                                        <Button type="primary">确认</Button>
+                        </div>
+                        <div class="flex_left_C">
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <label for="">1h：</label>
+                                            <input type="text" placeholder="请输入发电功率/kW" id="ip1">
+                                        </li>
+                                        <li>
+                                             <label for="">2h：</label>
+                                             <input type="text" placeholder="请输入发电功率/kW" id="ip2">
+                                        </li>
+                                        <li>
+                                             <label for="">3h：</label>
+                                             <input type="text" placeholder="请输入发电功率/kW" id="ip3">            
+                                        </li>
+                                        <li>
+                                            <label for="">4h：</label>
+                                            <input type="text" placeholder="请输入发电功率/kW" id="ip4">
+                                        </li>
+                                        <li>
+                                              <label for="">5h：</label>
+                                              <input type="text" placeholder="请输入发电功率/kW" id="ip5">                        
+                                        </li>
+                                        <li>
+                                               <label for="">6h：</label>
+                                               <input type="text" placeholder="请输入发电功率/kW" id="ip6">
+                                        </li>
+                                        <li>
+                                               <label for="">7h：</label>
+                                               <input type="text" placeholder="请输入发电功率/kW" id="ip7">
+                                        </li>
+                                        <li>
+                                               <label for="">8h：</label>
+                                               <input type="text" placeholder="请输入发电功率/kW" id="ip8">
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <ul>
+                                        <li>
+                                                <label for="">9h：</label>
+                                                <input type="text" placeholder="请输入发电功率/kW" id="ip9">
+                                        </li>
+                                        <li>
+                                                <label for="">10h：</label>
+                                                <input type="text" placeholder="请输入发电功率/kW" id="ip10">
+                                        </li>
+                                        <li>
+                                                <label for="">11h：</label>
+                                                <input type="text" placeholder="请输入发电功率/kW" id="ip11">            
+                                        </li>
+                                        <li>
+                                                <label for="">12h：</label>
+                                                <input type="text" placeholder="请输入发电功率/kW" id="ip12">
+                                        </li>
+                                        <li>
+                                                <label for="">13h：</label>
+                                                <input type="text" placeholder="请输入发电功率/kW" id="ip13">                        
+                                        </li>
+                                        <li>
+                                                <label for="">14h：</label>
+                                                <input type="text" placeholder="请输入发电功率/kW" id="ip14">
+                                        </li>
+                                        <li>
+                                                <label for="">15h：</label>
+                                                <input type="text" placeholder="请输入发电功率/kW" id="ip15">
+                                        </li>
+                                        <li>
+                                                <label for="">16h：</label>
+                                                <input type="text" placeholder="请输入发电功率/kW" id="ip16">
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                   <ul>
+                                        <li>
+                                                <label for="">17h：</label>
+                                                <input type="text" placeholder="请输入发电功率/kW"  id="ip17">
+                                        </li>
+                                        <li>
+                                                <label for="">18h：</label>
+                                                <input type="text" placeholder="请输入发电功率/kW" id="ip18">
+                                        </li>
+                                        <li>
+                                                <label for="">19h：</label>
+                                                <input type="text" placeholder="请输入发电功率/kW" id="ip19">            
+                                        </li>
+                                        <li>
+                                                <label for="">20h：</label>
+                                                <input type="text" placeholder="请输入发电功率/kW" id="ip20">
+                                        </li>
+                                        <li>
+                                                <label for="">21h：</label>
+                                                <input type="text" placeholder="请输入发电功率/kW" id="ip21">                        
+                                        </li>
+                                        <li>
+                                                <label for="">22h：</label>
+                                                <input type="text" placeholder="请输入发电功率/kW" id="ip22">
+                                        </li>
+                                        <li>
+                                                <label for="">23h：</label>
+                                                <input type="text" placeholder="请输入发电功率/kW" id="ip23">
+                                        </li>
+                                        <li>
+                                                <label for="">24h：</label>
+                                                <input type="text" placeholder="请输入发电功率/kW" id="ip24">
+                                        </li>
+                                    </ul>
+                                </div>        
+                        </div>
+                        <Button type="primary">保存</Button>
+                                                        
+                </div>
+                <div class="flex_right">
+                        <div class="flex_right_S">
+                                <el-select  v-model="value5"  clearable placeholder="请选择">
+                                                <el-option v-for="item in options1" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                                </el-select>
+                                <Button type="primary">确认</Button>
+                        </div>
+                        <div id='container_column' style="width:400px;height:200px"></div>
+                        <div id='container_line' style="width:400px;height:200px"></div>
+                </div>        
+  </div>
+ </div>
+</template>
+<script>
+ export default {
+        data() {
+                return {
+                        value4:"",
+                        value5:"",
+                        options: [{
+                                value: '1',
+                                label: '评价指标1'
+                                }, {
+                                value: '2',
+                                label: '评价指标2'
+                                }, {
+                                value: '3',
+                                label: '评价指标3'
+                                }, {
+                                value: '4',
+                                label: '评价指标4'
+                                }, {
+                                value: '5',
+                                label: '评价指标5'
+                        }],
+                        options1: [{
+                                value: '1',
+                                label: '冷'
+                                }, {
+                                value: '2',
+                                label: '热'
+                                }, {
+                                value: '3',
+                                label: '电'
+                                },],
+                          
+                }
+        },
+        mounted(){
+                this.get_container_column();
+                this.get_container_line();
+        },
+        methods: {
+                 back(){
+                        this.$router.go(-1);//返回上一层
+                 },
+                deleteRow(index, rows) {
+                        rows.splice(index, 1);
+                },
+                get_container_column(){
+                        let myChart = this.$echarts.init(document.getElementById('container_column'));
+                        myChart.setOption({
+                                color: ['#003366', '#006699', '#4cabce', '#e5323e'],
+                                tooltip: {
+                                        trigger: 'axis',
+                                        axisPointer: {
+                                        type: 'shadow'
+                                        }
+                                },
+                                // legend: {
+                                //         data: ['Forest', 'Steppe', 'Desert', 'Wetland']
+                                // },
+                                calculable: true,
+                                xAxis: [
+                                        {
+                                        type: 'category',
+                                        axisTick: {show: false},
+                                        data: ['2012', '2013', '2014', '2015', '2016'],
+                                        axisLabel: {
+                                                textStyle: {
+                                                        color: '#fff'
+                                                }
+                                        },
+                                        }
+                                ],
+                                yAxis: [
+                                        {
+                                        type: 'value',
+                                        axisLabel: {
+                                                textStyle: {
+                                                        color: '#fff'
+                                                }
+                                        }
+                                        }
+                                ],
+                                series: [
+                                        {
+                                        name: 'Forest',
+                                        type: 'bar',
+                                        barGap: 0,
+                                        data: [320, 332, 301, 334, 390]
+                                        },
+                                        {
+                                        name: 'Steppe',
+                                        type: 'bar',
+                                        data: [220, 182, 191, 234, 290]
+                                        },
+                                        {
+                                        name: 'Desert',
+                                        type: 'bar',
+                                        data: [150, 232, 201, 154, 190]
+                                        },
+                                        {
+                                        name: 'Wetland',
+                                        type: 'bar',
+                                        data: [98, 77, 101, 99, 40]
+                                        }
+                                ]
+                        })
+                },
+                get_container_line(){
+                        let myChart1 = this.$echarts.init(document.getElementById('container_line'));
+                        myChart1.setOption({
+                                // title: {
+                                //         text: '折线图堆叠'
+                                // },
+                                tooltip: {
+                                        trigger: 'axis'
+                                },
+                                // legend: {
+                                //         data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
+                                // },
+                                grid: {
+                                        left: '3%',
+                                        right: '14%',
+                                        bottom: '3%',
+                                        containLabel: true
+                                },
+                                toolbox: {
+                                        feature: {
+                                        saveAsImage: {}
+                                        }
+                                },
+                                xAxis: {
+                                        name:"时间/h",
+                                        type: 'category',
+                                        boundaryGap: false,
+                                        data: ['周一','周二','周三','周四','周五','周六','周日'],
+                                        axisLabel: {
+                                                textStyle: {
+                                                        color: '#fff'
+                                                }
+                                        },
+                                },
+                                yAxis: {
+                                        name:"发电功率/kW",
+                                        type: 'value',
+                                        axisLabel: {
+                                                textStyle: {
+                                                        color: '#fff'
+                                                }
+                                        },
+                                },
+                                series: [
+                                        {
+                                        name:'邮件营销',
+                                        type:'line',
+                                        stack: '总量',
+                                        data:[120, 132, 101, 134, 90, 230, 210]
+                                        },
+                                        {
+                                        name:'联盟广告',
+                                        type:'line',
+                                        stack: '总量',
+                                        data:[220, 182, 191, 234, 290, 330, 310]
+                                        },
+                                        {
+                                        name:'视频广告',
+                                        type:'line',
+                                        stack: '总量',
+                                        data:[150, 232, 201, 154, 190, 330, 410]
+                                        },
+                                        
+                                ]
+                                                        })
+                },
+        },
+
+  }
+</script>
+<style scoped>
+        .ensemble{
+                display:flex;
+                margin-top: 30px;
+                justify-content: flex-start;
+        }
+        .flex_left .flex_left_t{
+                height: 60px;
+        }
+        .flex_left .flex_left_t button,.flex_right button{height:40px;}
+        .ipt_value{height:40px;line-height:40px;border-radius:5px;}
+        .flex_left>div>label{
+                color: #fff;
+                font-size: 18px;font-weight: 700;line-height: 40px;display:inline-block;width:155px;text-align:right
+        }
+        .flex_right>a{
+                width: 200px;height: 40px;line-height: 40px;color: #fff;background: #3366CC;border-radius: 5px;display: block;text-align: center;font-size: 16px;margin: 0 auto
+        }
+        .flex_left_C{
+                display: flex;
+                color: #fff;
+        }
+         .flex_left_C>div li{line-height:50px;}
+        .flex_left_C>div label{
+                font-size: 16px;font-weight: 700;width: 40px;text-align: center;display: inline-block;
+        }
+        .flex_left_C>div input{
+                width: 150px;height: 30px;line-height: 30px;border-radius: 5px;color:#000;
+        }
+</style>

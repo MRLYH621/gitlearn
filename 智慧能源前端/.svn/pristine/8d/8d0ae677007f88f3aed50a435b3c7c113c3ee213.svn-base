@@ -1,0 +1,245 @@
+<template>
+        <div id='information '>
+            <div class="top_H">
+                    <h3>示例系统（系统名称）</h3>
+                    <button @click="back">返回</button>
+            </div>
+                <div class="demo-split">
+                        <Split>
+                            <div slot="left" class="demo-split-pane">
+                                <router-link to="/Assessmentreport">生成系统评估报告</router-link>
+                                <Table :columns="columns1" :data="data2"></Table>
+                            </div>
+                            <div slot="right" class="demo-split-pane  no-padding">
+                                    <Split mode="vertical">
+                                            <div slot="top" class="demo-split-pane right_top">
+                                                    <div>
+                                                        <Select v-model="model4" size="large" style="width:100px">
+                                                            <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                                                        </Select>
+                                                        <Button type="primary">确定</Button>
+                                                    </div>
+                                                    <div id="container_line" class="container_line_box"></div>
+                                            </div>
+                                            <div slot="bottom" class="demo-split-pane right_bottom">
+                                                    <div class="right_bottom_content">
+                                                        <div class="right_bottom_content_T">
+                                                                <Select v-model="model4" size="large" style="width:100px">
+                                                                        <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                                                                    </Select>
+                                                                    <Button type="primary">添加</Button>
+                                                        </div>
+                                                        <div class="right_bottom_content_B">
+                                                                <div class="ZB"></div>
+                                                                <Button type="primary">关联</Button>
+                                                        </div>
+                                                       
+                                                    </div>
+                                                    <div id='cobtainerBox_circle' class="cobtainerBox_circle_box" style="width: 300px;height: 300px;"></div>
+                                            </div>
+                                    </Split>
+                                
+                            </div>
+                        </Split>
+                    </div>
+        </div>  
+</template>
+<script>
+    export default{
+        data(){
+            return{
+                value6: '',
+                model4: '',
+                columns1: [
+                    {
+                        title: '指标名称',
+                        key: 'name'
+                    },
+                    {
+                        title: '指标值',
+                        key: 'value'
+                    },
+                    {
+                        title: '指标对标',
+                        key: 'benchmarking'
+                    },
+                    {
+                        title: '指标排名',
+                        key: 'ranking'
+                    }
+                ],
+                data2: [
+                    {
+                        name: '参数值',
+                        value: '参数值',
+                        benchmarking: '参数值',
+                        ranking: '2016-10-03',
+                        cellClassName: {
+                            value: 'demo-table-info-cell-address',
+                        }
+                    },
+                    {
+                        name: '参数值',
+                        value: '参数值',
+                        benchmarking: '参数值',
+                        ranking: '2016-10-03',
+                        cellClassName: {
+                            value: 'demo-table-info-cell-name'
+                        }
+                    },
+                    {
+                        name: '参数值',
+                        value: '参数值',
+                        benchmarking: '参数值',
+                        ranking: '2016-10-03',
+                        cellClassName: {
+                            value: 'demo-table-info-cell-age',
+                        }
+                    },
+                    {
+                        name: '参数值',
+                        value: '参数值',
+                        benchmarking: '参数值',
+                        ranking: '2016-10-03',
+                        cellClassName: {
+                            value: 'demo-table-info-cell-age',
+                        }
+                    },
+                    {
+                        name: '参数值',
+                        value: '参数值',
+                        benchmarking: '参数值',
+                        ranking: '2016-10-03',
+                        cellClassName: {
+                            value: 'demo-table-info-cell-name'
+                        }
+                    },
+                ],
+                cityList: [
+                    {
+                        value: '指标一',
+                        label: '指标一'
+                    },
+                    {
+                        value: '指标二',
+                        label: '指标二'
+                    },
+                ],
+            }
+        },
+        mounted:function (){
+            this.get_echarts();
+            this.get_circle();
+		},
+        methods:{
+            back(){
+                this.$router.go(-1);//返回上一层
+            },
+            get_echarts(){
+                let myChart = this.$echarts.init(document.getElementById('container_line'));
+				// 把配置和数据放这里
+				myChart.setOption({
+                        title:{
+                            text:"指标对标折线图",
+                            color:"#fff"
+                        },
+                        xAxis: {
+                        type: 'category',
+                        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                    },
+                    tooltip: {},
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [{
+                        data: [820, 932, 901, 934, 1290, 1330, 1320],
+                        type: 'line'
+                    }]
+                })              
+            },
+            get_circle(){
+                let myChart1 = this.$echarts.init(document.getElementById('cobtainerBox_circle'));
+                myChart1.setOption({
+                    title: {
+                        text: '指标关联雷达图',
+                        color:"#fff"
+                    },
+                    tooltip: {},
+                    legend: {
+                        data: ['预算分配（Allocated Budget）', '实际开销（Actual Spending）']
+                    },
+                    radar: {
+                        // shape: 'circle',
+                        name: {
+                            textStyle: {
+                                color: '#fff',
+                                backgroundColor: '#999',
+                                borderRadius: 3,
+                                padding: [3, 5]
+                        }
+                        },
+                        indicator: [
+                        { name: '销售（sales）', max: 6500},
+                        { name: '管理（Administration）', max: 16000},
+                        { name: '信息技术（Information Techology）', max: 30000},
+                        ]
+                    },
+                    series: [{
+                        name: '预算 vs 开销（Budget vs spending）',
+                        type: 'radar',
+                        // areaStyle: {normal: {}},
+                        data : [
+                            {
+                                value : [4300, 10000, 28000],
+                                name : '预算分配（Allocated Budget）'
+                            },
+                            {
+                                value : [5000, 14000, 28000],
+                                name : '实际开销（Actual Spending）'
+                            }
+                        ]
+                    }]
+                })         
+            }
+        }
+    }
+</script>
+<style scoped>
+    .container_box{
+        display: flex;
+        color:#fff;
+    }
+    .container_box>div{
+        flex: 1;
+        
+    }
+    .demo-split{
+        height: 600px;
+        /* border: 1px solid #dcdee2; */
+        color: #fff;
+    }
+    .demo-split-pane{
+        padding: 10px;
+    }
+    .right_bottom,.right_top{
+        display: flex;
+        justify-content: flex-start;
+    }
+    .demo-split-pane.no-padding{
+        height: 600px;
+        padding: 0;
+    }
+    .container_line_box{
+        width: 300px;
+        height: 300px;
+    }
+    .top_H>h3{
+        text-align: center;  font-size: 18px; color: #3366CC;width: 40%;margin: 0 auto;height: 30px;line-height: 30px;background: #fff;border-radius: 5px;
+    }
+    .demo-split-pane>a{
+        height: 40px;line-height: 40px;width: 210px;text-align: center;font-size: 18px;font-weight: 700;color: #fff;background: #3366CC;display: block;border-radius: 5px;margin-bottom: 15px;
+    }
+    .ZB{
+        height: 100px;overflow-y: scroll;width: 100px;border: 3px solid #ccc;border-radius: 3px;padding-left: 3px;
+    }
+</style>
